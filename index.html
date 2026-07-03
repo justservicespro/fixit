@@ -3,13 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FixIt Abuja | Generator, Printer &amp; Laptop Repair Technicians in Abuja</title>
-<meta name="description" content="FixIt Abuja sends certified technicians to your home or office for generator repair, printer &amp; photocopier repair, laptop repair, AC servicing, inverter/UPS, CCTV and more across Abuja FCT. Same-day dispatch. Call or WhatsApp +234 807 992 6755.">
+<title>FixIt Abuja | Generator, Printer &amp; Laptop Repair in Abuja</title>
+<meta name="description" content="Generator, printer/photocopier &amp; laptop repair in Abuja FCT. Certified technicians dispatched same-day to your home or office. Call or WhatsApp +234 807 992 6755.">
+<meta name="author" content="JustServicesPro Management and Consulting Ltd">
 <meta name="keywords" content="generator repair Abuja, printer repair Abuja, photocopier repair Abuja, laptop repair Abuja, computer repair Abuja, AC repair Abuja, inverter repair Abuja, UPS repair Abuja, CCTV installation Abuja, appliance repair Abuja FCT, technician near me Abuja">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://fixit.justservices.pro/">
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <meta name="theme-color" content="#171A21">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
 <!-- Local / Geo targeting -->
 <meta name="geo.region" content="NG-FC">
@@ -22,13 +32,13 @@
 <meta property="og:title" content="FixIt Abuja | Generator, Printer &amp; Laptop Repair Technicians in Abuja">
 <meta property="og:description" content="Same-day generator, printer/photocopier and laptop repair across Abuja. Certified technicians dispatched to your door. Call or WhatsApp +234 807 992 6755.">
 <meta property="og:url" content="https://fixit.justservices.pro/">
-<meta property="og:image" content="https://images.pexels.com/photos/18816918/pexels-photo-18816918.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<meta property="og:image" content="https://images.pexels.com/photos/12555013/pexels-photo-12555013.jpeg?auto=compress&cs=tinysrgb&w=1200">
 <meta property="og:locale" content="en_NG">
 <meta property="og:site_name" content="FixIt Abuja">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FixIt Abuja | Repair Technicians in Abuja">
 <meta name="twitter:description" content="Same-day generator, printer/photocopier and laptop repair across Abuja FCT.">
-<meta name="twitter:image" content="https://images.pexels.com/photos/18816918/pexels-photo-18816918.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<meta name="twitter:image" content="https://images.pexels.com/photos/12555013/pexels-photo-12555013.jpeg?auto=compress&cs=tinysrgb&w=1200">
 
 <!-- LocalBusiness structured data -->
 <script type="application/ld+json">
@@ -38,8 +48,8 @@
   "@id": "https://fixit.justservices.pro/#business",
   "name": "FixIt Abuja",
   "url": "https://fixit.justservices.pro/",
-  "image": "https://images.pexels.com/photos/18816918/pexels-photo-18816918.jpeg",
-  "logo": "https://images.pexels.com/photos/18816918/pexels-photo-18816918.jpeg",
+  "image": "https://images.pexels.com/photos/12555013/pexels-photo-12555013.jpeg",
+  "logo": "https://images.pexels.com/photos/12555013/pexels-photo-12555013.jpeg",
   "description": "On-demand repair and maintenance technicians in Abuja FCT specialising in generator repair, printer/photocopier repair, laptop repair, AC servicing, inverters/UPS, CCTV and more.",
   "areaServed": [
     {"@type": "City", "name": "Abuja"},
@@ -155,6 +165,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.pexels.com/photos/12555013/pexels-photo-12555013.jpeg?auto=compress&cs=tinysrgb&w=1000" fetchpriority="high">
 
 <style>
 :root{
@@ -197,6 +208,12 @@ h1,h2,h3{font-family:'Archivo Black',sans-serif;line-height:1.05;margin:0;letter
 .mono{font-family:'JetBrains Mono',monospace;}
 button{font-family:inherit;cursor:pointer;}
 :focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+.skip-link{
+  position:absolute; left:12px; top:-60px; z-index:100;
+  background:var(--amber); color:#171A21; padding:12px 18px; border-radius:4px;
+  font-weight:700; font-size:14px; transition:top .2s ease;
+}
+.skip-link:focus{top:12px;}
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
 }
@@ -484,6 +501,33 @@ nav.links a:hover{color:#fff; border-color:var(--amber);}
 
 /* ===================== CONTACT ===================== */
 .contact-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:44px;}
+
+/* ===================== EXPERT / TECHNICIAN SIGN-UP ===================== */
+.expert-grid{display:grid; grid-template-columns:0.9fr 1.15fr; gap:44px; align-items:start;}
+.expert-perks{display:flex; flex-direction:column; gap:18px; margin-top:30px;}
+.perk{display:flex; gap:13px; align-items:flex-start;}
+.perk-ic{
+  width:26px; height:26px; border-radius:50%; background:rgba(18,165,148,0.16); color:var(--teal);
+  display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; margin-top:2px;
+}
+.perk b{display:block; color:#fff; font-size:14.5px; margin-bottom:3px;}
+.perk span{color:var(--text-soft); font-size:13.5px; line-height:1.55;}
+.expert-form-panel{background:#fff;}
+.expert-checks{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px 14px;
+  background:var(--paper); border:1px solid var(--line-dark); border-radius:4px; padding:16px;
+}
+.echk{
+  display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--ink); font-weight:500; cursor:pointer;
+}
+.echk input{width:16px; height:16px; accent-color:var(--teal-dark); flex-shrink:0;}
+@media (max-width: 980px){
+  .expert-grid{grid-template-columns:1fr;}
+  .expert-checks{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width: 460px){
+  .expert-checks{grid-template-columns:1fr;}
+}
 .contact-card{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:32px;}
 .contact-card h3{color:#fff; font-size:19px; margin-bottom:22px;}
 .creach{display:flex; gap:14px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line);}
@@ -594,6 +638,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 </style>
 </head>
 <body>
+<a href="#top" class="skip-link">Skip to main content</a>
 
 <!-- ============ TOP BAR ============ -->
 <div class="topbar">
@@ -621,6 +666,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <a href="#how">How It Works</a>
       <a href="#areas">Areas We Cover</a>
       <a href="#reviews">Reviews</a>
+      <a href="#join-team">For Technicians</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -643,6 +689,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <a href="#how">How It Works</a>
     <a href="#areas">Areas We Cover</a>
     <a href="#reviews">Reviews</a>
+    <a href="#join-team">For Technicians</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -679,19 +726,19 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         <div class="slider-dots" id="slider-dots"></div>
         <div class="slide active">
           <span class="slide-ticket-no mono">#GEN-01</span>
-          <img src="https://images.pexels.com/photos/18816918/pexels-photo-18816918.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technicians repairing a power generator in Abuja">
+          <img src="https://images.pexels.com/photos/12555013/pexels-photo-12555013.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Nigerian technicians repairing a power generator in Abuja" loading="eager" fetchpriority="high" width="1000" height="1150">
           <div class="slide-shade"></div>
           <div class="slide-label"><div class="slide-tag">Priority Service 01</div><div class="slide-title">Generator Repair</div></div>
         </div>
         <div class="slide">
           <span class="slide-ticket-no mono">#PRN-02</span>
-          <img src="https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician servicing a photocopier and printer">
+          <img src="https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician servicing a photocopier and printer" loading="lazy" width="1000" height="1150">
           <div class="slide-shade"></div>
           <div class="slide-label"><div class="slide-tag">Priority Service 02</div><div class="slide-title">Printer &amp; Photocopier Repair</div></div>
         </div>
         <div class="slide">
           <span class="slide-ticket-no mono">#LAP-03</span>
-          <img src="https://images.pexels.com/photos/33531806/pexels-photo-33531806.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician repairing a laptop in a workshop">
+          <img src="https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician repairing a laptop motherboard in a workshop" loading="lazy" width="1000" height="1150">
           <div class="slide-shade"></div>
           <div class="slide-label"><div class="slide-tag">Priority Service 03</div><div class="slide-title">Laptop Repair</div></div>
         </div>
@@ -721,7 +768,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <article class="pcard">
         <div class="pcard-media">
           <span class="pcard-rank">TICKET #GEN-01</span>
-          <img src="https://images.pexels.com/photos/32713414/pexels-photo-32713414.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Generator repair and servicing technician in Abuja" loading="lazy">
+          <img src="https://images.pexels.com/photos/16773594/pexels-photo-16773594.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Generator repair and servicing technician in Abuja" loading="lazy">
         </div>
         <div class="pcard-body">
           <h3>Generator Repair &amp; Servicing</h3>
@@ -763,7 +810,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <article class="pcard">
         <div class="pcard-media">
           <span class="pcard-rank">TICKET #LAP-03</span>
-          <img src="https://images.pexels.com/photos/7639370/pexels-photo-7639370.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Laptop repair technician working on a motherboard in Abuja" loading="lazy">
+          <img src="https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Laptop repair technician working on a motherboard in Abuja" loading="lazy">
         </div>
         <div class="pcard-body">
           <h3>Laptop &amp; Computer Repair</h3>
@@ -927,6 +974,111 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   </div>
 </section>
 
+<!-- ============ JOIN OUR TECHNICIAN NETWORK ============ -->
+<section class="section dark" id="join-team">
+  <div class="wrap expert-grid">
+    <div class="expert-intro">
+      <div class="eyebrow" style="color:var(--amber);">For Skilled Technicians</div>
+      <h2 style="font-size:clamp(26px,3.2vw,38px); color:#fff; margin-top:12px;">Are you a technician in Abuja? Work with us.</h2>
+      <p style="color:var(--text-soft); font-size:15.5px; line-height:1.7; margin-top:16px; max-width:460px;">FixIt Abuja connects verified generator, printer, laptop and appliance technicians with steady, paying jobs across the FCT. Tell us your trade and experience — our team reviews every application.</p>
+
+      <div class="expert-perks">
+        <div class="perk">
+          <div class="perk-ic">✓</div>
+          <div><b>Steady job requests</b><span>Leads sent straight to your phone, matched to your trade and location.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-ic">✓</div>
+          <div><b>Fair, transparent payouts</b><span>Know your earnings before you accept a job — no hidden deductions.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-ic">✓</div>
+          <div><b>Verified customer base</b><span>Homes and offices across Wuse, Garki, Maitama, Gwarinpa and beyond.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-panel expert-form-panel">
+      <h3>Apply to join our technician network</h3>
+      <p class="sub">Fill in your trade, experience and contact details — we'll reach out to verify and onboard you.</p>
+      <form id="expertForm" action="https://formsubmit.co/justservices.ltd@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New technician application — FixIt Abuja">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="form-row">
+          <div class="field">
+            <label for="ename">Full Name</label>
+            <input id="ename" name="Full Name" type="text" autocomplete="name" placeholder="e.g. Ibrahim Suleiman" required>
+          </div>
+          <div class="field">
+            <label for="ephone">Phone Number</label>
+            <input id="ephone" name="Phone Number" type="tel" autocomplete="tel" placeholder="080 000 0000" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="eemail">Email Address</label>
+            <input id="eemail" name="Email Address" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="eexp">Years of Experience</label>
+            <select id="eexp" name="Years of Experience" required>
+              <option value="">Select experience</option>
+              <option>Less than 1 year</option>
+              <option>1 – 3 years</option>
+              <option>3 – 5 years</option>
+              <option>5 – 10 years</option>
+              <option>10+ years</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field full" style="margin-bottom:16px;">
+          <label>Area(s) of Expertise</label>
+          <div class="expert-checks">
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Generator Repair"> Generator Repair</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Printer / Photocopier Repair"> Printer / Photocopier</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Laptop / Computer Repair"> Laptop / Computer</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Phone / Tablet Repair"> Phone / Tablet</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Air Conditioner Repair"> AC Repair</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Fridge / Freezer Repair"> Fridge / Freezer</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Inverter / UPS Repair"> Inverter / UPS</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="CCTV Installation / Repair"> CCTV</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="TV / Home Theatre Repair"> TV / Home Theatre</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Washing Machine Repair"> Washing Machine</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Electrical Wiring"> Electrical Wiring</label>
+            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Plumbing"> Plumbing</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="ebase">Base Location in Abuja</label>
+            <input id="ebase" name="Base Location in Abuja" type="text" placeholder="e.g. Kubwa" required>
+          </div>
+          <div class="field">
+            <label for="ecert">Certifications (if any)</label>
+            <input id="ecert" name="Certifications" type="text" placeholder="e.g. NABTEB, trade test cert">
+          </div>
+        </div>
+
+        <div class="field full" style="margin-bottom:16px;">
+          <label for="ebio">Tell Us About Your Work</label>
+          <textarea id="ebio" name="About Your Work" rows="4" placeholder="Brands you service, tools you own, past jobs..." required></textarea>
+        </div>
+
+        <div class="form-foot">
+          <button type="submit" class="btn btn-teal btn-lg">Submit Application</button>
+          <span class="form-note">Prefer WhatsApp? <a href="https://wa.me/2348079926755?text=Hi%2C%20I%27m%20a%20technician%20interested%20in%20joining%20FixIt%20Abuja" target="_blank" rel="noopener" style="color:var(--amber); font-weight:700;">Apply on WhatsApp →</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section class="section" id="faq">
   <div class="wrap">
@@ -936,23 +1088,23 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     </div>
     <div class="faq-list">
       <div class="faq-item open">
-        <button class="faq-q">How fast can a technician reach me in Abuja? <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="true">How fast can a technician reach me in Abuja? <span class="plus">+</span></button>
         <div class="faq-a"><p>Most call-outs within the FCT are attended to within 30–90 minutes of booking, depending on your location and current job load. Emergency generator faults are prioritised.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Do you charge a call-out fee? <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">Do you charge a call-out fee? <span class="plus">+</span></button>
         <div class="faq-a"><p>We give you an honest quote before a technician is dispatched, so you know the cost upfront. Any call-out or inspection fee, where applicable, is stated clearly before you confirm.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Can you supply spare parts, or should I buy them? <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">Can you supply spare parts, or should I buy them? <span class="plus">+</span></button>
         <div class="faq-a"><p>Our technicians carry common spares (belts, cartridges, chargers, RAM, etc.) and can source specific parts for your generator, printer or laptop model where needed — the cost is added to your quote.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Do you work with offices and businesses, not just homes? <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">Do you work with offices and businesses, not just homes? <span class="plus">+</span></button>
         <div class="faq-a"><p>Yes — many of our clients are offices, business centres and shops in Abuja. We offer maintenance contracts for generators, printers/photocopiers and AC units for businesses that want scheduled servicing.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Is my repair guaranteed? <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">Is my repair guaranteed? <span class="plus">+</span></button>
         <div class="faq-a"><p>Yes, parts and labour on every job carry a service warranty. If the same fault returns within the warranty period, we come back at no extra charge.</p></div>
       </div>
     </div>
@@ -999,11 +1151,11 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         <div class="form-row">
           <div class="field">
             <label for="fname">Full Name</label>
-            <input id="fname" name="Full Name" type="text" placeholder="e.g. Amaka Eze" required>
+            <input id="fname" name="Full Name" type="text" autocomplete="name" placeholder="e.g. Amaka Eze" required>
           </div>
           <div class="field">
             <label for="fphone">Phone Number</label>
-            <input id="fphone" name="Phone Number" type="tel" placeholder="080 000 0000" required>
+            <input id="fphone" name="Phone Number" type="tel" autocomplete="tel" placeholder="080 000 0000" required>
           </div>
         </div>
 
@@ -1073,6 +1225,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <a href="#how">How It Works</a>
       <a href="#areas">Areas We Cover</a>
       <a href="#reviews">Reviews</a>
+      <a href="#join-team">Join As A Technician</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="foot-col">
@@ -1138,10 +1291,12 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     document.querySelectorAll('.faq-item').forEach(o=>{
       o.classList.remove('open');
       o.querySelector('.faq-a').style.maxHeight = null;
+      o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
     });
     if(!isOpen){
       item.classList.add('open');
       a.style.maxHeight = a.scrollHeight + 'px';
+      q.setAttribute('aria-expanded', 'true');
     }
   });
 });
