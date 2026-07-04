@@ -275,16 +275,16 @@ header.site{
   color:#fff;
 }
 .logo-mark{
-  width:40px;height:40px;border-radius:6px;
+  width:40px;height:40px;border-radius:9px;
   background:linear-gradient(150deg, var(--amber), var(--amber-dark));
   display:flex;align-items:center;justify-content:center;
-  font-family:'Archivo Black',sans-serif; color:#171A21; font-size:19px;
   flex-shrink:0;
 }
+.logo-mark svg{width:26px;height:26px;}
 .logo-text{font-family:'Archivo Black',sans-serif; font-size:21px; letter-spacing:-0.01em;}
 .logo-text span{color:var(--amber);}
 .logo-sub{font-family:'Barlow Condensed',sans-serif; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-soft); margin-top:-2px;}
-nav.links{display:flex; align-items:center; gap:30px;}
+nav.links{display:flex; align-items:center; gap:26px;}
 nav.links a{
   color:var(--text-soft); font-size:14.5px; font-weight:600;
   padding:6px 0; border-bottom:2px solid transparent;
@@ -603,6 +603,9 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   .contact-grid{grid-template-columns:1fr;}
   .foot-grid{grid-template-columns:1fr 1fr;}
 }
+@media (max-width: 880px){
+  .header-cta .btn-outline{display:none;}
+}
 @media (max-width: 720px){
   nav.links{display:none;}
   .menu-toggle{display:block;}
@@ -655,7 +658,20 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 <header class="site">
   <div class="wrap nav">
     <a href="#top" class="logo">
-      <div class="logo-mark">F</div>
+      <div class="logo-mark">
+        <svg viewBox="0 0 48 48" width="24" height="24" aria-hidden="true">
+          <defs>
+            <mask id="boltcut-a">
+              <rect width="48" height="48" fill="#fff"/>
+              <polygon points="27.6,4 11.2,25.6 22.4,25.6 20.4,42 36.8,20.4 25.6,20.4" fill="#000"/>
+            </mask>
+          </defs>
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M24 4 L40.4 13.5 L40.4 32.5 L24 42 L7.6 32.5 L7.6 13.5 Z
+               M24 14 L32.2 18.7 L32.2 27.3 L24 32 L15.8 27.3 L15.8 18.7 Z"
+            fill="#171A21" mask="url(#boltcut-a)"/>
+        </svg>
+      </div>
       <div>
         <div class="logo-text">Fix<span>It</span> Abuja</div>
         <div class="logo-sub">Repair &amp; Maintenance</div>
@@ -663,8 +679,6 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     </a>
     <nav class="links">
       <a href="#services">Services</a>
-      <a href="#how">How It Works</a>
-      <a href="#areas">Areas We Cover</a>
       <a href="#reviews">Reviews</a>
       <a href="#join-team">For Technicians</a>
       <a href="#faq">FAQ</a>
@@ -1204,7 +1218,20 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   <div class="wrap foot-grid">
     <div class="foot-brand">
       <div class="logo" style="color:#fff;">
-        <div class="logo-mark">F</div>
+        <div class="logo-mark">
+        <svg viewBox="0 0 48 48" width="24" height="24" aria-hidden="true">
+          <defs>
+            <mask id="boltcut-b">
+              <rect width="48" height="48" fill="#fff"/>
+              <polygon points="27.6,4 11.2,25.6 22.4,25.6 20.4,42 36.8,20.4 25.6,20.4" fill="#000"/>
+            </mask>
+          </defs>
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M24 4 L40.4 13.5 L40.4 32.5 L24 42 L7.6 32.5 L7.6 13.5 Z
+               M24 14 L32.2 18.7 L32.2 27.3 L24 32 L15.8 27.3 L15.8 18.7 Z"
+            fill="#171A21" mask="url(#boltcut-b)"/>
+        </svg>
+      </div>
         <div>
           <div class="logo-text">Fix<span>It</span> Abuja</div>
           <div class="logo-sub">Repair &amp; Maintenance</div>
