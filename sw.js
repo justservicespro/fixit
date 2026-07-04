@@ -1,6 +1,9 @@
 // FixIt Abuja — Service Worker
-// Handles: install-to-home-screen eligibility, offline app-shell caching,
-// and receiving/display of push notifications (once a push provider is wired in — see README-push-notifications.md).
+// Handles: install-to-home-screen eligibility and offline app-shell caching.
+// Push notification delivery is handled by OneSignal's imported worker below —
+// this is OneSignal's documented pattern for sites that already have a custom
+// service worker, so the two never fight over the same push/notificationclick events.
+importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDKWorker.js');
 
 const CACHE_VERSION = 'fixit-abuja-v1';
 const APP_SHELL = [
@@ -64,37 +67,6 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// ---- PUSH: display a notification when a push message arrives ----
-// This fires once a push provider (e.g. OneSignal, or your own web-push server)
-// sends a message to a subscribed device. See README-push-notifications.md
-// for how to actually wire up a sender — a static site cannot send push on its own.
-self.addEventListener('push', (event) => {
-  let data = {};
-  try { data = event.data ? event.data.json() : {}; } catch (e) { data = { title: 'FixIt Abuja', body: event.data ? event.data.text() : '' }; }
-
-  const title = data.title || 'FixIt Abuja';
-  const options = {
-    body: data.body || 'You have a new update from FixIt Abuja.',
-    icon: '/android-chrome-192x192.png',
-    badge: '/favicon-32x32.png',
-    data: { url: data.url || '/' },
-    vibrate: [100, 50, 100]
-  };
-
-  event.waitUntil(self.registration.showNotification(title, options));
-});
-
-// ---- NOTIFICATION CLICK: focus/open the relevant page ----
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  const targetUrl = (event.notification.data && event.notification.data.url) || '/';
-
-  event.waitUntil(
-    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
-      for (const client of clientList) {
-        if (client.url.includes(targetUrl) && 'focus' in client) return client.focus();
-      }
-      if (self.clients.openWindow) return self.clients.openWindow(targetUrl);
-    })
-  );
-});
+// Push display and notification-click handling is provided by the imported
+// OneSignalSDKWorker.js above — no custom 'push' or 'notificationclick'
+// listeners are added here, to avoid double-firing / duplicate notifications.

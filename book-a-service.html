@@ -9,6 +9,13 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://fixit.justservices.pro/book-a-service.html">
 <meta name="theme-color" content="#171A21">
+
+<!-- PWA / installability -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FixIt Abuja">
+<meta name="application-name" content="FixIt Abuja">
 <meta name="geo.region" content="NG-FC">
 <meta name="geo.placename" content="Abuja, Federal Capital Territory">
 <meta name="author" content="JustServicesPro Management and Consulting Ltd">
@@ -95,6 +102,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+
+<!-- OneSignal Web Push -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "15289264-cd36-439d-a9b6-4e0b8a5266a1",
+    });
+    OneSignal.User.addTag("user_type", "customer");
+  });
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -521,7 +540,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 
 /* ===================== FLOATING / STICKY ===================== */
 .wa-float{
-  position:fixed; right:20px; bottom:88px; z-index:70;
+  position:fixed; right:20px; bottom:calc(88px + env(safe-area-inset-bottom, 0px)); z-index:70;
   width:56px; height:56px; border-radius:50%; background:#25D366; color:#fff;
   display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px -6px rgba(0,0,0,0.4);
 }
@@ -530,6 +549,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   position:fixed; left:0; right:0; bottom:0; z-index:65;
   background:var(--ink); border-top:1px solid var(--line);
   display:none; grid-template-columns:1fr 1fr; gap:1px;
+  padding-bottom:env(safe-area-inset-bottom, 0px);
 }
 .sticky-bar a{
   display:flex; align-items:center; justify-content:center; gap:8px;
@@ -564,8 +584,8 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   .form-row{grid-template-columns:1fr;}
   .foot-grid{grid-template-columns:1fr 1fr;}
   .sticky-bar{display:grid;}
-  body{padding-bottom:58px;}
-  .wa-float{bottom:76px;}
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom, 0px));}
+  .wa-float{bottom:calc(76px + env(safe-area-inset-bottom, 0px));}
   .topbar .wrap{justify-content:center; text-align:center;}
   .topbar-links{display:none;}
   .hero{padding:40px 0 60px;}
@@ -586,10 +606,52 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 .mobile-drawer nav{display:flex; flex-direction:column; gap:6px; margin-top:20px;}
 .mobile-drawer nav a{color:#fff; font-size:19px; font-weight:700; padding:14px 0; border-bottom:1px solid var(--line);}
 .mobile-drawer .mcta{margin-top:auto; display:flex; flex-direction:column; gap:12px;}
+
+/* ===================== APP BANNERS (install / notifications) ===================== */
+.app-banner{background:var(--ink); color:#fff; border-bottom:2px solid var(--amber); display:none;}
+.app-banner.show{display:block;}
+.app-banner-inner{max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:10px 24px; flex-wrap:wrap;}
+.app-banner-icon{font-size:20px; flex-shrink:0;}
+.app-banner-text{flex:1; font-size:13px; line-height:1.45; color:var(--text-soft); min-width:200px;}
+.app-banner-actions{display:flex; align-items:center; gap:8px; flex-shrink:0; margin-left:auto;}
+.app-banner-btn{
+  background:var(--amber); color:#171A21; border:none; padding:8px 16px; border-radius:3px;
+  font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap;
+}
+.app-banner-btn.teal{background:var(--teal); color:#08221F;}
+.app-banner-close{background:none; border:none; color:var(--text-soft); font-size:16px; padding:4px 8px; cursor:pointer; line-height:1;}
+.app-banner-close:hover{color:#fff;}
+@media (max-width:600px){
+  .app-banner-inner{padding:9px 16px;}
+  .app-banner-text{font-size:12px;}
+  .app-banner-btn{padding:7px 12px; font-size:12px;}
+}
 </style>
 </head>
 <body>
 <a href="#top" class="skip-link">Skip to main content</a>
+
+<!-- ============ APP BANNERS ============ -->
+<div class="app-banner" id="installBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-icon">📲</span>
+    <span class="app-banner-text" id="installBannerText">Install the FixIt Abuja app for one-tap access — works even with a weak connection.</span>
+    <div class="app-banner-actions">
+      <button class="app-banner-btn" id="installBtn">Install</button>
+      <button class="app-banner-close" id="installDismiss" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+</div>
+<div class="app-banner" id="notifBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-icon">🔔</span>
+    <span class="app-banner-text" id="notifBannerText">Turn on notifications to get your quote confirmation and technician arrival updates in real time.</span>
+    <div class="app-banner-actions">
+      <button class="app-banner-btn teal" id="notifBtn">Enable</button>
+      <button class="app-banner-close" id="notifDismiss" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+</div>
 <div class="topbar">
   <div class="wrap">
     <div class="status"><span class="dot"></span> Technicians on standby across Abuja FCT</div>
@@ -884,6 +946,99 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     }
   });
 });
+</script>
+
+<script>
+/* ===================== PWA: install + notifications ===================== */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+(function(){
+  const installBanner = document.getElementById('installBanner');
+  const notifBanner = document.getElementById('notifBanner');
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+
+  let deferredPrompt = null;
+  let installShown = false;
+
+  function showNotifBannerIfEligible(){
+    if (localStorage.getItem('fixit_notif_dismissed')) return;
+    if (!('Notification' in window)) return;
+    if (Notification.permission !== 'default') return;
+    if (installBanner.classList.contains('show')) return; // don't stack both at once
+    notifBanner.classList.add('show');
+  }
+
+  // ---- Install prompt (Android / Chrome / Edge) ----
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (isStandalone || localStorage.getItem('fixit_install_dismissed')) return;
+    installShown = true;
+    installBanner.classList.add('show');
+  });
+
+  document.getElementById('installBtn').addEventListener('click', async () => {
+    if (!deferredPrompt) { installBanner.classList.remove('show'); return; }
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBanner.classList.remove('show');
+    setTimeout(showNotifBannerIfEligible, 600);
+  });
+
+  document.getElementById('installDismiss').addEventListener('click', () => {
+    installBanner.classList.remove('show');
+    localStorage.setItem('fixit_install_dismissed', '1');
+    setTimeout(showNotifBannerIfEligible, 300);
+  });
+
+  // ---- iOS Safari fallback (no beforeinstallprompt support) ----
+  if (isIOS && !isStandalone && !localStorage.getItem('fixit_install_dismissed')) {
+    document.getElementById('installBannerText').textContent = 'Install this app: tap the Share icon, then "Add to Home Screen".';
+    document.getElementById('installBtn').style.display = 'none';
+    installBanner.classList.add('show');
+    installShown = true;
+  }
+
+  window.addEventListener('appinstalled', () => {
+    installBanner.classList.remove('show');
+    setTimeout(showNotifBannerIfEligible, 600);
+  });
+
+  // ---- Notifications ----
+  document.getElementById('notifBtn').addEventListener('click', async () => {
+    if (!('Notification' in window)) { notifBanner.classList.remove('show'); return; }
+    try {
+      if (window.OneSignal && OneSignal.Notifications && typeof OneSignal.Notifications.requestPermission === 'function') {
+        await OneSignal.Notifications.requestPermission();
+      } else {
+        await Notification.requestPermission();
+      }
+      if (Notification.permission === 'granted') {
+        new Notification('Notifications enabled ✓', {
+          body: "We'll let you know the moment your quote is confirmed and your technician is on the way.",
+          icon: '/android-chrome-192x192.png'
+        });
+      }
+    } catch(e) {}
+    notifBanner.classList.remove('show');
+    localStorage.setItem('fixit_notif_dismissed', '1');
+  });
+
+  document.getElementById('notifDismiss').addEventListener('click', () => {
+    notifBanner.classList.remove('show');
+    localStorage.setItem('fixit_notif_dismissed', '1');
+  });
+
+  // If no install prompt fires (already installed, unsupported browser, or desktop
+  // without PWA support), still offer notifications after a short delay.
+  setTimeout(() => { if (!installShown) showNotifBannerIfEligible(); }, 2500);
+})();
 </script>
 </body>
 </html>

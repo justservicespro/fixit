@@ -28,6 +28,20 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
+<!-- OneSignal Web Push -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "15289264-cd36-439d-a9b6-4e0b8a5266a1",
+    });
+    // Tags subscribers so you can filter sends in the OneSignal dashboard —
+    // e.g. "send this only to technicians" or "only to customers".
+    OneSignal.User.addTag("user_type", "customer");
+  });
+</script>
+
 <!-- Local / Geo targeting -->
 <meta name="geo.region" content="NG-FC">
 <meta name="geo.placename" content="Abuja, Federal Capital Territory">
@@ -688,7 +702,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 <div class="app-banner" id="notifBanner">
   <div class="app-banner-inner">
     <span class="app-banner-icon">🔔</span>
-    <span class="app-banner-text" id="notifBannerText">Turn on notifications so you never miss an update from FixIt Abuja.</span>
+    <span class="app-banner-text" id="notifBannerText">Turn on notifications for booking confirmations, technician arrival updates, and seasonal service reminders.</span>
     <div class="app-banner-actions">
       <button class="app-banner-btn teal" id="notifBtn">Enable</button>
       <button class="app-banner-close" id="notifDismiss" aria-label="Dismiss">✕</button>
@@ -1460,15 +1474,19 @@ if ('serviceWorker' in navigator) {
   document.getElementById('notifBtn').addEventListener('click', async () => {
     if (!('Notification' in window)) { notifBanner.classList.remove('show'); return; }
     try {
-      const perm = await Notification.requestPermission();
-      if (perm === 'granted') {
+      if (window.OneSignal && OneSignal.Notifications && typeof OneSignal.Notifications.requestPermission === 'function') {
+        // Goes through OneSignal so the subscriber is actually captured in the dashboard.
+        await OneSignal.Notifications.requestPermission();
+      } else {
+        // OneSignal SDK not loaded yet (slow network / ad-blocker) — fall back to the raw
+        // browser prompt so the user still gets a working permission flow.
+        await Notification.requestPermission();
+      }
+      if (Notification.permission === 'granted') {
         new Notification('Notifications enabled ✓', {
-          body: "We'll let you know about job updates and offers.",
+          body: "We'll let you know about your bookings, technician arrivals, and service reminders.",
           icon: '/android-chrome-192x192.png'
         });
-        // NOTE: this confirms the permission flow end-to-end. To actually receive
-        // notifications later (sent by FixIt Abuja, not just this local test),
-        // wire up a push provider such as OneSignal — see README-push-notifications.md.
       }
     } catch(e) {}
     notifBanner.classList.remove('show');
