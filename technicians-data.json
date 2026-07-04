@@ -1,0 +1,71 @@
+{
+  "_instructions": [
+    "This file is a reference/backup copy of the technician directory data.",
+    "The live website reads its data from the `TECHNICIANS` array inside technicians.html directly (near the bottom, above </body>) — editing this .json file alone will NOT change the live site.",
+    "",
+    "TO PUBLISH A NEW TECHNICIAN:",
+    "1. Their full application (including phone/email) arrives by email via the 'Apply to join' form — review and verify it first.",
+    "2. Copy ONLY the public-safe fields shown in the sample objects below into the TECHNICIANS array inside technicians.html.",
+    "3. NEVER paste phone numbers or email addresses into technicians.html or this file — both are publicly viewable.",
+    "4. 'photo' and each item in 'gallery' accept any public image URL — e.g. a Google Photos, Imgur, or Facebook link set to 'anyone with the link can view'.",
+    "5. Re-upload technicians.html after editing. That's the entire publishing step — no database or server needed.",
+    "",
+    "TO CONTACT A TECHNICIAN A CLIENT HAS REQUESTED:",
+    "You'll receive an email titled 'Technician contact request — FixIt Abuja' containing the client's name, phone, job details, and which technician they selected (by name + ID below).",
+    "Look up that technician's original application email (search your inbox for their name) to retrieve their phone number, then contact them directly to relay the job. Their number is never stored on the website, so this lookup step is required by design."
+  ],
+  "technicians": [
+    {
+      "id": "gen-01",
+      "name": "Emeka O.",
+      "trades": ["Generator Repair"],
+      "experience": "5 – 10 years",
+      "location": "Kubwa, Abuja",
+      "bio": "Petrol and diesel generator specialist, 1KVA to 60KVA. AVR, carburettor and alternator repairs, plus routine servicing contracts.",
+      "photo": "https://images.pexels.com/photos/32713414/pexels-photo-32713414.jpeg?auto=compress&cs=tinysrgb&w=300",
+      "gallery": [
+        "https://images.pexels.com/photos/32713414/pexels-photo-32713414.jpeg?auto=compress&cs=tinysrgb&w=300"
+      ],
+      "since": "2026"
+    },
+    {
+      "id": "prn-01",
+      "name": "Ngozi A.",
+      "trades": ["Printer & Photocopier Repair"],
+      "experience": "3 – 5 years",
+      "location": "Garki, Abuja",
+      "bio": "HP, Canon and Ricoh office machines. Paper jams, fuser repair, toner/drum replacement and networked printer setup.",
+      "photo": "https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=300",
+      "gallery": [
+        "https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/9301897/pexels-photo-9301897.jpeg?auto=compress&cs=tinysrgb&w=300"
+      ],
+      "since": "2026"
+    },
+    {
+      "id": "lap-01",
+      "name": "Tobi F.",
+      "trades": ["Laptop & Computer Repair"],
+      "experience": "5 – 10 years",
+      "location": "Jabi, Abuja",
+      "bio": "Motherboard-level repair, screen and keyboard replacement, data recovery and virus cleanup for HP, Dell, Lenovo and MacBook.",
+      "photo": "https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&w=300",
+      "gallery": [
+        "https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg?auto=compress&cs=tinysrgb&w=300"
+      ],
+      "since": "2026"
+    }
+  ],
+  "_template_for_new_entry": {
+    "id": "unique-short-id",
+    "name": "First Name + Last Initial",
+    "trades": ["Pick one or more: Generator Repair, Printer & Photocopier Repair, Laptop & Computer Repair, Phone & Tablet Repair, Air Conditioner Repair, Fridge & Freezer Repair, Inverter & UPS Repair, CCTV Installation & Repair, TV & Home Theatre Repair, Washing Machine Repair, Electrical Wiring, Plumbing"],
+    "experience": "e.g. 1 – 3 years",
+    "location": "e.g. Wuse, Abuja",
+    "bio": "1-2 sentence public bio, no contact info",
+    "photo": "public URL to a profile photo",
+    "gallery": ["public URL to job photo 1", "public URL to job photo 2"],
+    "since": "e.g. 2026"
+  }
+}

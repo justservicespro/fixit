@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Become a Repair Technician in Abuja | FixIt Abuja Careers</title>
-<meta name="description" content="Join FixIt Abuja's technician network. Generator, printer/photocopier, laptop, AC and electrical technicians in Abuja FCT get steady job leads and fair, transparent payouts. Apply today.">
+<title>Verified Repair Technicians in Abuja | FixIt Abuja</title>
+<meta name="description" content="Browse verified generator, printer/photocopier, laptop and appliance technicians in Abuja FCT, or apply to join the network. Contact details stay private — FixIt Abuja handles every introduction.">
 <meta name="keywords" content="generator technician jobs Abuja, repair technician jobs Abuja, laptop repair technician Abuja, printer technician Abuja, AC technician jobs Abuja, artisan jobs Abuja FCT, become a technician Nigeria">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://fixit.justservices.pro/technicians.html">
@@ -86,7 +86,21 @@
     {"@type": "Question","name": "How much can I earn as a FixIt Abuja technician?","acceptedAnswer": {"@type": "Answer","text": "Earnings depend on your trade, job volume and complexity. You see the payout for each job before you accept it, so you always know what you'll earn — there are no hidden deductions."}},
     {"@type": "Question","name": "Do I need my own tools to apply?","acceptedAnswer": {"@type": "Answer","text": "Yes, applicants should already own the core tools for their trade (e.g. a generator technician's toolkit, or a laptop technician's diagnostic and soldering equipment). We do not supply tools."}},
     {"@type": "Question","name": "Which areas of Abuja do technicians get jobs in?","acceptedAnswer": {"@type": "Answer","text": "Job leads span the FCT, including Wuse, Garki, Maitama, Asokoro, Gwarinpa, Jabi, Utako, Lugbe, Kubwa and surrounding districts. You can indicate your base location so leads are matched nearby first."}},
-    {"@type": "Question","name": "How long does the application review take?","acceptedAnswer": {"@type": "Answer","text": "Our team typically reviews applications and reaches out for verification within a few working days of submission."}}
+    {"@type": "Question","name": "How long does the application review take?","acceptedAnswer": {"@type": "Answer","text": "Our team typically reviews applications and reaches out for verification within a few working days of submission."}},
+    {"@type": "Question","name": "Will my phone number be visible on the website?","acceptedAnswer": {"@type": "Answer","text": "No. Only your name, trade, experience level, base location, bio and photos appear publicly. Your phone number and email are kept private — when a client requests you, FixIt Abuja contacts you directly to relay the job."}}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Verified FixIt Abuja Technicians",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "item": {"@type": "Person", "name": "Emeka O.", "jobTitle": "Generator Repair Technician", "areaServed": "Kubwa, Abuja"}},
+    {"@type": "ListItem", "position": 2, "item": {"@type": "Person", "name": "Ngozi A.", "jobTitle": "Printer & Photocopier Repair Technician", "areaServed": "Garki, Abuja"}},
+    {"@type": "ListItem", "position": 3, "item": {"@type": "Person", "name": "Tobi F.", "jobTitle": "Laptop & Computer Repair Technician", "areaServed": "Jabi, Abuja"}}
   ]
 }
 </script>
@@ -583,10 +597,70 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   display:flex; flex-direction:column; padding:24px;
 }
 .mobile-drawer.open{transform:translateX(0);}
-.mobile-drawer .mclose{align-self:flex-end; background:none; border:none; color:#fff; padding:8px;}
-.mobile-drawer nav{display:flex; flex-direction:column; gap:6px; margin-top:20px;}
-.mobile-drawer nav a{color:#fff; font-size:19px; font-weight:700; padding:14px 0; border-bottom:1px solid var(--line);}
-.mobile-drawer .mcta{margin-top:auto; display:flex; flex-direction:column; gap:12px;}
+/* ===================== TECHNICIAN DIRECTORY ===================== */
+.tech-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.tech-card{
+  background:#fff; border:1px solid var(--line-dark); border-radius:6px; overflow:hidden;
+  display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease;
+}
+.tech-card:hover{transform:translateY(-5px); box-shadow:0 20px 36px -18px rgba(23,26,33,0.25);}
+.tech-top{display:flex; gap:14px; padding:22px 22px 0;}
+.tech-avatar{
+  width:64px; height:64px; border-radius:50%; object-fit:cover; flex-shrink:0;
+  border:2px solid var(--paper-2);
+}
+.tech-name-row{display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+.tech-name{font-family:'Archivo Black',sans-serif; font-size:16px;}
+.tech-verified{
+  display:inline-flex; align-items:center; gap:3px; background:rgba(18,165,148,0.12); color:var(--teal-dark);
+  font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+  padding:3px 7px; border-radius:20px;
+}
+.tech-meta{font-size:12.5px; color:var(--text-mute); margin-top:3px;}
+.tech-body{padding:16px 22px 22px; display:flex; flex-direction:column; flex:1;}
+.tech-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
+.tech-tag{
+  background:var(--paper-2); border:1px solid var(--line-dark); font-size:11.5px; font-weight:600;
+  padding:4px 9px; border-radius:20px; color:var(--ink);
+}
+.tech-bio{font-size:13.5px; color:var(--text-mute); line-height:1.6; margin:0 0 14px;}
+.tech-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:16px;}
+.tech-gallery img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:4px;}
+.tech-foot{margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:10px; padding-top:14px; border-top:1px dashed var(--line-dark);}
+.tech-since{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-mute);}
+.tech-privacy-note{
+  display:flex; align-items:flex-start; gap:10px; background:var(--paper-2); border:1px solid var(--line-dark);
+  border-radius:6px; padding:16px 18px; margin-bottom:30px; font-size:13px; color:var(--text-mute); line-height:1.6;
+}
+.tech-privacy-note svg{flex-shrink:0; margin-top:2px; color:var(--teal-dark);}
+
+/* Request-contact modal */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(23,26,33,0.68); z-index:120;
+  display:none; align-items:center; justify-content:center; padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:#fff; border-radius:8px; max-width:460px; width:100%; padding:30px;
+  position:relative; max-height:90vh; overflow-y:auto;
+}
+.modal-close{
+  position:absolute; top:14px; right:14px; background:var(--paper-2); border:none; border-radius:50%;
+  width:32px; height:32px; display:flex; align-items:center; justify-content:center; color:var(--ink);
+}
+.modal-box h3{font-size:19px; margin-bottom:6px;}
+.modal-box .sub{color:var(--text-mute); font-size:13.5px; margin-bottom:20px; line-height:1.6;}
+.modal-tech-chip{
+  display:flex; align-items:center; gap:10px; background:var(--paper-2); border-radius:6px; padding:10px 12px; margin-bottom:20px;
+}
+.modal-tech-chip img{width:36px; height:36px; border-radius:50%; object-fit:cover;}
+.modal-tech-chip span{font-size:13.5px; font-weight:700;}
+@media (max-width: 980px){
+  .tech-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width: 720px){
+  .tech-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -670,9 +744,27 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         <li style="color:var(--amber);">For Technicians</li>
       </ol>
     </nav>
-    <div class="hero-eyebrow eyebrow">🛠️ Now recruiting across Abuja FCT</div>
-    <h1 style="max-width:760px;">Skilled in generators, printers, laptops or AC? <em>Get paid for it.</em></h1>
-    <p class="lead" style="max-width:640px;">FixIt Abuja connects independent technicians with paying repair jobs across the FCT. No agency fees, no waiting around — apply once, get matched to jobs in your trade and area.</p>
+    <div class="hero-eyebrow eyebrow">🛠️ Verified technicians across Abuja FCT</div>
+    <h1 style="max-width:760px;">Meet our technicians — or <em>become one.</em></h1>
+    <p class="lead" style="max-width:640px;">Browse verified generator, printer, laptop and appliance technicians below, or apply to join the network yourself. FixIt Abuja handles every introduction directly — your contact details stay private, always.</p>
+  </div>
+</section>
+
+<!-- ============ TECHNICIAN DIRECTORY ============ -->
+<section class="section" id="directory">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Meet The Team</div>
+      <h2>Verified technicians ready for work</h2>
+      <p>Every technician below has been reviewed by our team. Contact details are kept private — request an introduction and we'll connect you directly.</p>
+    </div>
+
+    <div class="tech-privacy-note">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span><b style="color:var(--ink);">Phone numbers and emails are never published.</b> Tap "Request This Technician" on any profile and our team will reach out to connect you directly — no contact details are shared publicly on this page.</span>
+    </div>
+
+    <div class="tech-grid" id="techGrid"></div>
   </div>
 </section>
 
@@ -774,8 +866,34 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         </div>
 
         <div class="field full" style="margin-bottom:16px;">
-          <label for="ebio">Tell Us About Your Work</label>
+          <label for="ebio">Tell Us About Your Work <span style="font-weight:400; text-transform:none; letter-spacing:0;">(for our records only, not published)</span></label>
           <textarea id="ebio" name="About Your Work" rows="4" placeholder="Brands you service, tools you own, past jobs..." required></textarea>
+        </div>
+
+        <div class="field full" style="margin-bottom:6px;">
+          <label style="color:var(--teal-dark);">Public Profile (shown on the technician directory)</label>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="ephoto">Profile Photo URL</label>
+            <input id="ephoto" name="Profile Photo URL" type="url" placeholder="https://... (a clear photo of you)">
+          </div>
+          <div class="field">
+            <label for="epubbio">Public Bio (max ~150 characters)</label>
+            <input id="epubbio" name="Public Bio" type="text" maxlength="160" placeholder="e.g. Generator specialist, 6 years experience, fast diagnostics">
+          </div>
+        </div>
+        <div class="field full" style="margin-bottom:16px;">
+          <label for="egallery">Job Experience Photo URLs <span style="font-weight:400; text-transform:none; letter-spacing:0;">(one link per line, optional)</span></label>
+          <textarea id="egallery" name="Job Experience Photo URLs" rows="3" placeholder="https://example.com/job1.jpg&#10;https://example.com/job2.jpg"></textarea>
+        </div>
+        <p style="font-size:12px; color:var(--text-mute); margin:-10px 0 16px; line-height:1.6;">No file uploads needed — upload your photos anywhere (Google Photos, Imgur, Facebook, WhatsApp web) and paste the shareable link. If you skip this, we'll follow up before publishing your profile.</p>
+
+        <div class="field full" style="margin-bottom:16px;">
+          <label class="echk" style="align-items:flex-start; font-weight:400;">
+            <input type="checkbox" required style="margin-top:3px;">
+            <span>I agree that if approved, my name, trade, experience level, base location, bio and submitted photos may be shown publicly on the FixIt Abuja technician directory. My phone number and email address will <b>never</b> be published — FixIt Abuja will contact me directly when a client requests my services.</span>
+          </label>
         </div>
 
         <div class="form-foot">
@@ -809,6 +927,10 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">How long does the application review take? <span class="plus">+</span></button>
         <div class="faq-a"><p>Our team typically reviews applications and reaches out for verification within a few working days of submission.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Will my phone number be visible on the website? <span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Only your name, trade, experience level, base location, bio and photos appear publicly. Your phone number and email are kept private in our records — when a client requests you, we contact you directly to relay the job.</p></div>
       </div>
     </div>
     <p style="margin-top:32px; font-size:14px; color:var(--text-mute);">Looking to book a repair instead? <a href="/book-a-service.html" style="color:var(--teal-dark); font-weight:700;">Visit our booking page →</a> or <a href="/" style="color:var(--teal-dark); font-weight:700;">return to the FixIt Abuja homepage →</a>.</p>
@@ -880,6 +1002,42 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   <a href="tel:+2348079926755" class="call">📞 Call Now</a>
   <a href="https://wa.me/2348079926755" class="wa" target="_blank" rel="noopener">💬 WhatsApp</a>
 </div>
+
+<!-- ============ REQUEST CONTACT MODAL ============ -->
+<div class="modal-overlay" id="requestModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <h3>Request this technician</h3>
+    <p class="sub">Share your details and job needs — FixIt Abuja will contact the technician directly and connect you both. Your details are never shared without this step.</p>
+    <div class="modal-tech-chip">
+      <img id="modalTechPhoto" src="" alt="">
+      <span id="modalTechName"></span>
+    </div>
+    <form id="requestForm" action="https://formsubmit.co/justservices.ltd@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Technician contact request — FixIt Abuja">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none">
+      <input type="hidden" name="Technician Requested" id="modalTechField">
+
+      <div class="field" style="margin-bottom:14px;">
+        <label for="rqName">Your Name</label>
+        <input id="rqName" name="Your Name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field" style="margin-bottom:14px;">
+        <label for="rqPhone">Your Phone Number</label>
+        <input id="rqPhone" name="Your Phone Number" type="tel" autocomplete="tel" required>
+      </div>
+      <div class="field" style="margin-bottom:18px;">
+        <label for="rqMsg">What Do You Need Fixed?</label>
+        <textarea id="rqMsg" name="Job Details" rows="3" placeholder="Brief description and your location in Abuja" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-amber btn-lg btn-block">Send Request</button>
+    </form>
+  </div>
+</div>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 const drawer = document.getElementById('drawer');
@@ -905,6 +1063,105 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     }
   });
 });
+
+/* ============================================================
+   TECHNICIAN DIRECTORY — edit this array to add/remove profiles.
+   HOW TO PUBLISH A NEW TECHNICIAN:
+   1. Their full application (incl. phone/email) arrives by email
+      via the form above — review and verify it first.
+   2. Copy ONLY the public-safe fields below into a new object in
+      TECHNICIANS. Never paste phone/email here — this file is
+      visible to anyone who views the page source.
+   3. photo / gallery accept any public image URL (Google Photos,
+      Imgur, Facebook, etc. — "anyone with the link can view").
+   4. Save and re-upload this file. No other setup needed.
+   ============================================================ */
+const TECHNICIANS = [
+  {
+    id: "gen-01",
+    name: "Emeka O.",
+    trades: ["Generator Repair"],
+    experience: "5 – 10 years",
+    location: "Kubwa, Abuja",
+    bio: "Petrol and diesel generator specialist, 1KVA to 60KVA. AVR, carburettor and alternator repairs, plus routine servicing contracts.",
+    photo: "https://images.pexels.com/photos/32713414/pexels-photo-32713414.jpeg?auto=compress&cs=tinysrgb&w=300",
+    gallery: [
+      "https://images.pexels.com/photos/32713414/pexels-photo-32713414.jpeg?auto=compress&cs=tinysrgb&w=300"
+    ],
+    since: "2026"
+  },
+  {
+    id: "prn-01",
+    name: "Ngozi A.",
+    trades: ["Printer & Photocopier Repair"],
+    experience: "3 – 5 years",
+    location: "Garki, Abuja",
+    bio: "HP, Canon and Ricoh office machines. Paper jams, fuser repair, toner/drum replacement and networked printer setup.",
+    photo: "https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=300",
+    gallery: [
+      "https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=300",
+      "https://images.pexels.com/photos/9301897/pexels-photo-9301897.jpeg?auto=compress&cs=tinysrgb&w=300"
+    ],
+    since: "2026"
+  },
+  {
+    id: "lap-01",
+    name: "Tobi F.",
+    trades: ["Laptop & Computer Repair"],
+    experience: "5 – 10 years",
+    location: "Jabi, Abuja",
+    bio: "Motherboard-level repair, screen and keyboard replacement, data recovery and virus cleanup for HP, Dell, Lenovo and MacBook.",
+    photo: "https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&w=300",
+    gallery: [
+      "https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&w=300",
+      "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg?auto=compress&cs=tinysrgb&w=300"
+    ],
+    since: "2026"
+  }
+];
+
+function renderTechnicians(){
+  const grid = document.getElementById('techGrid');
+  if(!grid) return;
+  grid.innerHTML = TECHNICIANS.map(t => `
+    <div class="tech-card">
+      <div class="tech-top">
+        <img class="tech-avatar" src="${t.photo}" alt="${t.name}, ${t.trades[0]} technician in Abuja" loading="lazy">
+        <div>
+          <div class="tech-name-row">
+            <span class="tech-name">${t.name}</span>
+            <span class="tech-verified">✓ Verified</span>
+          </div>
+          <div class="tech-meta">${t.experience} · ${t.location}</div>
+        </div>
+      </div>
+      <div class="tech-body">
+        <div class="tech-tags">${t.trades.map(tr => `<span class="tech-tag">${tr}</span>`).join('')}</div>
+        <p class="tech-bio">${t.bio}</p>
+        ${t.gallery && t.gallery.length ? `<div class="tech-gallery">${t.gallery.slice(0,3).map(g => `<img src="${g}" alt="${t.name} job example" loading="lazy">`).join('')}</div>` : ''}
+        <div class="tech-foot">
+          <span class="tech-since mono">Joined ${t.since}</span>
+          <button class="btn btn-amber request-btn" data-id="${t.id}" data-name="${t.name}" data-photo="${t.photo}">Request This Technician</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.request-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const { id, name, photo } = btn.dataset;
+      document.getElementById('modalTechName').textContent = name;
+      document.getElementById('modalTechPhoto').src = photo;
+      document.getElementById('modalTechField').value = `${name} (ID: ${id})`;
+      document.getElementById('requestModal').classList.add('open');
+    });
+  });
+}
+renderTechnicians();
+
+const modal = document.getElementById('requestModal');
+document.getElementById('modalClose').addEventListener('click', ()=> modal.classList.remove('open'));
+modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.remove('open'); });
 </script>
 </body>
 </html>
