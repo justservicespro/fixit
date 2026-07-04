@@ -1412,7 +1412,9 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 /* ===================== PWA: install + notifications ===================== */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('[FixIt PWA] service worker registered:', reg.scope))
+      .catch((err) => console.warn('[FixIt PWA] service worker registration FAILED — this blocks the install prompt. Likely cause: not served over HTTPS, or sw.js not reachable at site root. Error:', err));
   });
 }
 
@@ -1424,6 +1426,23 @@ if ('serviceWorker' in navigator) {
 
   let deferredPrompt = null;
   let installShown = false;
+
+  // Diagnostics: run this site through Chrome DevTools > Application > Manifest
+  // for the authoritative installability report. This console summary is a
+  // quick first check.
+  setTimeout(() => {
+    console.log('[FixIt PWA] diagnostic — isStandalone:', isStandalone,
+      '| isIOS:', isIOS,
+      '| beforeinstallprompt fired:', !!deferredPrompt,
+      '| protocol:', location.protocol,
+      '| Chromium-based:', /Chrome|Chromium|Edg/.test(navigator.userAgent) && !/OPR/.test(navigator.userAgent));
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+      console.warn('[FixIt PWA] Not served over HTTPS — install prompt and service worker will not work until this is deployed to a real HTTPS host.');
+    }
+    if (!deferredPrompt && !isIOS && /Chrome|Chromium|Edg/.test(navigator.userAgent)) {
+      console.warn('[FixIt PWA] On a Chromium browser but no install prompt fired yet — check DevTools > Application > Manifest for installability errors, or it may need a moment / a second visit.');
+    }
+  }, 3000);
 
   function showNotifBannerIfEligible(){
     if (localStorage.getItem('fixit_notif_dismissed')) return;
