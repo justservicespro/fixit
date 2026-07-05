@@ -28,13 +28,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
+<!-- Site config (Sheets endpoint, OneSignal App ID) -->
+<script src="/config.js"></script>
+
 <!-- OneSignal Web Push -->
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-      appId: "15289264-cd36-439d-a9b6-4e0b8a5266a1",
+      appId: FIXIT_ONESIGNAL_APP_ID,
     });
     // Tags subscribers so you can filter sends in the OneSignal dashboard —
     // e.g. "send this only to technicians" or "only to customers".
@@ -1521,6 +1524,26 @@ if ('serviceWorker' in navigator) {
   // without PWA support), still offer notifications after a short delay.
   setTimeout(() => { if (!installShown) showNotifBannerIfEligible(); }, 2500);
 })();
+</script>
+
+<script>
+/* ===================== Google Sheets sync (fire-and-forget, doesn't block FormSubmit) ===================== */
+function wireSheetsSync(formId, sheetName) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', () => {
+    try {
+      if (typeof FIXIT_SHEETS_ENDPOINT === 'undefined' || FIXIT_SHEETS_ENDPOINT.indexOf('PASTE_YOUR') === 0) return;
+      const fd = new FormData(form);
+      const payload = { _sheet: sheetName };
+      fd.forEach((value, key) => { if (!key.startsWith('_')) payload[key] = value; });
+      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain;charset=UTF-8' });
+      navigator.sendBeacon(FIXIT_SHEETS_ENDPOINT, blob);
+    } catch (e) {}
+  });
+}
+  wireSheetsSync('expertForm', 'TechnicianApplications');
+  wireSheetsSync('fixitForm', 'Bookings');
 </script>
 </body>
 </html>

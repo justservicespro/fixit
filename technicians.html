@@ -118,13 +118,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
+<!-- Site config (Sheets endpoint, OneSignal App ID) -->
+<script src="/config.js"></script>
+
 <!-- OneSignal Web Push -->
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-      appId: "15289264-cd36-439d-a9b6-4e0b8a5266a1",
+      appId: FIXIT_ONESIGNAL_APP_ID,
     });
     OneSignal.User.addTag("user_type", "technician");
   });
@@ -1244,7 +1247,9 @@ modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.re
 /* ===================== PWA: install + notifications ===================== */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('[FixIt PWA] service worker registered:', reg.scope))
+      .catch((err) => console.warn('[FixIt PWA] service worker registration FAILED — this blocks the install prompt. Likely cause: not served over HTTPS, or sw.js not reachable at site root. Error:', err));
   });
 }
 
@@ -1256,6 +1261,23 @@ if ('serviceWorker' in navigator) {
 
   let deferredPrompt = null;
   let installShown = false;
+
+  // Diagnostics: run this site through Chrome DevTools > Application > Manifest
+  // for the authoritative installability report. This console summary is a
+  // quick first check.
+  setTimeout(() => {
+    console.log('[FixIt PWA] diagnostic — isStandalone:', isStandalone,
+      '| isIOS:', isIOS,
+      '| beforeinstallprompt fired:', !!deferredPrompt,
+      '| protocol:', location.protocol,
+      '| Chromium-based:', /Chrome|Chromium|Edg/.test(navigator.userAgent) && !/OPR/.test(navigator.userAgent));
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+      console.warn('[FixIt PWA] Not served over HTTPS — install prompt and service worker will not work until this is deployed to a real HTTPS host.');
+    }
+    if (!deferredPrompt && !isIOS && /Chrome|Chromium|Edg/.test(navigator.userAgent)) {
+      console.warn('[FixIt PWA] On a Chromium browser but no install prompt fired yet — check DevTools > Application > Manifest for installability errors, or it may need a moment / a second visit.');
+    }
+  }, 3000);
 
   function showNotifBannerIfEligible(){
     if (localStorage.getItem('fixit_notif_dismissed')) return;
@@ -1331,6 +1353,26 @@ if ('serviceWorker' in navigator) {
   // without PWA support), still offer notifications after a short delay.
   setTimeout(() => { if (!installShown) showNotifBannerIfEligible(); }, 2500);
 })();
+</script>
+
+<script>
+/* ===================== Google Sheets sync (fire-and-forget, doesn't block FormSubmit) ===================== */
+function wireSheetsSync(formId, sheetName) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', () => {
+    try {
+      if (typeof FIXIT_SHEETS_ENDPOINT === 'undefined' || FIXIT_SHEETS_ENDPOINT.indexOf('PASTE_YOUR') === 0) return;
+      const fd = new FormData(form);
+      const payload = { _sheet: sheetName };
+      fd.forEach((value, key) => { if (!key.startsWith('_')) payload[key] = value; });
+      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain;charset=UTF-8' });
+      navigator.sendBeacon(FIXIT_SHEETS_ENDPOINT, blob);
+    } catch (e) {}
+  });
+}
+  wireSheetsSync('expertForm', 'TechnicianApplications');
+  wireSheetsSync('requestForm', 'ContactRequests');
 </script>
 </body>
 </html>
