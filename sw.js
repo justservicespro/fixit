@@ -3,7 +3,15 @@
 // Push notification delivery is handled by OneSignal's imported worker below —
 // this is OneSignal's documented pattern for sites that already have a custom
 // service worker, so the two never fight over the same push/notificationclick events.
-importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDKWorker.js');
+// Wrapped in try/catch: importScripts throws synchronously on failure, and an
+// uncaught failure here would abort this ENTIRE service worker's registration —
+// which would silently break PWA installability along with push. This way a
+// CDN hiccup only costs push notifications, not the whole service worker.
+try {
+  importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDKWorker.js');
+} catch (e) {
+  console.error('[FixIt SW] OneSignal worker import failed — push notifications unavailable this session, but caching/install continue normally.', e);
+}
 
 const CACHE_VERSION = 'fixit-abuja-v1';
 const APP_SHELL = [
