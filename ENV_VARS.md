@@ -7,9 +7,9 @@ keep the matching value updated wherever else it's referenced (noted below).
 ## Already yours (Gmail SMTP)
 
 ```
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=justservices.ltd@gmail.com
+SMTP_HOST
+SMTP_PORT=
+SMTP_USER=
 SMTP_PASS=<see note 1>
 ```
 
