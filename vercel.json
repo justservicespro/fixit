@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/campaign-cron?secret=oWgxZq5HbIdfl2n9KgZeHzACJdvgoARK",
+      "schedule": "0 8 * * *"
+    }
+  ]
+}

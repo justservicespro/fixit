@@ -576,6 +576,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <button class="admin-nav-btn" data-panel="push">Push Notifications</button>
       <button class="admin-nav-btn" data-panel="technicians">Technician Directory</button>
       <button class="admin-nav-btn" data-panel="clients">Clients &amp; Applications</button>
+      <button class="admin-nav-btn" data-panel="bulkemail">Bulk Email</button>
     </div>
   </nav>
 
@@ -747,6 +748,83 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       </div>
     </section>
 
+    <!-- BULK EMAIL -->
+    <section class="admin-panel" id="panel-bulkemail">
+
+      <div class="admin-card" id="bulkNotConfigured" style="display:none;">
+        <h3>Almost there — a few settings needed</h3>
+        <p class="desc">Bulk email needs the Google Sheet backend set up (same one used for Bookings/Applications) plus a couple of Vercel environment variables. This only needs doing once.</p>
+        <div class="admin-note warn" style="margin-bottom:10px;">
+          On Vercel → Project → Settings → Environment Variables, add:
+          <ul style="margin:8px 0 0; padding-left:20px;">
+            <li><code>SHEETS_ENDPOINT</code> — your Apps Script web app URL (same as <code>FIXIT_SHEETS_ENDPOINT</code> in config.js)</li>
+            <li><code>SHEETS_ADMIN_TOKEN</code> — must match <code>ADMIN_TOKEN</code> inside google-apps-script.gs</li>
+            <li><code>ADMIN_PASSCODE</code> — set to <code>Its1984@1</code> (same passcode as this dashboard)</li>
+            <li><code>CRON_SECRET</code> — set to <code>oWgxZq5HbIdfl2n9KgZeHzACJdvgoARK</code> (already baked into vercel.json's cron path)</li>
+          </ul>
+        </div>
+        <div class="admin-note">Your Gmail SMTP variables (<code>SMTP_HOST</code>, <code>SMTP_PORT</code>, <code>SMTP_USER</code>, <code>SMTP_PASS</code>) are already set — bulk email reuses those.</div>
+        <button class="btn btn-outline" id="bulkRetry" style="margin-top:16px;">I've set these — check again</button>
+      </div>
+
+      <div id="bulkConfigured" style="display:none;">
+        <div class="admin-grid-2" style="grid-template-columns:1fr 1fr; margin-bottom:20px;">
+          <div class="admin-card" style="margin:0;">
+            <h3 style="font-size:16px;">Subscriber list</h3>
+            <div style="font-family:'Archivo Black'; font-size:34px; color:var(--teal); margin:6px 0;" id="subCount">—</div>
+            <p class="desc" style="margin:0;">Every email address that reaches us through any form — booking, technician application, or contact request — is added here automatically. No manual work needed.</p>
+          </div>
+          <div class="admin-card" style="margin:0;">
+            <h3 style="font-size:16px;">Add a subscriber manually</h3>
+            <div class="field" style="margin:10px 0;">
+              <input type="email" id="manualSubEmail" placeholder="name@example.com">
+            </div>
+            <button class="btn btn-teal" id="manualSubAdd">+ Add Subscriber</button>
+            <span id="manualSubStatus" style="margin-left:10px; font-size:13px; color:var(--text-mute);"></span>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>The bi-weekly campaign</h3>
+          <p class="desc">Eight messages rotate automatically — one every 14 days, on repeat. Each one promotes our services, teaches simple Dos and Don'ts for equipment, or reminds people to book a service. Written in plain English. A background job checks daily and sends the right one on schedule — you don't need to do anything.</p>
+          <div class="admin-note" style="margin-bottom:16px;">
+            <b style="color:var(--ink);">Currently due:</b> <span id="currentCampaignName">—</span>
+          </div>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="campaignPicker">Preview or manually send any campaign in the rotation</label>
+            <select id="campaignPicker">
+              <option value="welcome-overview">1. Welcome &amp; service overview</option>
+              <option value="generator-dos-donts">2. Generator Dos &amp; Don'ts</option>
+              <option value="ac-dos-donts">3. AC Dos &amp; Don'ts</option>
+              <option value="laptop-dos-donts">4. Laptop &amp; Computer Dos &amp; Don'ts</option>
+              <option value="electrical-safety">5. Electrical Safety Dos &amp; Don'ts</option>
+              <option value="cctv-security">6. CCTV &amp; Security Tips</option>
+              <option value="seasonal-reminder">7. Seasonal Maintenance Reminder</option>
+              <option value="stay-connected">8. Stay Connected Reminder</option>
+            </select>
+          </div>
+          <button class="btn btn-outline" id="campaignPreviewBtn">Preview in New Tab</button>
+          <button class="btn btn-amber" id="campaignSendBtn">Send This Campaign Now</button>
+          <span id="campaignSendStatus" style="margin-left:10px; font-size:13px; color:var(--text-mute);"></span>
+        </div>
+
+        <div class="admin-card">
+          <h3>Send a custom one-off email</h3>
+          <p class="desc">Outside the rotation — announce something specific to every subscriber right now.</p>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="customSubject">Subject</label>
+            <input type="text" id="customSubject" placeholder="e.g. We now cover Kubwa and Lugbe">
+          </div>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="customMessage">Message</label>
+            <textarea id="customMessage" rows="6" placeholder="Write in simple English. One idea per line is fine — line breaks are kept."></textarea>
+          </div>
+          <button class="btn btn-teal" id="customSendBtn">Send Custom Email to All Subscribers</button>
+          <span id="customSendStatus" style="margin-left:10px; font-size:13px; color:var(--text-mute);"></span>
+        </div>
+      </div>
+    </section>
+
   </div>
 </div>
 
@@ -911,6 +989,105 @@ renderSheetLinks();
 document.getElementById('sheetSave').addEventListener('click', () => {
   localStorage.setItem('fixit_admin_sheet_url', document.getElementById('sheetUrl').value.trim());
   renderSheetLinks();
+});
+
+/* ===================== BULK EMAIL ===================== */
+const CAMPAIGN_LABELS = {
+  'welcome-overview': "1. Welcome & service overview",
+  'generator-dos-donts': "2. Generator Dos & Don'ts",
+  'ac-dos-donts': "3. AC Dos & Don'ts",
+  'laptop-dos-donts': "4. Laptop & Computer Dos & Don'ts",
+  'electrical-safety': "5. Electrical Safety Dos & Don'ts",
+  'cctv-security': "6. CCTV & Security Tips",
+  'seasonal-reminder': "7. Seasonal Maintenance Reminder",
+  'stay-connected': "8. Stay Connected Reminder",
+};
+
+async function adminApiCall(path, opts) {
+  opts = opts || {};
+  opts.headers = Object.assign({ 'Content-Type': 'application/json', 'x-admin-passcode': ADMIN_PASSCODE }, opts.headers || {});
+  try {
+    const res = await fetch(path, opts);
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok && data.ok !== false, status: res.status, data };
+  } catch (err) {
+    return { ok: false, status: 0, data: { error: 'Could not reach the server (' + err.message + ').' } };
+  }
+}
+
+async function loadBulkEmailPanel() {
+  const { ok, data } = await adminApiCall('/api/subscribers');
+  const notConfigured = document.getElementById('bulkNotConfigured');
+  const configured = document.getElementById('bulkConfigured');
+
+  if (!ok) {
+    notConfigured.style.display = '';
+    configured.style.display = 'none';
+    return;
+  }
+  notConfigured.style.display = 'none';
+  configured.style.display = '';
+  document.getElementById('subCount').textContent = data.count;
+  document.getElementById('currentCampaignName').textContent =
+    CAMPAIGN_LABELS[data.currentCampaign.id] || data.currentCampaign.subject;
+  document.getElementById('campaignPicker').value = data.currentCampaign.id;
+}
+
+document.getElementById('bulkRetry').addEventListener('click', loadBulkEmailPanel);
+
+document.querySelector('[data-panel="bulkemail"]').addEventListener('click', loadBulkEmailPanel);
+
+document.getElementById('manualSubAdd').addEventListener('click', () => {
+  const email = document.getElementById('manualSubEmail').value.trim();
+  const statusEl = document.getElementById('manualSubStatus');
+  if (!email || email.indexOf('@') === -1) { statusEl.textContent = 'Enter a valid email.'; return; }
+  try {
+    if (typeof FIXIT_SHEETS_ENDPOINT === 'undefined' || FIXIT_SHEETS_ENDPOINT.indexOf('PASTE_YOUR') === 0) {
+      statusEl.textContent = 'Sheets backend not set up yet.';
+      return;
+    }
+    const blob = new Blob([JSON.stringify({ _sheet: 'Subscribers', email: email, source: 'manual' })], { type: 'text/plain;charset=UTF-8' });
+    navigator.sendBeacon(FIXIT_SHEETS_ENDPOINT, blob);
+    statusEl.textContent = 'Added — refresh the count in a moment.';
+    document.getElementById('manualSubEmail').value = '';
+  } catch (e) {
+    statusEl.textContent = 'Could not add subscriber.';
+  }
+});
+
+document.getElementById('campaignPreviewBtn').addEventListener('click', () => {
+  const id = document.getElementById('campaignPicker').value;
+  const w = window.open('', '_blank');
+  w.document.write('<p style="font-family:Arial;padding:40px;text-align:center;color:#666;">Loading preview…</p>');
+  // Campaign HTML lives server-side (lib/campaigns.js) — ask send-bulk-email's
+  // dry-run-free sibling isn't exposed, so we just show the subject/id here
+  // and rely on "Send This Campaign Now" for the real thing. For a full visual
+  // preview, open the corresponding template in lib/campaigns.js.
+  w.document.write('<p style="font-family:Arial;padding:40px;text-align:center;color:#333;">Preview: <b>' + (CAMPAIGN_LABELS[id] || id) + '</b><br><br>Full HTML preview isn\'t wired up in this lightweight dashboard — the exact email content lives in <code>lib/campaigns.js</code>. Use "Send This Campaign Now" to send yourself a real copy (add your own email as a subscriber first to test).</p>');
+});
+
+document.getElementById('campaignSendBtn').addEventListener('click', async () => {
+  const id = document.getElementById('campaignPicker').value;
+  const statusEl = document.getElementById('campaignSendStatus');
+  if (!confirm('Send "' + (CAMPAIGN_LABELS[id] || id) + '" to every subscriber now?')) return;
+  statusEl.textContent = 'Sending…';
+  const { ok, data } = await adminApiCall('/api/send-bulk-email', { method: 'POST', body: JSON.stringify({ campaignId: id }) });
+  statusEl.textContent = ok
+    ? `Sent to ${data.sent} subscriber(s)${data.failed ? `, ${data.failed} failed` : ''}.`
+    : 'Failed: ' + (data.error || 'unknown error');
+});
+
+document.getElementById('customSendBtn').addEventListener('click', async () => {
+  const subject = document.getElementById('customSubject').value.trim();
+  const message = document.getElementById('customMessage').value.trim();
+  const statusEl = document.getElementById('customSendStatus');
+  if (!subject || !message) { statusEl.textContent = 'Fill in both subject and message.'; return; }
+  if (!confirm('Send this custom email to every subscriber now?')) return;
+  statusEl.textContent = 'Sending…';
+  const { ok, data } = await adminApiCall('/api/send-bulk-email', { method: 'POST', body: JSON.stringify({ mode: 'custom', subject, message }) });
+  statusEl.textContent = ok
+    ? `Sent to ${data.sent} subscriber(s)${data.failed ? `, ${data.failed} failed` : ''}.`
+    : 'Failed: ' + (data.error || 'unknown error');
 });
 </script>
 </body>
