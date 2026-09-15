@@ -17,9 +17,9 @@
  *    Name it something like "FixIt Abuja — Submissions".
  * 2. In the sheet, go to Extensions → Apps Script.
  * 3. Delete any starter code in the editor, and paste in this entire file.
- * 4. Change ADMIN_TOKEN below to your own secret value (any random string —
- *    it protects the subscriber-list and unsubscribe endpoints from strangers).
- * 5. Click Deploy → New deployment.
+ *    (ADMIN_TOKEN below already has a working default — change it later if
+ *    you want, just keep SHEETS_ADMIN_TOKEN on Vercel matching whatever you set.)
+ * 4. Click Deploy → New deployment.
  *    - Click the gear icon next to "Select type" → choose "Web app".
  *    - Description: "FixIt Abuja form intake" (or anything).
  *    - Execute as: "Me".
@@ -27,13 +27,13 @@
  *    - Click Deploy, then authorize the script when Google prompts you
  *      (click "Advanced" → "Go to [project name] (unsafe)" if warned —
  *      this warning appears for all personal Apps Script projects, it's normal).
- * 6. Copy the "Web app URL" it gives you (ends in /exec).
- * 7. Open config.js (in the website files) and paste that URL as the value
+ * 5. Copy the "Web app URL" it gives you (ends in /exec).
+ * 6. Open config.js (in the website files) and paste that URL as the value
  *    of FIXIT_SHEETS_ENDPOINT. Re-upload config.js.
- * 8. On Vercel, add TWO environment variables so the admin dashboard's bulk
- *    email feature can talk to this sheet on the server side:
- *      SHEETS_ENDPOINT = the same web app URL from step 6
- *      SHEETS_ADMIN_TOKEN = the same value you set for ADMIN_TOKEN below
+ * 7. On Vercel, add environment variables — see the full default list in
+ *    ENV_VARS.md (included alongside this file). The short version:
+ *      SHEETS_ENDPOINT    = the web app URL from step 5
+ *      SHEETS_ADMIN_TOKEN = WRjA1I_7c-NtDe5mju9024ticxM2V-p5   (matches ADMIN_TOKEN below)
  *
  * The script auto-creates tabs the first time each type of form is
  * submitted: "Bookings", "TechnicianApplications", "ContactRequests",
@@ -43,7 +43,7 @@
  * arrays in getHeadersFor() below to match.
  */
 
-var ADMIN_TOKEN = 'CHANGE_ME_TO_A_LONG_RANDOM_STRING'; // must match SHEETS_ADMIN_TOKEN on Vercel
+var ADMIN_TOKEN = 'WRjA1I_7c-NtDe5mju9024ticxM2V-p5'; // default — change if you want, just keep SHEETS_ADMIN_TOKEN on Vercel matching
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
