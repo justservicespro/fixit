@@ -768,20 +768,25 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       </div>
 
       <div id="bulkConfigured" style="display:none;">
-        <div class="admin-grid-2" style="grid-template-columns:1fr 1fr; margin-bottom:20px;">
-          <div class="admin-card" style="margin:0;">
-            <h3 style="font-size:16px;">Subscriber list</h3>
-            <div style="font-family:'Archivo Black'; font-size:34px; color:var(--teal); margin:6px 0;" id="subCount">—</div>
-            <p class="desc" style="margin:0;">Every email address that reaches us through any form — booking, technician application, or contact request — is added here automatically. No manual work needed.</p>
+        <div class="admin-card">
+          <h3 style="font-size:16px;">Subscriber list</h3>
+          <div style="font-family:'Archivo Black'; font-size:34px; color:var(--teal); margin:6px 0;" id="subCount">—</div>
+          <p class="desc" style="margin:0;">Every email address that reaches us through any form — booking, technician application, or contact request — is added here automatically. No manual work needed.</p>
+        </div>
+
+        <div class="admin-card">
+          <h3 style="font-size:16px;">Bulk-add subscribers</h3>
+          <p class="desc">Paste a list of email addresses, and (optionally) matching names — same order, both comma-separated. Names are optional; leave blank if you don't have them.</p>
+          <div class="field" style="margin:10px 0;">
+            <label for="manualSubEmails">Email addresses (comma-separated)</label>
+            <textarea id="manualSubEmails" rows="3" placeholder="amaka@example.com, chinedu@example.com, bola@example.com"></textarea>
           </div>
-          <div class="admin-card" style="margin:0;">
-            <h3 style="font-size:16px;">Add a subscriber manually</h3>
-            <div class="field" style="margin:10px 0;">
-              <input type="email" id="manualSubEmail" placeholder="name@example.com">
-            </div>
-            <button class="btn btn-teal" id="manualSubAdd">+ Add Subscriber</button>
-            <span id="manualSubStatus" style="margin-left:10px; font-size:13px; color:var(--text-mute);"></span>
+          <div class="field" style="margin:10px 0 14px;">
+            <label for="manualSubNames">Names (comma-separated, optional, same order)</label>
+            <textarea id="manualSubNames" rows="2" placeholder="Amaka, Chinedu, Bola"></textarea>
           </div>
+          <button class="btn btn-teal" id="manualSubAdd">+ Add Subscriber(s)</button>
+          <span id="manualSubStatus" style="margin-left:10px; font-size:13px; color:var(--text-mute);"></span>
         </div>
 
         <div class="admin-card">
@@ -1038,20 +1043,44 @@ document.getElementById('bulkRetry').addEventListener('click', loadBulkEmailPane
 document.querySelector('[data-panel="bulkemail"]').addEventListener('click', loadBulkEmailPanel);
 
 document.getElementById('manualSubAdd').addEventListener('click', () => {
-  const email = document.getElementById('manualSubEmail').value.trim();
   const statusEl = document.getElementById('manualSubStatus');
-  if (!email || email.indexOf('@') === -1) { statusEl.textContent = 'Enter a valid email.'; return; }
+  const emailsRaw = document.getElementById('manualSubEmails').value.trim();
+  const namesRaw = document.getElementById('manualSubNames').value.trim();
+
+  if (!emailsRaw) { statusEl.textContent = 'Paste at least one email address.'; return; }
+
+  const emails = emailsRaw.split(',').map(s => s.trim()).filter(Boolean);
+  const names = namesRaw ? namesRaw.split(',').map(s => s.trim()) : [];
+
+  const valid = [];
+  const invalid = [];
+  emails.forEach((email, i) => {
+    if (email.indexOf('@') > -1) valid.push({ email, name: names[i] || '' });
+    else invalid.push(email);
+  });
+
+  if (valid.length === 0) { statusEl.textContent = 'No valid email addresses found.'; return; }
+
+  if (typeof FIXIT_SHEETS_ENDPOINT === 'undefined' || FIXIT_SHEETS_ENDPOINT.indexOf('PASTE_YOUR') === 0) {
+    statusEl.textContent = 'Sheets backend not set up yet.';
+    return;
+  }
+
   try {
-    if (typeof FIXIT_SHEETS_ENDPOINT === 'undefined' || FIXIT_SHEETS_ENDPOINT.indexOf('PASTE_YOUR') === 0) {
-      statusEl.textContent = 'Sheets backend not set up yet.';
-      return;
-    }
-    const blob = new Blob([JSON.stringify({ _sheet: 'Subscribers', email: email, source: 'manual' })], { type: 'text/plain;charset=UTF-8' });
-    navigator.sendBeacon(FIXIT_SHEETS_ENDPOINT, blob);
-    statusEl.textContent = 'Added — refresh the count in a moment.';
-    document.getElementById('manualSubEmail').value = '';
+    valid.forEach(({ email, name }) => {
+      const blob = new Blob(
+        [JSON.stringify({ _sheet: 'Subscribers', email, name, source: 'manual' })],
+        { type: 'text/plain;charset=UTF-8' }
+      );
+      navigator.sendBeacon(FIXIT_SHEETS_ENDPOINT, blob);
+    });
+    statusEl.textContent = `Added ${valid.length} subscriber(s)` +
+      (invalid.length ? ` — skipped ${invalid.length} invalid: ${invalid.join(', ')}` : '') +
+      '. Refresh the count in a moment.';
+    document.getElementById('manualSubEmails').value = '';
+    document.getElementById('manualSubNames').value = '';
   } catch (e) {
-    statusEl.textContent = 'Could not add subscriber.';
+    statusEl.textContent = 'Could not add subscribers.';
   }
 });
 
