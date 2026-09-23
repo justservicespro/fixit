@@ -1,8 +1,6 @@
 {
-  "crons": [
-    {
-      "path": "/api/campaign-cron?secret=oWgxZq5HbIdfl2n9KgZeHzACJdvgoARK",
-      "schedule": "0 8 * * *"
-    }
-  ]
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install"
 }
