@@ -20,7 +20,7 @@
 const nodemailer = require('nodemailer');
 
 const TERMS_URL = 'https://fixit.justservices.pro/terms.html';
-const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/REPLACE_WITH_YOUR_CHANNEL_ID'; // keep in sync with FIXIT_WHATSAPP_CHANNEL in config.js
+const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbB4t4eCBtxGCQD2BP1M'; // keep in sync with FIXIT_WHATSAPP_CHANNEL in config.js
 const SITE_NAME = 'FixIt Abuja';
 
 const SUBJECTS = {

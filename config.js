@@ -21,7 +21,7 @@ const FIXIT_ONESIGNAL_APP_ID = "15289264-cd36-439d-a9b6-4e0b8a5266a1";
 // follow for job updates. Replace with your real channel URL once you've
 // created one (WhatsApp app → Updates tab → Channels → your channel →
 // Channel info → Invite via link).
-const FIXIT_WHATSAPP_CHANNEL = "https://whatsapp.com/channel/REPLACE_WITH_YOUR_CHANNEL_ID";
+const FIXIT_WHATSAPP_CHANNEL = "https://whatsapp.com/channel/0029VbB4t4eCBtxGCQD2BP1M";
 
 // Keeps every WhatsApp Channel link on the page (the static banners on the
 // homepage/technicians page, marked with data-whatsapp-channel) pointed at
