@@ -17,6 +17,22 @@ const FIXIT_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzwELxLvn
 // Your OneSignal App ID (already set — from onesignal.com dashboard).
 const FIXIT_ONESIGNAL_APP_ID = "15289264-cd36-439d-a9b6-4e0b8a5266a1";
 
+// WhatsApp Channel link — shown to technicians after they apply, so they can
+// follow for job updates. Replace with your real channel URL once you've
+// created one (WhatsApp app → Updates tab → Channels → your channel →
+// Channel info → Invite via link).
+const FIXIT_WHATSAPP_CHANNEL = "https://whatsapp.com/channel/REPLACE_WITH_YOUR_CHANNEL_ID";
+
+// Keeps every WhatsApp Channel link on the page (the static banners on the
+// homepage/technicians page, marked with data-whatsapp-channel) pointed at
+// the same URL as the constant above — so updating FIXIT_WHATSAPP_CHANNEL
+// once, here, is the only edit ever needed.
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-whatsapp-channel]').forEach(function (el) {
+    el.href = FIXIT_WHATSAPP_CHANNEL;
+  });
+});
+
 /**
  * Sends a form via our own /api/send-email (Gmail SMTP, configured on Vercel)
  * instead of formsubmit.co. Falls back to the form's original formsubmit.co
@@ -24,7 +40,8 @@ const FIXIT_ONESIGNAL_APP_ID = "15289264-cd36-439d-a9b6-4e0b8a5266a1";
  * vars not yet set), so submissions are never silently lost.
  *
  * formType must be one of: "booking", "technician", "request" — used by
- * /api/send-email.js to pick the right subject line and autoresponse text.
+ * /api/send-email.js to pick the right subject line and autoresponse text,
+ * and here to pick which confirmation message to show.
  */
 function wireSmtpSubmit(formId, formType) {
   const form = document.getElementById(formId);
@@ -41,6 +58,12 @@ function wireSmtpSubmit(formId, formType) {
     const originalBtnText = submitBtn ? submitBtn.textContent : null;
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
+    // An email address may live under a few different field names depending
+    // on which form this is (booking's "email" vs. the technician form's
+    // "Email Address") — check all of them so the confirmation line below
+    // only promises an email if one was actually given.
+    const givenEmail = payload.email || payload.Email || payload['Email Address'] || '';
+
     fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -54,10 +77,25 @@ function wireSmtpSubmit(formId, formType) {
           successBox.className = 'smtp-success';
           successBox.style.cssText =
             'background:rgba(18,165,148,0.12); border:1px solid rgba(18,165,148,0.4); ' +
-            'border-radius:8px; padding:16px 18px; margin-top:16px; font-size:14px; line-height:1.5;';
-          successBox.innerHTML =
-            '<b>Thank you — your request has been sent.</b><br>' +
-            "We'll reach out by phone or WhatsApp shortly. If you gave an email address, check your inbox for a confirmation.";
+            'border-radius:8px; padding:16px 18px; margin-top:16px; font-size:14px; line-height:1.6;';
+
+          const emailLine = givenEmail
+            ? `We've also sent a confirmation email to <b>${givenEmail}</b> — check your inbox (and spam folder, just in case).`
+            : "We'll reach out by phone or WhatsApp shortly.";
+
+          if (formType === 'technician') {
+            successBox.innerHTML =
+              '<b>Thank you — your application has been sent.</b><br>' +
+              emailLine + '<br><br>' +
+              'While you wait, follow our WhatsApp Channel for new job leads as they come in:<br>' +
+              `<a href="${FIXIT_WHATSAPP_CHANNEL}" target="_blank" rel="noopener" ` +
+              'style="display:inline-block; margin-top:8px; background:#25D366; color:#fff; ' +
+              'text-decoration:none; font-weight:700; padding:9px 16px; border-radius:6px;">' +
+              '💬 Follow WhatsApp Channel for Job Updates</a>';
+          } else {
+            successBox.innerHTML =
+              '<b>Thank you — your request has been sent.</b><br>' + emailLine;
+          }
           form.appendChild(successBox);
         }
         form.querySelectorAll('input, select, textarea, button').forEach((el) => { el.disabled = true; });
