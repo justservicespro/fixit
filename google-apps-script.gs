@@ -122,6 +122,8 @@ function getHeadersFor(sheetName) {
       return ['Timestamp', 'Status', 'Your Name', 'Your Phone Number', 'Job Details', 'Technician Requested'];
     case 'CampaignLog':
       return ['Timestamp', 'Campaign', 'Recipients', 'Result'];
+    case 'EmailLog':
+      return ['Timestamp', 'Type', 'Recipient', 'Subject', 'Status'];
     default:
       return ['Timestamp', 'Status', 'Data'];
   }
@@ -133,6 +135,7 @@ function getHeadersFor(sheetName) {
  *  - ?action=subscribers&token=X:  returns JSON list of active subscribers (server-to-server only, needs the admin token).
  *  - ?action=unsubscribe&email=X:  public — flags that email as unsubscribed, returns a plain confirmation page.
  *  - ?action=logCampaign&token=X:  server-to-server — records that a campaign was sent.
+ *  - ?action=report&token=X:       server-to-server — aggregated stats + recent activity across every sheet, for the admin dashboard and the bi-weekly report email. Optional &since=ISO-date to count only rows after that date.
  */
 function doGet(e) {
   var action = e.parameter.action;
@@ -194,6 +197,67 @@ function doGet(e) {
     }
     logSheet.appendRow([new Date(), e.parameter.campaign || '', e.parameter.recipients || '0', e.parameter.result || '']);
     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  if (action === 'report') {
+    if (e.parameter.token !== ADMIN_TOKEN) {
+      return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'Unauthorized' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    var sinceParam = e.parameter.since ? new Date(e.parameter.since) : null; // optional: only count rows after this date
+
+    function summarize(sheetName, recentCols) {
+      var sh = ss.getSheetByName(sheetName);
+      if (!sh || sh.getLastRow() < 2) return { total: 0, sinceCount: 0, recent: [] };
+      var lastRow = sh.getLastRow();
+      var lastCol = sh.getLastColumn();
+      var headers = sh.getRange(1, 1, 1, lastCol).getValues()[0];
+      var rows = sh.getRange(2, 1, lastRow - 1, lastCol).getValues();
+      var sinceCount = 0;
+      var recent = [];
+      for (var i = rows.length - 1; i >= 0; i--) {
+        var row = rows[i];
+        var ts = row[0];
+        if (sinceParam && ts instanceof Date && ts > sinceParam) sinceCount++;
+        if (recent.length < 8) {
+          var obj = {};
+          for (var c = 0; c < recentCols.length; c++) {
+            var idx = headers.indexOf(recentCols[c]);
+            if (idx > -1) obj[recentCols[c]] = row[idx] instanceof Date ? row[idx].toISOString() : row[idx];
+          }
+          recent.push(obj);
+        }
+      }
+      if (!sinceParam) sinceCount = rows.length;
+      return { total: rows.length, sinceCount: sinceCount, recent: recent };
+    }
+
+    var subSheet2 = ss.getSheetByName('Subscribers');
+    var subTotal = 0, subActive = 0, subSinceCount = 0;
+    if (subSheet2 && subSheet2.getLastRow() > 1) {
+      var subRows = subSheet2.getRange(2, 1, subSheet2.getLastRow() - 1, 5).getValues();
+      subTotal = subRows.length;
+      subRows.forEach(function (r) {
+        var unsub = r[4] === true || String(r[4]).toUpperCase() === 'TRUE';
+        if (!unsub) subActive++;
+        if (sinceParam && r[0] instanceof Date && r[0] > sinceParam) subSinceCount++;
+      });
+      if (!sinceParam) subSinceCount = subTotal;
+    }
+
+    var report = {
+      ok: true,
+      generatedAt: new Date().toISOString(),
+      since: sinceParam ? sinceParam.toISOString() : null,
+      bookings: summarize('Bookings', ['Timestamp', 'Full Name', 'Service Needed', 'Location in Abuja']),
+      technicians: summarize('TechnicianApplications', ['Timestamp', 'Full Name', 'Areas of Expertise', 'Base Location in Abuja']),
+      contactRequests: summarize('ContactRequests', ['Timestamp', 'Your Name', 'Technician Requested']),
+      campaigns: summarize('CampaignLog', ['Timestamp', 'Campaign', 'Recipients', 'Result']),
+      emails: summarize('EmailLog', ['Timestamp', 'Type', 'Recipient', 'Subject', 'Status']),
+      subscribers: { total: subTotal, active: subActive, sinceCount: subSinceCount },
+    };
+    return ContentService.createTextOutput(JSON.stringify(report))
       .setMimeType(ContentService.MimeType.JSON);
   }
 

@@ -18,6 +18,7 @@
  */
 
 const nodemailer = require('nodemailer');
+const { logEmailSent } = require('../lib/report');
 
 const TERMS_URL = 'https://fixit.justservices.pro/terms.html';
 const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbB4t4eCBtxGCQD2BP1M'; // keep in sync with FIXIT_WHATSAPP_CHANNEL in config.js
@@ -120,6 +121,7 @@ module.exports = async (req, res) => {
       subject: SUBJECTS[formType],
       html: buildNotificationHtml(fields, formType),
     });
+    await logEmailSent(formType, toBusiness, SUBJECTS[formType], 'sent');
 
     // 2. Autoresponse to the submitter, if they gave an email.
     if (clientEmail) {
@@ -139,11 +141,13 @@ module.exports = async (req, res) => {
                    .join('')}
                </div>`,
       });
+      await logEmailSent(formType + '-autoresponse', clientEmail, `Thanks for contacting ${SITE_NAME}`, 'sent');
     }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('send-email error:', err);
+    await logEmailSent(formType, toBusiness, SUBJECTS[formType], 'failed');
     return res.status(500).json({ ok: false, error: 'Failed to send email.' });
   }
 };

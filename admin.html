@@ -543,6 +543,13 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   padding:18px; border-radius:6px; max-height:320px; overflow:auto; white-space:pre-wrap; word-break:break-all;
 }
 .copy-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+.stat-box{background:var(--paper); border:1px solid var(--line-dark); border-radius:8px; padding:16px 14px; text-align:center;}
+.stat-num{font-family:'Archivo Black',sans-serif; font-size:28px; color:var(--teal);}
+.stat-lbl{font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-mute); margin-top:4px;}
+.report-list{list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:8px;}
+.report-list li{background:var(--paper); border:1px solid var(--line-dark); border-radius:6px; padding:9px 12px; font-size:13px; color:var(--ink);}
+.report-list li span{color:var(--text-mute); font-size:11.5px; display:block; margin-top:2px;}
+.report-list .empty{color:var(--text-mute); font-style:italic; background:none; border:none; padding:4px 0;}
 </style>
 </head>
 <body>
@@ -576,6 +583,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <button class="admin-nav-btn" data-panel="push">Push Notifications</button>
       <button class="admin-nav-btn" data-panel="technicians">Technician Directory</button>
       <button class="admin-nav-btn" data-panel="clients">Clients &amp; Applications</button>
+      <button class="admin-nav-btn" data-panel="reports">Reports</button>
       <button class="admin-nav-btn" data-panel="bulkemail">Bulk Email</button>
     </div>
   </nav>
@@ -745,6 +753,58 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         </div>
         <button class="btn btn-amber" id="sheetSave" style="margin-bottom:20px;">Save</button>
         <div class="admin-grid-2" style="grid-template-columns:repeat(3,1fr);" id="sheetLinks"></div>
+      </div>
+    </section>
+
+    <!-- REPORTS -->
+    <section class="admin-panel" id="panel-reports">
+
+      <div class="admin-card" id="reportNotConfigured" style="display:none;">
+        <h3>Reports need the Sheets backend</h3>
+        <p class="desc">This panel reads the same Google Sheet used for Bookings, Applications and Subscribers. Set it up once (see the Bulk Email tab for the exact steps) and this fills in automatically.</p>
+        <button class="btn btn-outline" id="reportRetry" style="margin-top:12px;">I've set it up — check again</button>
+      </div>
+
+      <div id="reportConfigured" style="display:none;">
+        <div class="admin-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+            <div>
+              <h3 style="margin-bottom:2px;">The last 14 days, at a glance</h3>
+              <p class="desc" style="margin:0;">Everything that's happened across the site — same numbers that go out in the bi-weekly report email.</p>
+            </div>
+            <button class="btn btn-outline" id="reportRefresh">Refresh</button>
+          </div>
+
+          <div class="admin-grid-2" style="grid-template-columns:repeat(3,1fr); margin-top:18px;">
+            <div class="stat-box"><div class="stat-num" id="statBookings">—</div><div class="stat-lbl">New Bookings</div></div>
+            <div class="stat-box"><div class="stat-num" id="statTechs">—</div><div class="stat-lbl">New Applications</div></div>
+            <div class="stat-box"><div class="stat-num" id="statRequests">—</div><div class="stat-lbl">Contact Requests</div></div>
+            <div class="stat-box"><div class="stat-num" id="statSubsNew">—</div><div class="stat-lbl">New Subscribers</div></div>
+            <div class="stat-box"><div class="stat-num" id="statSubsTotal">—</div><div class="stat-lbl">Active Subscribers</div></div>
+            <div class="stat-box"><div class="stat-num" id="statEmails">—</div><div class="stat-lbl">Emails Sent</div></div>
+          </div>
+        </div>
+
+        <div class="admin-grid-2" style="grid-template-columns:1fr 1fr;">
+          <div class="admin-card">
+            <h3 style="font-size:16px;">Recent bookings</h3>
+            <ul class="report-list" id="listBookings"></ul>
+          </div>
+          <div class="admin-card">
+            <h3 style="font-size:16px;">Recent technician applications</h3>
+            <ul class="report-list" id="listTechs"></ul>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3 style="font-size:16px;">Recent contact requests</h3>
+          <ul class="report-list" id="listRequests"></ul>
+        </div>
+
+        <div class="admin-card">
+          <h3>The bi-weekly report email</h3>
+          <p class="desc">This exact snapshot — bookings, applications, requests, subscriber growth and how the rotating campaign performed — is emailed automatically to <b>BUSINESS_EMAIL</b> every 14 days, right after that cycle's subscriber campaign goes out. Same schedule, one email, nothing to check manually.</p>
+        </div>
       </div>
     </section>
 
@@ -1041,6 +1101,56 @@ async function loadBulkEmailPanel() {
 document.getElementById('bulkRetry').addEventListener('click', loadBulkEmailPanel);
 
 document.querySelector('[data-panel="bulkemail"]').addEventListener('click', loadBulkEmailPanel);
+
+/* ===================== REPORTS ===================== */
+function escapeHtmlAdmin(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderReportList(elId, items, fields) {
+  const el = document.getElementById(elId);
+  if (!items || items.length === 0) {
+    el.innerHTML = '<li class="empty">Nothing yet.</li>';
+    return;
+  }
+  el.innerHTML = items
+    .slice(0, 8)
+    .map((item) => {
+      const main = fields.slice(0, 1).map((f) => escapeHtmlAdmin(item[f])).join('');
+      const sub = fields.slice(1).map((f) => escapeHtmlAdmin(item[f])).filter(Boolean).join(' · ');
+      return `<li>${main || '(no name given)'}${sub ? `<span>${sub}</span>` : ''}</li>`;
+    })
+    .join('');
+}
+
+async function loadReportsPanel() {
+  const { ok, data } = await adminApiCall('/api/report?days=14');
+  const notConfigured = document.getElementById('reportNotConfigured');
+  const configured = document.getElementById('reportConfigured');
+
+  if (!ok) {
+    notConfigured.style.display = '';
+    configured.style.display = 'none';
+    return;
+  }
+  notConfigured.style.display = 'none';
+  configured.style.display = '';
+
+  document.getElementById('statBookings').textContent = data.bookings.sinceCount;
+  document.getElementById('statTechs').textContent = data.technicians.sinceCount;
+  document.getElementById('statRequests').textContent = data.contactRequests.sinceCount;
+  document.getElementById('statSubsNew').textContent = data.subscribers.sinceCount;
+  document.getElementById('statSubsTotal').textContent = data.subscribers.active;
+  document.getElementById('statEmails').textContent = data.emails.sinceCount;
+
+  renderReportList('listBookings', data.bookings.recent, ['Full Name', 'Service Needed', 'Location in Abuja']);
+  renderReportList('listTechs', data.technicians.recent, ['Full Name', 'Areas of Expertise', 'Base Location in Abuja']);
+  renderReportList('listRequests', data.contactRequests.recent, ['Your Name', 'Technician Requested']);
+}
+
+document.getElementById('reportRetry').addEventListener('click', loadReportsPanel);
+document.getElementById('reportRefresh').addEventListener('click', loadReportsPanel);
+document.querySelector('[data-panel="reports"]').addEventListener('click', loadReportsPanel);
 
 document.getElementById('manualSubAdd').addEventListener('click', () => {
   const statusEl = document.getElementById('manualSubStatus');
