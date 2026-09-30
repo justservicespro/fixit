@@ -186,7 +186,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="https://images.pexels.com/photos/32713414/pexels-photo-32713414.jpeg?auto=compress&cs=tinysrgb&w=1000" fetchpriority="high">
+<link rel="preload" as="image" href="/images/generator-hero.jpg" fetchpriority="high">
 
 <style>
 :root{
@@ -828,13 +828,13 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         </div>
         <div class="slide">
           <span class="slide-ticket-no mono">#PRN-02</span>
-          <img src="https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician servicing a photocopier and printer" loading="lazy" width="1000" height="1150">
+          <img src="https://images.pexels.com/photos/9301888/pexels-photo-9301888.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician servicing a photocopier and printer" loading="lazy" width="1000" height="1150" onerror="this.onerror=null;this.src='https://placehold.co/1000x1150/171A21/FF7A1A?text=Printer+%26+Photocopier+Repair';">
           <div class="slide-shade"></div>
           <div class="slide-label"><div class="slide-tag">Priority Service 02</div><div class="slide-title">Printer &amp; Photocopier Repair</div></div>
         </div>
         <div class="slide">
           <span class="slide-ticket-no mono">#LAP-03</span>
-          <img src="https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician repairing a laptop motherboard in a workshop" loading="lazy" width="1000" height="1150">
+          <img src="https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Technician repairing a laptop motherboard in a workshop" loading="lazy" width="1000" height="1150" onerror="this.onerror=null;this.src='https://placehold.co/1000x1150/171A21/FF7A1A?text=Laptop+Repair';">
           <div class="slide-shade"></div>
           <div class="slide-label"><div class="slide-tag">Priority Service 03</div><div class="slide-title">Laptop Repair</div></div>
         </div>
@@ -885,7 +885,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <article class="pcard">
         <div class="pcard-media">
           <span class="pcard-rank">TICKET #PRN-02</span>
-          <img src="https://images.pexels.com/photos/9301897/pexels-photo-9301897.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Printer and photocopier repair technician in Abuja office" loading="lazy">
+          <img src="https://images.pexels.com/photos/9301897/pexels-photo-9301897.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Printer and photocopier repair technician in Abuja office" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600/171A21/FF7A1A?text=Printer+%26+Photocopier+Repair';">
         </div>
         <div class="pcard-body">
           <h3>Printer &amp; Photocopier Repair</h3>
@@ -906,7 +906,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <article class="pcard">
         <div class="pcard-media">
           <span class="pcard-rank">TICKET #LAP-03</span>
-          <img src="https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Laptop repair technician working on a motherboard in Abuja" loading="lazy">
+          <img src="https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Laptop repair technician working on a motherboard in Abuja" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600/171A21/FF7A1A?text=Laptop+Repair';">
         </div>
         <div class="pcard-body">
           <h3>Laptop &amp; Computer Repair</h3>
@@ -1255,6 +1255,55 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     </div>
   </div>
 </section>
+
+<!-- ============ FROM THE BLOG ============ -->
+<section class="section section-tight" id="blog-teaser">
+  <div class="wrap">
+    <div class="section-head" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div class="eyebrow">Guides &amp; Safety Tips</div>
+        <h2>From the FixIt Abuja blog</h2>
+        <p>How-tos, dos and don'ts, and safety guidance for the equipment we repair most.</p>
+      </div>
+      <a href="/blog/" class="btn btn-outline" style="border-color:var(--line-dark);color:var(--ink);flex-shrink:0;">Visit the Blog →</a>
+    </div>
+    <div class="blog-teaser-grid" id="blogTeaserGrid"></div>
+  </div>
+</section>
+<style>
+.blog-teaser-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.bt-card{background:#fff;border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease;}
+.bt-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px -16px rgba(23,26,33,0.28);}
+.bt-img{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2);}
+.bt-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.bt-body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1;}
+.bt-cat{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-size:11.5px;color:var(--amber-dark);margin-bottom:6px;}
+.bt-body h3{font-size:16.5px;line-height:1.25;margin:0 0 8px;font-family:'Archivo Black',sans-serif;}
+.bt-body p{color:var(--text-mute);font-size:13.5px;line-height:1.55;margin:0;}
+@media (max-width:980px){.blog-teaser-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:640px){.blog-teaser-grid{grid-template-columns:1fr;}}
+</style>
+<script>
+(function(){
+  var POSTS = [{"slug": "generator-maintenance-guide", "title": "The Complete Generator Maintenance Guide for Abuja Homes and Offices", "desc": "A practical, season-by-season guide to keeping petrol, diesel and soundproof generators running reliably in Abuja.", "cat": "Guides", "img": "https://images.unsplash.com/photo-1555861404-533a2800257f?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "generator-buying-dos-donts", "title": "Buying a Generator in Nigeria: Do's and Don'ts Before You Spend a Kobo", "desc": "What to check, what to ask, and what to avoid when buying a petrol, diesel or inverter generator in Nigeria.", "cat": "Dos & Don'ts", "img": "https://images.unsplash.com/photo-1555861404-533a2800257f?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "ac-cleaning-how-to", "title": "How to Clean and Service Your Split AC Before the Heat Hits", "desc": "A step-by-step guide to cleaning filters, coils and drains on a split air conditioner, and knowing when to call a technician instead.", "cat": "How-To", "img": "https://images.unsplash.com/photo-1698479603408-1a66a6d9e80f?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "ac-dos-donts", "title": "AC Dos and Don'ts: Get More Cooling for Less Power", "desc": "Simple habits that keep your air conditioner cooling efficiently and cut down on unnecessary repairs and generator fuel.", "cat": "Dos & Don'ts", "img": "https://images.unsplash.com/photo-1698479603408-1a66a6d9e80f?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "electrical-safety-guide", "title": "Home Electrical Safety in Nigeria: What Every Household Should Know", "desc": "Practical, non-technical electrical safety guidance for Nigerian homes — from overloaded sockets to what to do when a breaker keeps tripping.", "cat": "Safety", "img": "https://images.unsplash.com/photo-1576446470246-499c738d1c8e?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "extension-cord-overload-dos-donts", "title": "Extension Cords and Power Strips: Do's and Don'ts", "desc": "How to use extension cords and power boards safely at home or in the office, and the mistakes that quietly cause overheating.", "cat": "Dos & Don'ts", "img": "https://images.unsplash.com/photo-1576446470246-499c738d1c8e?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "printer-paper-jam-how-to", "title": "How to Clear a Printer Paper Jam Without Making It Worse", "desc": "A calm, step-by-step method for clearing paper jams in inkjet and laser printers without damaging internal parts.", "cat": "How-To", "img": "https://images.unsplash.com/photo-1710857679450-ecd7945dd4bd?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "printer-care-dos-donts", "title": "Printer and Photocopier Care: Do's and Don'ts", "desc": "Everyday habits that keep office printers and photocopiers running longer between repairs.", "cat": "Dos & Don'ts", "img": "https://images.unsplash.com/photo-1710857679450-ecd7945dd4bd?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "cctv-buying-guide", "title": "A No-Nonsense Guide to Buying CCTV for Your Home or Shop", "desc": "What actually matters when choosing a CCTV system for a home, shop or office in Nigeria — resolution, storage, power and placement.", "cat": "Guides", "img": "https://images.unsplash.com/photo-1474301105119-cdc36a303335?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "cctv-maintenance-how-to", "title": "Keeping Your CCTV System Actually Working: A Maintenance How-To", "desc": "The routine checks that keep CCTV footage usable when you actually need it, instead of discovering a blank recording after the fact.", "cat": "How-To", "img": "https://images.unsplash.com/photo-1474301105119-cdc36a303335?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "phone-repair-dos-donts", "title": "Phone and Tablet Repair: Do's and Don'ts Before You Hand It Over", "desc": "What to do — and what to avoid — when your phone or tablet is damaged, before and after you get it repaired.", "cat": "Dos & Don'ts", "img": "https://images.unsplash.com/photo-1588515603068-adb330f26e92?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "fire-safety-office-home-guide", "title": "Fire Safety Basics Every Nigerian Home and Office Should Practice", "desc": "Practical fire prevention and response guidance for homes and offices, from extinguisher types to escape planning.", "cat": "Safety", "img": "https://images.unsplash.com/photo-1743246029112-2dd17f95d13d?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "solar-inverter-nigeria-trends", "title": "Why Solar and Hybrid Inverters Are Reshaping Backup Power in Nigeria", "desc": "A look at the global and local trends pushing Nigerian homes and businesses toward solar and hybrid inverter systems.", "cat": "Global Trends", "img": "https://images.unsplash.com/photo-1762960504300-1bcbdd8d9e53?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "choosing-inverter-ups-guide", "title": "Choosing the Right Inverter or UPS for Your Home", "desc": "A practical guide to sizing and choosing an inverter or UPS system for reliable backup power at home.", "cat": "Guides", "img": "https://images.unsplash.com/photo-1762960504300-1bcbdd8d9e53?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "laptop-overheating-guide", "title": "Why Your Laptop Overheats — And What Actually Fixes It", "desc": "A clear guide to diagnosing and fixing laptop overheating, from simple dust cleaning to knowing when thermal paste needs replacing.", "cat": "Guides", "img": "https://images.unsplash.com/photo-1721333090143-8bfc7007ed97?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "laptop-cleaning-battery-how-to", "title": "How to Clean Your Laptop and Protect Its Battery — Safely", "desc": "Safe, practical steps for cleaning a laptop's exterior and keyboard, plus habits that extend battery lifespan.", "cat": "How-To", "img": "https://images.unsplash.com/photo-1721333090143-8bfc7007ed97?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "workplace-ppe-safety-guide", "title": "Personal Protective Equipment: A Practical Guide for Technicians and Workshops", "desc": "What PPE actually protects against, and why skipping it is a false economy for anyone doing repair, electrical or generator work.", "cat": "Safety", "img": "https://images.unsplash.com/photo-1582540730843-f4418d96ccbe?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "rainy-season-equipment-checklist", "title": "Rainy Season Equipment Checklist for Abuja Homes and Businesses", "desc": "What to check and protect before and during Abuja's rainy season — from generators and wiring to CCTV and roofing.", "cat": "How-To", "img": "https://images.unsplash.com/photo-1576446470246-499c738d1c8e?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "smart-home-security-trends", "title": "Smart Home Security: What's Actually Changing, and What to Ignore", "desc": "A grounded look at smart security trends — AI cameras, app-based monitoring and cloud storage — and what genuinely matters for homes and shops in Nigeria.", "cat": "Global Trends", "img": "https://images.unsplash.com/photo-1474301105119-cdc36a303335?fm=jpg&fit=crop&w=640&h=400&q=70"}, {"slug": "seasonal-generator-checklist-dry-season", "title": "Getting Your Generator Ready for Harmattan and the Dry Season", "desc": "A pre-dry-season checklist to protect generators from dust and heat stress during Nigeria's harmattan and hot months.", "cat": "How-To", "img": "https://images.unsplash.com/photo-1555861404-533a2800257f?fm=jpg&fit=crop&w=640&h=400&q=70"}];
+  var GROUP = 4;
+  var REF = Date.UTC(2026,8,27); // 27 Sep 2026 — fixed anchor so rotation is consistent for every visitor
+  var daysSince = Math.floor((Date.now() - REF) / 86400000);
+  var period = Math.floor(daysSince / 3);
+  var start = ((period * GROUP) % POSTS.length + POSTS.length) % POSTS.length;
+  var picks = [];
+  for (var i = 0; i < GROUP; i++){ picks.push(POSTS[(start + i) % POSTS.length]); }
+  var grid = document.getElementById('blogTeaserGrid');
+  if(grid){
+    grid.innerHTML = picks.map(function(p){
+      return '<a class="bt-card" href="/blog/' + p.slug + '.html">' +
+        '<div class="bt-img"><img src="' + p.img + '" alt="' + p.title.replace(/"/g,'&quot;') + '" loading="lazy" onerror="this.onerror=null;this.src=\'/og-home.jpg\';"></div>' +
+        '<div class="bt-body"><span class="bt-cat">' + p.cat + '</span><h3>' + p.title + '</h3><p>' + p.desc + '</p></div>' +
+      '</a>';
+    }).join('');
+  }
+})();
+</script>
 
 <!-- ============ JOIN OUR TECHNICIAN NETWORK ============ -->
 <section class="section dark" id="join-team">

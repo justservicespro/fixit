@@ -1116,7 +1116,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <h3>Request this technician</h3>
     <p class="sub">Share your details and job needs — FixIt Abuja will contact the technician directly and connect you both. Your details are never shared without this step.</p>
     <div class="modal-tech-chip">
-      <img id="modalTechPhoto" src="" alt="">
+      <img id="modalTechPhoto" src="" alt="" onerror="this.onerror=null;this.src='https://placehold.co/64x64/171A21/FF7A1A?text=%20';">
       <span id="modalTechName"></span>
     </div>
     <form id="requestForm" action="https://formsubmit.co/justservices.ltd@gmail.com" method="POST">
@@ -1231,7 +1231,7 @@ function renderTechnicians(){
   grid.innerHTML = TECHNICIANS.map(t => `
     <div class="tech-card">
       <div class="tech-top">
-        <img class="tech-avatar" src="${t.photo}" alt="${t.name}, ${t.trades[0]} technician in Abuja" loading="lazy">
+        <img class="tech-avatar" src="${t.photo}" alt="${t.name}, ${t.trades[0]} technician in Abuja" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/96x96/171A21/FF7A1A?text=${encodeURIComponent(t.name.split(' ').map(w=>w[0]).join(''))}';">
         <div>
           <div class="tech-name-row">
             <span class="tech-name">${t.name}</span>
@@ -1243,7 +1243,7 @@ function renderTechnicians(){
       <div class="tech-body">
         <div class="tech-tags">${t.trades.map(tr => `<span class="tech-tag">${tr}</span>`).join('')}</div>
         <p class="tech-bio">${t.bio}</p>
-        ${t.gallery && t.gallery.length ? `<div class="tech-gallery">${t.gallery.slice(0,3).map(g => `<img src="${g}" alt="${t.name} job example" loading="lazy">`).join('')}</div>` : ''}
+        ${t.gallery && t.gallery.length ? `<div class="tech-gallery">${t.gallery.slice(0,3).map(g => `<img src="${g}" alt="${t.name} job example" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/200x150/EFE9DB/171A21?text=Job+Photo';">`).join('')}</div>` : ''}
         <div class="tech-foot">
           <span class="tech-since mono">Joined ${t.since}</span>
           <button class="btn btn-amber request-btn" data-id="${t.id}" data-name="${t.name}" data-photo="${t.photo}">Request This Technician</button>
