@@ -621,6 +621,19 @@ nav.links a:hover{color:#fff; border-color:var(--amber);}
 .buy-card p{font-size:13.5px; color:var(--text-mute); line-height:1.6; margin:0;}
 .buy-cta{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13.5px; letter-spacing:0.03em; text-transform:uppercase; color:var(--teal-dark); margin-top:auto; padding-top:8px;}
 
+/* ===================== WHAT WE BUY ===================== */
+.wwb-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+.wwb-card{background:#fff; border:1px solid var(--line-dark); border-radius:6px; overflow:hidden; display:flex; flex-direction:column;}
+.wwb-media{aspect-ratio:16/8; overflow:hidden; background:var(--paper-2);}
+.wwb-media img{width:100%; height:100%; object-fit:cover; display:block;}
+.wwb-body{padding:24px 26px 26px; display:flex; flex-direction:column; gap:12px;}
+.wwb-body h3{font-family:'Archivo Black',sans-serif; font-size:17px; line-height:1.25; margin:0;}
+.wwb-body p{font-size:13.5px; color:var(--text-mute); line-height:1.6; margin:0;}
+.wwb-tags{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0;}
+.wwb-tags li{font-size:12px; font-weight:700; letter-spacing:0.02em; color:var(--teal-dark); background:rgba(18,165,148,0.10); border-radius:999px; padding:6px 13px;}
+.wwb-banner{background:var(--amber); color:var(--ink); font-weight:700; font-size:13px; padding:11px 16px; border-radius:5px; line-height:1.4;}
+.wwb-card .btn{align-self:flex-start; margin-top:4px;}
+
 /* ===================== FOOTER ===================== */
 footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.1fr; gap:40px; padding-bottom:44px; border-bottom:1px solid var(--line);}
@@ -682,6 +695,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   .priority-grid{grid-template-columns:1fr;}
   .more-grid{grid-template-columns:1fr 1fr;}
   .buy-grid{grid-template-columns:1fr;}
+  .wwb-grid{grid-template-columns:1fr;}
   .more-search input{font-size:16px;}
   .test-grid{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
@@ -1589,6 +1603,46 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   </div>
 </section>
 
+<!-- ============ WHAT WE BUY ============ -->
+<section class="section section-tight" id="we-buy" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Turn Old Equipment Into Cash</div>
+      <h2>What we buy</h2>
+      <p>Got something old, faulty or just lying around? We'll take a look and make you a fair offer.</p>
+    </div>
+    <div class="wwb-grid">
+      <div class="wwb-card">
+        <div class="wwb-media">
+          <img src="/images/sell-old-equipment.jpg" alt="Old inverters, UPS units, solar panels and a transformer we buy in Abuja" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x400/171A21/FF7A1A?text=Inverters%2C+UPS%2C+Solar+%26+Transformers';">
+        </div>
+        <div class="wwb-body">
+          <h3>Condemned, Faulty, Abandoned or Old Inverters, UPS Units, Solar Equipment &amp; Transformers</h3>
+          <p>We're interested in units that are no longer economical to repair — give your old equipment new value instead of letting it rust.</p>
+          <ul class="wwb-tags">
+            <li>Inverters</li><li>UPS Units</li><li>Solar Equipment</li><li>Transformers</li>
+          </ul>
+          <div class="wwb-banner">⚡ Preferred units: 5kVA, 10kVA, 15kVA, 20kVA and 30kVA</div>
+          <button type="button" class="btn btn-teal" onclick="fixitOpenEnquiry('Condemned/Old Inverters, UPS Units, Solar Equipment or Transformers', 'sell')">Sell to Us</button>
+        </div>
+      </div>
+      <div class="wwb-card">
+        <div class="wwb-media">
+          <img src="https://images.unsplash.com/photo-1689236673605-e5d95a9c450c?fm=jpg&fit=crop&w=800&h=400&q=75" alt="A row of fairly used laptops on a table" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x400/171A21/FF7A1A?text=Fairly+Used+Laptops+%26+Gadgets';">
+        </div>
+        <div class="wwb-body">
+          <h3>Fairly Used Laptops, Phones &amp; Gadgets</h3>
+          <p>No functionality damage — screen, keyboard, battery and ports all working. We'll inspect it on the spot and make you a fair cash offer.</p>
+          <ul class="wwb-tags">
+            <li>Laptops</li><li>Phones &amp; Tablets</li><li>Other Gadgets</li>
+          </ul>
+          <button type="button" class="btn btn-teal" onclick="fixitOpenEnquiry('Fairly Used Laptops, Phones &amp; Gadgets', 'sell')">Sell to Us</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -1867,19 +1921,19 @@ function wireSheetsSync(formId, sheetName) {
   <div class="feq-backdrop" onclick="fixitCloseEnquiry()"></div>
   <div class="feq-card">
     <button type="button" class="feq-close" aria-label="Close" onclick="fixitCloseEnquiry()">&times;</button>
-    <div class="feq-eyebrow">Tell Us What's Wrong</div>
-    <h4 id="feqHeading">Request: <span id="feqService">Repair Service</span></h4>
-    <p class="feq-sub">A couple of details so we send the right technician, with the right parts, the first time.</p>
+    <div class="feq-eyebrow" id="feqEyebrow">Tell Us What's Wrong</div>
+    <h4 id="feqHeading"><span id="feqHeadingVerb">Request</span>: <span id="feqService">Repair Service</span></h4>
+    <p class="feq-sub" id="feqSub">A couple of details so we send the right technician, with the right parts, the first time.</p>
     <form onsubmit="return fixitSubmitEnquiry(event)">
       <div class="field full">
-        <label for="feqDesc">Description of Issue</label>
+        <label for="feqDesc" id="feqDescLabel">Description of Issue</label>
         <textarea id="feqDesc" rows="3" placeholder="What's wrong? Make/model if you know it..." required></textarea>
       </div>
       <div class="field full">
         <label for="feqLocation">Location in Abuja</label>
         <input type="text" id="feqLocation" placeholder="e.g. Wuse 2, Abuja" required>
       </div>
-      <button type="submit" class="btn btn-amber btn-block" style="width:100%;">Continue on WhatsApp →</button>
+      <button type="submit" class="btn btn-amber btn-block" id="feqSubmitBtn" style="width:100%;">Continue on WhatsApp →</button>
       <p style="font-size:11.5px; color:var(--text-mute); margin:12px 0 0; line-height:1.5; text-align:center;">By continuing you agree to our <a href="/terms.html" target="_blank" rel="noopener" style="color:var(--teal-dark); font-weight:600;">Terms &amp; Conditions</a>.</p>
     </form>
   </div>
@@ -1887,11 +1941,26 @@ function wireSheetsSync(formId, sheetName) {
 <script>
 (function(){
   var currentService = '';
-  window.fixitOpenEnquiry = function(serviceName){
+  var currentMode = 'repair';
+  window.fixitOpenEnquiry = function(serviceName, mode){
     currentService = serviceName;
+    currentMode = mode || 'repair';
     document.getElementById('feqService').textContent = serviceName;
     document.getElementById('feqDesc').value = '';
     document.getElementById('feqLocation').value = '';
+    if (currentMode === 'sell'){
+      document.getElementById('feqEyebrow').textContent = "Tell Us What You're Selling";
+      document.getElementById('feqHeadingVerb').textContent = 'Sell';
+      document.getElementById('feqSub').textContent = "A couple of details so we can give you a fair, on-the-spot valuation.";
+      document.getElementById('feqDescLabel').textContent = 'Item(s) & Condition';
+      document.getElementById('feqDesc').placeholder = 'What are you selling, how many units, and what condition are they in?';
+    } else {
+      document.getElementById('feqEyebrow').textContent = "Tell Us What's Wrong";
+      document.getElementById('feqHeadingVerb').textContent = 'Request';
+      document.getElementById('feqSub').textContent = 'A couple of details so we send the right technician, with the right parts, the first time.';
+      document.getElementById('feqDescLabel').textContent = 'Description of Issue';
+      document.getElementById('feqDesc').placeholder = "What's wrong? Make/model if you know it...";
+    }
     document.getElementById('fixitEnquiryModal').classList.add('show');
     document.body.style.overflow = 'hidden';
     setTimeout(function(){ document.getElementById('feqDesc').focus(); }, 50);
@@ -1905,10 +1974,18 @@ function wireSheetsSync(formId, sheetName) {
     var desc = document.getElementById('feqDesc').value.trim();
     var loc = document.getElementById('feqLocation').value.trim();
     if(!desc || !loc){ return false; }
-    var msg = 'Hi, I need ' + currentService + ' in Abuja' +
-      '\n\nDescription of issue: ' + desc +
-      '\nLocation: ' + loc +
-      '\n\nI agree to FixIt Abuja\'s Terms & Conditions: https://fixit.justservices.pro/terms.html';
+    var msg;
+    if (currentMode === 'sell'){
+      msg = 'Hi, I want to sell: ' + currentService + ' in Abuja' +
+        '\n\nItem(s) & condition: ' + desc +
+        '\nLocation: ' + loc +
+        '\n\nI agree to FixIt Abuja\'s Terms & Conditions: https://fixit.justservices.pro/terms.html';
+    } else {
+      msg = 'Hi, I need ' + currentService + ' in Abuja' +
+        '\n\nDescription of issue: ' + desc +
+        '\nLocation: ' + loc +
+        '\n\nI agree to FixIt Abuja\'s Terms & Conditions: https://fixit.justservices.pro/terms.html';
+    }
     var url = 'https://wa.me/2348079926755?text=' + encodeURIComponent(msg);
     window.open(url, '_blank', 'noopener');
     fixitCloseEnquiry();
