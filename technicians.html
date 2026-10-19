@@ -773,7 +773,8 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <nav class="links">
       <a href="/#services">Services</a>
       <a href="/#reviews">Reviews</a>
-      <a href="/technicians.html" style="color:#fff;border-color:var(--amber);">For Technicians</a>
+      <a href="/find-artisan.html">Find a Technician</a>
+    <a href="/technicians.html" style="color:#fff;border-color:var(--amber);">For Technicians</a>
       <a href="/blog/">Blog</a>
       <a href="/#faq">FAQ</a>
       <a href="/book-a-service.html">Book a Service</a>
@@ -795,6 +796,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
   <nav>
     <a href="/#services">Services</a>
     <a href="/#reviews">Reviews</a>
+    <a href="/find-artisan.html">Find a Technician</a>
     <a href="/technicians.html">For Technicians</a>
     <a href="/blog/">Blog</a>
     <a href="/#faq">FAQ</a>
@@ -837,6 +839,8 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       <span><b style="color:var(--ink);">Phone numbers and emails are never published.</b> Tap "Request This Technician" on any profile and our team will reach out to connect you directly — no contact details are shared publicly on this page.</span>
     </div>
+
+    <p style="margin:0 0 18px;font-size:14.5px;"><a href="/find-artisan.html" style="color:var(--teal-dark);font-weight:700;text-decoration:underline;">Looking for a specific skill or area? Search the full technician directory &rarr;</a></p>
 
     <div class="tech-grid" id="techGrid"></div>
   </div>
@@ -934,26 +938,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
           </div>
         </div>
 
-        <div class="field full" style="margin-bottom:16px;">
-          <label>Area(s) of Expertise</label>
-          <div class="expert-checks">
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Generator Repair"> Generator Repair</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Printer / Photocopier Repair"> Printer / Photocopier</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Laptop / Computer Repair"> Laptop / Computer</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Phone / Tablet Repair"> Phone / Tablet</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Air Conditioner Repair"> AC Repair</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Fridge / Freezer Repair"> Fridge / Freezer</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Inverter / UPS Repair"> Inverter / UPS</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="CCTV Installation / Repair"> CCTV</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="TV / Home Theatre Repair"> TV / Home Theatre</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Washing Machine Repair"> Washing Machine</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Electrical Wiring"> Electrical Wiring</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Electrician"> Electrician</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Plumbing"> Plumbing</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Auto Mechanic"> Auto Mechanic</label>
-            <label class="echk"><input type="checkbox" name="Areas of Expertise" value="Web Developer"> Web Developer</label>
-          </div>
-        </div>
+        <div class="field full" style="margin-bottom:16px;" id="skillPicker"></div>
 
         <div class="form-row">
           <div class="field">
@@ -993,7 +978,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
         <div class="field full" style="margin-bottom:16px;">
           <label class="echk" style="align-items:flex-start; font-weight:400;">
             <input type="checkbox" required style="margin-top:3px;">
-            <span>I agree that if approved, my name, trade, experience level, base location, bio and submitted photos may be shown publicly on the FixIt Abuja technician directory. My phone number and email address will <b>never</b> be published — FixIt Abuja will contact me directly when a client requests my services.</span>
+            <span>I confirm my details are accurate and agree to FixIt Abuja's Terms &amp; Conditions, including that I work as an independent contractor. Details of premium skills are never shown publicly, and I only appear in the directory if I tick the listing box above.</span>
           </label>
         </div>
 
@@ -1006,6 +991,8 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     </div>
   </div>
 </section>
+<script src="/skills-data.js"></script>
+<script src="/skill-picker.js"></script>
 
 <section class="section section-tight" style="background:var(--paper-2);">
   <div class="wrap">
@@ -1075,6 +1062,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <div class="foot-col">
       <h5>Company</h5>
       <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/find-artisan.html">Find a Technician</a>
       <a href="/#how">How It Works</a>
       <a href="/#areas">Areas We Cover</a>
       <a href="/#reviews">Reviews</a>

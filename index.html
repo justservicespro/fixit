@@ -807,7 +807,8 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <nav class="links">
       <a href="#services">Services</a>
       <a href="#reviews">Reviews</a>
-      <a href="/technicians.html">For Technicians</a>
+      <a href="/find-artisan.html">Find a Technician</a>
+    <a href="/technicians.html">For Technicians</a>
       <a href="/blog/">Blog</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -831,6 +832,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <a href="#how">How It Works</a>
     <a href="#areas">Areas We Cover</a>
     <a href="#reviews">Reviews</a>
+    <a href="/find-artisan.html">Find a Technician</a>
     <a href="/technicians.html">For Technicians</a>
     <a href="/blog/">Blog</a>
     <a href="#faq">FAQ</a>
@@ -1179,6 +1181,41 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
 </section>
 
 <!-- ============ CONTACT ============ -->
+<!-- ============ FIND A TECHNICIAN ============ -->
+<section class="section section-tight" id="find" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Technician &amp; Artisan Directory</div>
+      <h2>Find a trusted technician near you</h2>
+      <p>Search plumbers, electricians, mechanics, AC and phone repairers and more, then call or WhatsApp them directly. Need industrial or specialised work? Book it through us.</p>
+    </div>
+    <form class="find-form" action="/find-artisan.html" method="get" role="search">
+      <input type="search" name="q" placeholder="What do you need? e.g. plumber, AC repair, generator" aria-label="What do you need?" maxlength="80">
+      <select name="area" aria-label="Location">
+        <option value="">All of Abuja</option>
+        <option>Asokoro</option><option>Garki</option><option>Gwarinpa</option><option>Jabi</option><option>Kubwa</option><option>Lugbe</option><option>Maitama</option><option>Nyanya</option><option>Utako</option><option>Wuse</option>
+      </select>
+      <button type="submit" class="btn btn-amber">Search</button>
+    </form>
+    <div class="find-tiers">
+      <a href="/find-artisan.html?tier=general"><b>General repairs</b><span>Home, office &amp; small business &bull; contact directly</span></a>
+      <a href="/find-artisan.html?tier=automotive"><b>Automotive</b><span>Cars, bikes, trucks &amp; roadside &bull; contact directly</span></a>
+      <a href="/find-artisan.html?tier=premium"><b>Premium services</b><span>Industrial &amp; specialised &bull; booked via FixIt</span></a>
+    </div>
+  </div>
+</section>
+<style>
+.find-form{display:grid;grid-template-columns:1.8fr 1fr auto;gap:10px;max-width:860px;margin-bottom:22px}
+.find-form input,.find-form select{border:1px solid var(--line-dark);border-radius:6px;padding:14px;font:inherit;font-size:16px;background:#fff;width:100%}
+.find-form input:focus,.find-form select:focus{outline:none;border-color:var(--amber)}
+.find-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.find-tiers a{background:#fff;border:1px solid var(--line-dark);border-radius:6px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;transition:transform .2s ease,box-shadow .2s ease}
+.find-tiers a:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(23,26,33,.4)}
+.find-tiers b{font-family:'Archivo Black',sans-serif;font-size:16px}
+.find-tiers span{font-size:13px;color:var(--text-mute)}
+@media(max-width:720px){.find-form{grid-template-columns:1fr}.find-tiers{grid-template-columns:1fr}}
+</style>
+
 <section class="section dark" id="contact">
   <div class="wrap contact-grid">
     <div class="contact-card">
@@ -1631,7 +1668,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
           <img src="https://images.unsplash.com/photo-1689236673605-e5d95a9c450c?fm=jpg&fit=crop&w=800&h=400&q=75" alt="A row of fairly used laptops on a table" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x400/171A21/FF7A1A?text=Fairly+Used+Laptops+%26+Gadgets';">
         </div>
         <div class="wwb-body">
-          <h3>Fairly Used Laptops &amp; Gadgets</h3>
+          <h3>Fairly Used Laptops, Phones &amp; Gadgets</h3>
           <p>No functionality damage — screen, keyboard, battery and ports all working. We'll inspect it on the spot and make you a fair cash offer.</p>
           <ul class="wwb-tags">
             <li>Laptops</li><li>Phones &amp; Tablets</li><li>Other Gadgets</li>
@@ -1682,6 +1719,7 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     <div class="foot-col">
       <h5>Company</h5>
       <a href="/blog/">Blog &amp; Guides</a>
+      <a href="/find-artisan.html">Find a Technician</a>
       <a href="#how">How It Works</a>
       <a href="#areas">Areas We Cover</a>
       <a href="#reviews">Reviews</a>

@@ -37,7 +37,21 @@
  *
  * The script auto-creates tabs the first time each type of form is
  * submitted: "Bookings", "TechnicianApplications", "ContactRequests",
- * "Subscribers", and "CampaignLog".
+ * "Subscribers", "CampaignLog", "ArtisanListings" and "DirectoryContacts".
+ *
+ * ARTISAN DIRECTORY (find-artisan.html)
+ *  - Every technician application is saved to "TechnicianApplications" (PRIVATE,
+ *    never published) and emailed to you, exactly as before. Premium-skill
+ *    applicants live ONLY there - they are never shown in the directory.
+ *  - If the applicant picked General/Automotive skills AND ticked the public
+ *    listing consent, a second row is created in "ArtisanListings" with
+ *    Status = Pending. To publish: set Status to Approved (and Verified to Yes
+ *    once you have checked their ID/skills). To hide again: set Status to
+ *    Suspended. Only Approved rows are ever returned by ?action=artisans.
+ *  - "DirectoryContacts" logs every Show-contact / Call / WhatsApp tap on the
+ *    directory (no personal data of the visitor) so you can measure leads.
+ *  - After pasting this updated script: Deploy > Manage deployments > edit >
+ *    Version: New version > Deploy (the /exec URL stays the same).
  *
  * If you ever change form field names on the website, update the header
  * arrays in getHeadersFor() below to match.
@@ -50,6 +64,9 @@ function doPost(e) {
   lock.waitLock(10000);
   try {
     var data = JSON.parse(e.postData.contents);
+    if (data._honey) {
+      return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+    }
     var sheetName = data._sheet || 'Submissions';
     var ss = SpreadsheetApp.getActiveSpreadsheet();
 
@@ -57,19 +74,17 @@ function doPost(e) {
       // Manual add from the admin dashboard, or a direct subscribe call.
       addSubscriber_(ss, data.email || data.Email || '', data.name || data.Name || '', data.source || data.Source || 'manual');
     } else {
-      var sheet = ss.getSheetByName(sheetName);
-      if (!sheet) {
-        sheet = ss.insertSheet(sheetName);
-        sheet.appendRow(getHeadersFor(sheetName));
-        sheet.setFrozenRows(1);
+      appendRecord_(ss, sheetName, data, 'New');
+
+      // Directory: a technician who picked public (General/Automotive) skills and
+      // consented gets a PENDING listing row. Premium-only applicants never do.
+      if (sheetName === 'TechnicianApplications' &&
+          String(data['Public Listing Consent'] || '') === 'Yes' &&
+          String(data['Listing Skill IDs'] || '').trim() !== '') {
+        data['Listing ID'] = 'L' + Utilities.getUuid().replace(/-/g, '').slice(0, 8);
+        data['Verified'] = 'No';
+        appendRecord_(ss, 'ArtisanListings', data, 'Pending');
       }
-      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-      var row = headers.map(function (h) {
-        if (h === 'Timestamp') return new Date();
-        if (h === 'Status') return 'New';
-        return data[h] !== undefined ? data[h] : '';
-      });
-      sheet.appendRow(row);
 
       // Auto-capture: if this submission carried an email address, add it
       // to the subscriber list too (deduped), regardless of which form it came from.
@@ -87,6 +102,35 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+/**
+ * Appends one record to a tab (creating it if needed). Any canonical column from
+ * getHeadersFor() that an older tab is missing is added automatically, so new
+ * form fields never get silently dropped. Unknown keys are ignored (keeps the
+ * sheet from growing columns if someone posts junk).
+ */
+function appendRecord_(ss, sheetName, data, defaultStatus) {
+  var canonical = getHeadersFor(sheetName);
+  var sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+    sheet.appendRow(canonical);
+    sheet.setFrozenRows(1);
+  }
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  canonical.forEach(function (h) {
+    if (headers.indexOf(h) === -1) {
+      headers.push(h);
+      sheet.getRange(1, headers.length).setValue(h);
+    }
+  });
+  var row = headers.map(function (h) {
+    if (h === 'Timestamp') return new Date();
+    if (h === 'Status') return defaultStatus || 'New';
+    return data[h] !== undefined ? data[h] : '';
+  });
+  sheet.appendRow(row);
 }
 
 /** Adds an email to the Subscribers sheet if it isn't already there (case-insensitive). No-op on empty/invalid email. */
@@ -117,7 +161,12 @@ function getHeadersFor(sheetName) {
     case 'Bookings':
       return ['Timestamp', 'Status', 'Full Name', 'Phone Number', 'Email', 'Service Needed', 'Location in Abuja', 'Describe the Problem'];
     case 'TechnicianApplications':
-      return ['Timestamp', 'Status', 'Full Name', 'Phone Number', 'Email Address', 'Years of Experience', 'Areas of Expertise', 'Base Location in Abuja', 'Certifications', 'About Your Work', 'Profile Photo URL', 'Public Bio', 'Job Experience Photo URLs'];
+      return ['Timestamp', 'Status', 'Full Name', 'Phone Number', 'Email Address', 'Years of Experience', 'Areas of Expertise', 'Base Location in Abuja', 'Certifications', 'About Your Work', 'Profile Photo URL', 'Public Bio', 'Job Experience Photo URLs',
+              'WhatsApp Number', 'Premium Skills', 'Listing Skills', 'Listing Skill IDs', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Listing Consent'];
+    case 'ArtisanListings':
+      return ['Timestamp', 'Status', 'Listing ID', 'Verified', 'Full Name', 'Phone Number', 'WhatsApp Number', 'Email Address', 'Years of Experience', 'Listing Skills', 'Listing Skill IDs', 'Base Location in Abuja', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Bio', 'Profile Photo URL', 'Job Experience Photo URLs', 'Certifications'];
+    case 'DirectoryContacts':
+      return ['Timestamp', 'Listing ID', 'Skill', 'Channel', 'Area', 'Query', 'Page'];
     case 'ContactRequests':
       return ['Timestamp', 'Status', 'Your Name', 'Your Phone Number', 'Job Details', 'Technician Requested'];
     case 'CampaignLog':
@@ -134,6 +183,7 @@ function getHeadersFor(sheetName) {
  *  - no params:                    health-check message.
  *  - ?action=subscribers&token=X:  returns JSON list of active subscribers (server-to-server only, needs the admin token).
  *  - ?action=unsubscribe&email=X:  public — flags that email as unsubscribed, returns a plain confirmation page.
+ *  - ?action=artisans&token=X:     server-to-server - approved public artisan listings for the directory.
  *  - ?action=logCampaign&token=X:  server-to-server — records that a campaign was sent.
  *  - ?action=report&token=X:       server-to-server — aggregated stats + recent activity across every sheet, for the admin dashboard and the bi-weekly report email. Optional &since=ISO-date to count only rows after that date.
  */
@@ -182,6 +232,34 @@ function doGet(e) {
       '<p>' + (email || 'This address') + ' will not receive FixIt Abuja emails again. ' +
       'You can still reach us any time on WhatsApp or by phone.</p></div>'
     );
+  }
+
+  if (action === 'artisans') {
+    // Server-to-server (Vercel /api/artisans). Returns ONLY Approved listings and ONLY
+    // the public fields - never email, certifications or anything from the private tab.
+    if (e.parameter.token !== ADMIN_TOKEN) {
+      return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'Unauthorized' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    var PUBLIC_FIELDS = ['Timestamp', 'Listing ID', 'Verified', 'Full Name', 'Phone Number', 'WhatsApp Number', 'Years of Experience', 'Listing Skill IDs', 'Base Location in Abuja', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Bio', 'Profile Photo URL', 'Job Experience Photo URLs'];
+    var aSheet = ss.getSheetByName('ArtisanListings');
+    var artisans = [];
+    if (aSheet && aSheet.getLastRow() > 1) {
+      var aHeaders = aSheet.getRange(1, 1, 1, aSheet.getLastColumn()).getValues()[0];
+      var aRows = aSheet.getRange(2, 1, aSheet.getLastRow() - 1, aSheet.getLastColumn()).getValues();
+      var statusIdx = aHeaders.indexOf('Status');
+      aRows.forEach(function (r) {
+        if (String(r[statusIdx]).trim().toLowerCase() !== 'approved') return;
+        var o = {};
+        PUBLIC_FIELDS.forEach(function (f) {
+          var i = aHeaders.indexOf(f);
+          if (i > -1) o[f] = r[i] instanceof Date ? r[i].toISOString() : r[i];
+        });
+        artisans.push(o);
+      });
+    }
+    return ContentService.createTextOutput(JSON.stringify({ ok: true, artisans: artisans }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
 
   if (action === 'logCampaign') {

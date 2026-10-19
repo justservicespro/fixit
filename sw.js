@@ -13,12 +13,13 @@ try {
   console.error('[FixIt SW] OneSignal worker import failed — push notifications unavailable this session, but caching/install continue normally.', e);
 }
 
-const CACHE_VERSION = 'fixit-abuja-v1';
+const CACHE_VERSION = 'fixit-abuja-v2';
 const APP_SHELL = [
   '/',
   '/index.html',
   '/book-a-service.html',
   '/technicians.html',
+  '/find-artisan.html',
   '/favicon.svg',
   '/site.webmanifest'
 ];
@@ -48,12 +49,20 @@ self.addEventListener('fetch', (event) => {
 
   const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
 
-  if (isHTML) {
+  // Same-origin live data and our own JS/CSS/JSON must be network-first, otherwise returning
+  // visitors keep seeing stale directory listings (e.g. a suspended artisan) and old scripts.
+  const url = new URL(req.url);
+  const dynamicAsset = url.origin === self.location.origin &&
+    (url.pathname.startsWith('/api/') || /\.(json|js|css)$/.test(url.pathname));
+
+  if (isHTML || dynamicAsset) {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE_VERSION).then((cache) => cache.put(req, copy));
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE_VERSION).then((cache) => cache.put(req, copy));
+          }
           return res;
         })
         .catch(() => caches.match(req).then((cached) => cached || caches.match('/index.html')))

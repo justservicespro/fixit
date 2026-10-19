@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FixIt Abuja - Offline</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;
+       background:#171A21;color:#F6F2E9;font-family:system-ui,-apple-system,Roboto,sans-serif;text-align:center}
+  .card{max-width:380px}
+  .mark{width:64px;height:64px;border-radius:14px;background:#FF7A1A;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-size:30px}
+  h1{font-size:22px;margin:0 0 10px}
+  p{font-size:15px;line-height:1.6;color:rgba(246,242,233,.72);margin:0 0 24px}
+  a,button{display:block;width:100%;padding:14px 18px;margin:0 0 12px;border-radius:6px;font-size:15px;font-weight:700;text-decoration:none;font-family:inherit;border:1px solid transparent;cursor:pointer}
+  .primary{background:#FF7A1A;color:#171A21}
+  .ghost{background:transparent;color:#F6F2E9;border-color:rgba(255,255,255,.28)}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">&#9889;</div>
+    <h1>You're offline</h1>
+    <p>We couldn't reach FixIt Abuja. Check your data or Wi-Fi and try again. You can also reach us directly.</p>
+    <button class="primary" onclick="location.replace('https://fixit.justservices.pro/?section=home&source=android_app')">Try again</button>
+    <a class="ghost" href="tel:+2348079926755">Call +234 807 992 6755</a>
+    <a class="ghost" href="whatsapp://send?phone=2348079926755">WhatsApp us</a>
+  </div>
+</body>
+</html>
