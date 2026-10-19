@@ -9,7 +9,7 @@
   var SK = window.FIXIT_SKILLS, host = document.getElementById('skillPicker');
   if (!SK || !host) return;
   var form = host.closest('form');
-  var AREAS = ['Anywhere in Abuja', 'Abaji', 'Apo', 'Asokoro', 'Bwari', 'Dei-Dei', 'Durumi', 'Dutse', 'Galadimawa', 'Garki', 'Guzape', 'Gwagwalada', 'Gwarinpa', 'Idu', 'Jabi', 'Jahi', 'Kado', 'Karmo', 'Karu', 'Katampe', 'Kuje', 'Kubwa', 'Kwali', 'Life Camp', 'Lokogoma', 'Lugbe', 'Mabushi', 'Maitama', 'Mpape', 'Nyanya', 'Utako', 'Wuse', 'Wuye'];
+  var AREAS = ['Anywhere in Abuja', 'Abaji', 'Apo', 'Asokoro', 'Bwari', 'Central Business District', 'Dei-Dei', 'Durumi', 'Dutse', 'Galadimawa', 'Games Village', 'Garki', 'Gudu', 'Guzape', 'Gwagwalada', 'Gwarinpa', 'Idu', 'Jabi', 'Jahi', 'Kado', 'Karmo', 'Karu', 'Katampe', 'Kuje', 'Kubwa', 'Kurudu', 'Kwali', 'Life Camp', 'Lokogoma', 'Lugbe', 'Mabushi', 'Maitama', 'Mbora', 'Mpape', 'Nyanya', 'Utako', 'Wuse', 'Wuye'];
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
 
   var css = document.createElement('style');
@@ -55,13 +55,13 @@
     '<div class="sp-premium-note" id="spPremium" hidden><b>Premium skills selected.</b> Your details stay private. FixIt will contact you directly when a matching job comes in; you are not listed in the public directory for these skills.</div>' +
     '<input type="hidden" name="Areas of Expertise" id="spAll"><input type="hidden" name="Premium Skills" id="spPrem"><input type="hidden" name="Listing Skills" id="spListNames"><input type="hidden" name="Listing Skill IDs" id="spListIds"><input type="hidden" name="Areas Served" id="spAreasServed">' +
     '<fieldset class="sp-listing" id="spListing" hidden disabled style="min-width:0">' +
-    '<h4>Public directory listing (free)</h4><p class="sp-note">Customers will see your first name and last initial, photo, skills, base area, fee range and bio, and can call or WhatsApp you. Listings go live after FixIt approval.</p>' +
+    '<h4>Public directory listing (free)</h4><p class="sp-note">Customers will see your first name and last initial, photo, skills, base area, fee range and bio, and can call, WhatsApp or email you. Listings go live after FixIt approval.</p>' +
     '<div class="sp-row"><div class="field"><label for="spFeeFrom">Fee from (&#8358;)</label><input id="spFeeFrom" name="Fee From" type="text" inputmode="numeric" placeholder="e.g. 5000"></div>' +
     '<div class="field"><label for="spFeeTo">Fee to (&#8358;)</label><input id="spFeeTo" name="Fee To" type="text" inputmode="numeric" placeholder="e.g. 20000"></div>' +
     '<div class="field"><label for="spBasis">Fee basis</label><select id="spBasis" name="Fee Basis"><option value="job">Per job</option><option value="hour">Per hour</option><option value="day">Per day</option><option value="callout">Call-out / inspection fee</option><option value="negotiable">Negotiable</option></select></div></div>' +
     '<div class="field" style="margin-bottom:12px"><label for="spWa">WhatsApp number (if different from phone)</label><input id="spWa" name="WhatsApp Number" type="tel" placeholder="080 000 0000"></div>' +
     '<div class="field"><label>Areas you serve</label><div class="sp-areas" id="spAreas">' + AREAS.map(function (a) { return '<label><input type="checkbox" class="sp-area" value="' + esc(a) + '"> ' + esc(a) + '</label>'; }).join('') + '</div></div>' +
-    '<label class="echk" style="align-items:flex-start;font-weight:400;margin-top:14px"><input type="checkbox" name="Public Listing Consent" value="Yes" style="margin-top:3px"> <span>List me in the public directory. I agree my name (first name + initial), photo, skills, base area, fee range, bio and phone/WhatsApp number may be shown publicly, and that I am an independent contractor.</span></label>' +
+    '<label class="echk" style="align-items:flex-start;font-weight:400;margin-top:14px"><input type="checkbox" name="Public Listing Consent" value="Yes" style="margin-top:3px"> <span>List me in the public directory. I agree my name (first name + initial), photo, skills, base area, fee range, bio, phone/WhatsApp number and email address may be shown publicly, and that I am an independent contractor.</span></label>' +
     '</fieldset>';
   host.innerHTML = html;
 

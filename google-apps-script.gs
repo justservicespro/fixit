@@ -164,7 +164,7 @@ function getHeadersFor(sheetName) {
       return ['Timestamp', 'Status', 'Full Name', 'Phone Number', 'Email Address', 'Years of Experience', 'Areas of Expertise', 'Base Location in Abuja', 'Certifications', 'About Your Work', 'Profile Photo URL', 'Public Bio', 'Job Experience Photo URLs',
               'WhatsApp Number', 'Premium Skills', 'Listing Skills', 'Listing Skill IDs', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Listing Consent'];
     case 'ArtisanListings':
-      return ['Timestamp', 'Status', 'Listing ID', 'Verified', 'Full Name', 'Phone Number', 'WhatsApp Number', 'Email Address', 'Years of Experience', 'Listing Skills', 'Listing Skill IDs', 'Base Location in Abuja', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Bio', 'Profile Photo URL', 'Job Experience Photo URLs', 'Certifications'];
+      return ['Timestamp', 'Status', 'Listing ID', 'Verified', 'Full Name', 'Business Name', 'Phone Number', 'WhatsApp Number', 'Email Address', 'Years of Experience', 'Listing Skills', 'Listing Skill IDs', 'Base Location in Abuja', 'Area Detail', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Bio', 'Profile Photo URL', 'Job Experience Photo URLs', 'Certifications'];
     case 'DirectoryContacts':
       return ['Timestamp', 'Listing ID', 'Skill', 'Channel', 'Area', 'Query', 'Page'];
     case 'ContactRequests':
@@ -236,12 +236,13 @@ function doGet(e) {
 
   if (action === 'artisans') {
     // Server-to-server (Vercel /api/artisans). Returns ONLY Approved listings and ONLY
-    // the public fields - never email, certifications or anything from the private tab.
+    // the public fields the listing consent covers (name, phone/WhatsApp, email, skills, area, fees,
+    // bio, photos) - never certifications or anything from the private tab.
     if (e.parameter.token !== ADMIN_TOKEN) {
       return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'Unauthorized' }))
         .setMimeType(ContentService.MimeType.JSON);
     }
-    var PUBLIC_FIELDS = ['Timestamp', 'Listing ID', 'Verified', 'Full Name', 'Phone Number', 'WhatsApp Number', 'Years of Experience', 'Listing Skill IDs', 'Base Location in Abuja', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Bio', 'Profile Photo URL', 'Job Experience Photo URLs'];
+    var PUBLIC_FIELDS = ['Timestamp', 'Listing ID', 'Verified', 'Full Name', 'Business Name', 'Phone Number', 'WhatsApp Number', 'Email Address', 'Area Detail', 'Years of Experience', 'Listing Skill IDs', 'Base Location in Abuja', 'Areas Served', 'Fee From', 'Fee To', 'Fee Basis', 'Public Bio', 'Profile Photo URL', 'Job Experience Photo URLs'];
     var aSheet = ss.getSheetByName('ArtisanListings');
     var artisans = [];
     if (aSheet && aSheet.getLastRow() > 1) {

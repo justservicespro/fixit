@@ -3,9 +3,10 @@
   {
    "id": "premium",
    "name": "Premium Services",
-   "short": "Industrial & specialised",
+   "short": "Verified artisans",
    "mode": "book",
-   "blurb": "Industrial, commercial, specialised and heavy-duty work. Booked directly through FixIt Abuja and carried out by our verified artisans.",
+   "verified": true,
+   "blurb": "Industrial, commercial, specialised, heavy-duty vehicle and vehicle-electronics work. Booked directly through FixIt Abuja and carried out by our verified artisans.",
    "groups": [
     {
      "id": "premium-a",
@@ -252,6 +253,78 @@
       {
        "id": "specialized-equipment-installation-and-maintenance-technician",
        "name": "Specialized Equipment Installation & Maintenance Technician"
+      }
+     ]
+    },
+    {
+     "id": "premium-i",
+     "name": "Trucks, Fleet & Heavy-Duty Vehicles",
+     "skills": [
+      {
+       "id": "truck-and-heavy-duty-vehicle-mechanic",
+       "name": "Truck & Heavy-Duty Vehicle Mechanic"
+      },
+      {
+       "id": "commercial-diesel-engine-technician",
+       "name": "Commercial Diesel Engine Technician"
+      },
+      {
+       "id": "heavy-duty-transmission-technician",
+       "name": "Heavy-Duty Transmission Technician"
+      },
+      {
+       "id": "commercial-vehicle-electrical-technician",
+       "name": "Commercial Vehicle Electrical Technician"
+      },
+      {
+       "id": "heavy-duty-brake-systems-technician",
+       "name": "Heavy-Duty Brake Systems Technician"
+      },
+      {
+       "id": "trailer-repair-technician",
+       "name": "Trailer Repair Technician"
+      },
+      {
+       "id": "fleet-maintenance-technician",
+       "name": "Fleet Maintenance Technician"
+      }
+     ]
+    },
+    {
+     "id": "premium-j",
+     "name": "Vehicle Electrical, Electronics & Computerized Systems",
+     "skills": [
+      {
+       "id": "auto-electrician",
+       "name": "Auto Electrician"
+      },
+      {
+       "id": "automotive-electronics-technician",
+       "name": "Automotive Electronics Technician"
+      },
+      {
+       "id": "vehicle-computer-and-ecu-diagnostics-technician",
+       "name": "Vehicle Computer & ECU Diagnostics Technician"
+      },
+      {
+       "id": "vehicle-wiring-and-electrical-systems-technician",
+       "name": "Vehicle Wiring & Electrical Systems Technician"
+      },
+      {
+       "id": "vehicle-battery-starter-and-alternator-technician",
+       "name": "Vehicle Battery, Starter & Alternator Technician"
+      },
+      {
+       "id": "vehicle-audio-and-electronic-accessories-technician",
+       "name": "Vehicle Audio & Electronic Accessories Technician"
+      },
+      {
+       "id": "vehicle-diagnostics-technician",
+       "name": "Vehicle Diagnostics Technician"
+      },
+      {
+       "id": "mobile-auto-electrician",
+       "name": "Mobile Auto Electrician"
       }
      ]
     }
@@ -539,9 +612,9 @@
   {
    "id": "automotive",
    "name": "Automotive",
-   "short": "Cars, bikes, trucks & roadside",
+   "short": "Cars, bikes & roadside",
    "mode": "direct",
-   "blurb": "Cars, motorcycles, tricycles, trucks, buses and roadside help. Browse listed mechanics and contact them directly.",
+   "blurb": "Cars, motorcycles, tricycles and roadside help. Browse listed mechanics and contact them directly.",
    "groups": [
     {
      "id": "automotive-a",
@@ -578,40 +651,6 @@
       {
        "id": "differential-and-axle-technician",
        "name": "Differential & Axle Technician"
-      },
-      {
-       "id": "vehicle-diagnostics-technician",
-       "name": "Vehicle Diagnostics Technician"
-      }
-     ]
-    },
-    {
-     "id": "automotive-b",
-     "name": "Auto Electrical & Electronics",
-     "skills": [
-      {
-       "id": "auto-electrician",
-       "name": "Auto Electrician"
-      },
-      {
-       "id": "automotive-electronics-technician",
-       "name": "Automotive Electronics Technician"
-      },
-      {
-       "id": "vehicle-computer-and-ecu-diagnostics-technician",
-       "name": "Vehicle Computer & ECU Diagnostics Technician"
-      },
-      {
-       "id": "vehicle-wiring-and-electrical-systems-technician",
-       "name": "Vehicle Wiring & Electrical Systems Technician"
-      },
-      {
-       "id": "vehicle-battery-starter-and-alternator-technician",
-       "name": "Vehicle Battery, Starter & Alternator Technician"
-      },
-      {
-       "id": "vehicle-audio-and-electronic-accessories-technician",
-       "name": "Vehicle Audio & Electronic Accessories Technician"
       }
      ]
     },
@@ -686,42 +725,8 @@
        "name": "Preventive Vehicle Maintenance Technician"
       },
       {
-       "id": "fleet-maintenance-technician",
-       "name": "Fleet Maintenance Technician"
-      },
-      {
        "id": "pre-purchase-vehicle-inspection-technician",
        "name": "Pre-Purchase Vehicle Inspection Technician"
-      }
-     ]
-    },
-    {
-     "id": "automotive-g",
-     "name": "Trucks & Heavy-Duty Vehicles",
-     "skills": [
-      {
-       "id": "truck-and-heavy-duty-vehicle-mechanic",
-       "name": "Truck & Heavy-Duty Vehicle Mechanic"
-      },
-      {
-       "id": "commercial-diesel-engine-technician",
-       "name": "Commercial Diesel Engine Technician"
-      },
-      {
-       "id": "heavy-duty-transmission-technician",
-       "name": "Heavy-Duty Transmission Technician"
-      },
-      {
-       "id": "commercial-vehicle-electrical-technician",
-       "name": "Commercial Vehicle Electrical Technician"
-      },
-      {
-       "id": "heavy-duty-brake-systems-technician",
-       "name": "Heavy-Duty Brake Systems Technician"
-      },
-      {
-       "id": "trailer-repair-technician",
-       "name": "Trailer Repair Technician"
       }
      ]
     },
@@ -750,10 +755,6 @@
       {
        "id": "mobile-mechanic",
        "name": "Mobile Mechanic"
-      },
-      {
-       "id": "mobile-auto-electrician",
-       "name": "Mobile Auto Electrician"
       },
       {
        "id": "roadside-assistance-technician",

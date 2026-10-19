@@ -1,1 +1,1557 @@
-{"_note":"Optional manual listings (same fields as /api/artisans). Premium skills are ignored here too.","artisans":[]}
+{
+ "_note": "Seed listings (businesses from a public-directory list). Same fields as /api/artisans. Premium skills are ignored by the page. To manage these in the Google Sheet instead, import docs/seed-listings-import.csv into the ArtisanListings tab, then empty this array.",
+ "artisans": [
+  {
+   "id": "S001",
+   "name": "Saks Technologies",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348061254076",
+   "whatsapp": "2348061254076",
+   "email": "sakstech08@gmail.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S002",
+   "name": "FAZ Energy Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "computer-networking-and-connectivity-technician"
+   ],
+   "area": "Kubwa",
+   "areaDetail": "",
+   "areasServed": [
+    "Kubwa"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / electrical / IT.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033193107",
+   "whatsapp": "2348033193107",
+   "email": "fazenergyltd@outlook.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S003",
+   "name": "Hopewell Solutions Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "computer-networking-and-connectivity-technician"
+   ],
+   "area": "",
+   "areaDetail": "",
+   "areasServed": [
+    "Anywhere in Abuja"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / IT.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348180635887",
+   "whatsapp": "2348180635887",
+   "email": "hdimka@hopewell.com.ng",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S004",
+   "name": "Hephzibah Integrated Technologies",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 11",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter systems.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348037879002",
+   "whatsapp": "2348037879002",
+   "email": "info@hephzibah.com.ng",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S005",
+   "name": "Abuja Solar",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician"
+   ],
+   "area": "Idu",
+   "areaDetail": "",
+   "areasServed": [
+    "Idu"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar installation / maintenance.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347048284174",
+   "whatsapp": "2347048284174",
+   "email": "info@abujasolar.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S006",
+   "name": "HI-SOTECH Solar Inverters",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Life Camp",
+   "areaDetail": "",
+   "areasServed": [
+    "Life Camp",
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter / electrical.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347037770002",
+   "whatsapp": "2347037770002",
+   "email": "hisotechnologies@gmail.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S007",
+   "name": "Solar and Inverter",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Zone 5",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347063185797",
+   "whatsapp": "2347063185797",
+   "email": "clickplustechnologies@yahoo.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S008",
+   "name": "Stardust Technologies Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / solar.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348185575513",
+   "whatsapp": "2348185575513",
+   "email": "info@stardust.com.ng",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S009",
+   "name": "24/7 Solar and Inverter Solutions",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Gwarinpa",
+   "areaDetail": "",
+   "areasServed": [
+    "Gwarinpa"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347041384671",
+   "whatsapp": "2347041384671",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S010",
+   "name": "Simba Solar",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "inverter-and-ups-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Zone 2",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Inverter systems.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348055030114",
+   "whatsapp": "2348055030114",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S011",
+   "name": "Wandel International Nigeria Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Wuse 2",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Inverters / solar UPS.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347001112233",
+   "whatsapp": "2347001112233",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S012",
+   "name": "Movi Power Systems Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Garki 2",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Renewable energy / transformers.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348099777707",
+   "whatsapp": "2348099777707",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S013",
+   "name": "Aglow Solar-Inverters",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Dei-Dei",
+   "areaDetail": "",
+   "areasServed": [
+    "Dei-Dei"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / UPS / batteries.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348065439009",
+   "whatsapp": "2348065439009",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S014",
+   "name": "Arise Technology Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "inverter-and-ups-technician",
+    "cctv-and-video-surveillance-technician"
+   ],
+   "area": "Kubwa",
+   "areaDetail": "",
+   "areasServed": [
+    "Kubwa"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Inverters / CCTV.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348034316583",
+   "whatsapp": "2348034316583",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S015",
+   "name": "DW Powerhouse Solution Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician",
+    "computer-networking-and-connectivity-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Wuse 2",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter / ICT.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348036152119",
+   "whatsapp": "2348036152119",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S016",
+   "name": "Fibonacci Inverters and Solar Energy",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Nyanya",
+   "areaDetail": "",
+   "areasServed": [
+    "Nyanya"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter repair.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348139725176",
+   "whatsapp": "2348139725176",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S017",
+   "name": "Green Warehouse Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Zone 5",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / batteries.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348038131300",
+   "whatsapp": "2348038131300",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S018",
+   "name": "Idumahtex Nigeria Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "inverter-and-ups-technician",
+    "computer-networking-and-connectivity-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Wuse 3",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Inverter installation / networking.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347064579300",
+   "whatsapp": "2347064579300",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S019",
+   "name": "Ifet Projects Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Garki 2",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter / UPS-related projects.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033113065",
+   "whatsapp": "2348033113065",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S020",
+   "name": "JS Solar Electric Power Co",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Apo",
+   "areaDetail": "",
+   "areasServed": [
+    "Apo"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348066384194",
+   "whatsapp": "2348066384194",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S021",
+   "name": "Michael Hammond Engineering Co Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "inverter-and-ups-technician"
+   ],
+   "area": "Games Village",
+   "areaDetail": "",
+   "areasServed": [
+    "Games Village"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Inverter / UPS.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033003644",
+   "whatsapp": "2348033003644",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S022",
+   "name": "Nevis Inverters",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 2",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033237790",
+   "whatsapp": "2348033237790",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S023",
+   "name": "New Power Electrical and Engineering Services Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Wuse 2",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / solar.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348165817426",
+   "whatsapp": "2348165817426",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S024",
+   "name": "Sure Solar Nigeria",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 11",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / inverter.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348035298934",
+   "whatsapp": "2348035298934",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S025",
+   "name": "Techcrew Nigeria",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "UPS / inverter / solar.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348119419478",
+   "whatsapp": "2348119419478",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S026",
+   "name": "Kell Electricals Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Gwarinpa",
+   "areaDetail": "",
+   "areasServed": [
+    "Gwarinpa"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / solar.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348140205895",
+   "whatsapp": "2348140205895",
+   "email": "info@kellelectricals.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S027",
+   "name": "Abaf Computer Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "computer-and-laptop-repair-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 7",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Computer repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033591960",
+   "whatsapp": "2348033591960",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S028",
+   "name": "BVS Computers Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "computer-and-laptop-repair-technician",
+    "computer-networking-and-connectivity-technician"
+   ],
+   "area": "Lugbe",
+   "areaDetail": "",
+   "areasServed": [
+    "Lugbe"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Computer repairs / networking.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347067784589",
+   "whatsapp": "2347067784589",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S029",
+   "name": "CD Computer Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "computer-and-laptop-repair-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 10",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Computer repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348180156722",
+   "whatsapp": "2348180156722",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S030",
+   "name": "Chummy Computer Services Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "computer-and-laptop-repair-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 7",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Computer repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033109407",
+   "whatsapp": "2348033109407",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S031",
+   "name": "United Computer Services & Consultancy",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "computer-and-laptop-repair-technician",
+    "computer-software-and-operating-system-technician"
+   ],
+   "area": "Central Business District",
+   "areaDetail": "",
+   "areasServed": [
+    "Central Business District"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Computer repairs / consultancy.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348037002866",
+   "whatsapp": "2348037002866",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S032",
+   "name": "Virus Place",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "computer-and-laptop-repair-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Wuse 2",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Computer repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348057007712",
+   "whatsapp": "2348057007712",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S033",
+   "name": "Fix-It Handyman & Facility Maintenance",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "home-appliance-repair-technician"
+   ],
+   "area": "Mbora",
+   "areaDetail": "",
+   "areasServed": [
+    "Mbora"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / solar / appliance repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348120113075",
+   "whatsapp": "2348120113075",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S034",
+   "name": "IBM Electrical Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "electrical-wiring-technician"
+   ],
+   "area": "Central Business District",
+   "areaDetail": "",
+   "areasServed": [
+    "Central Business District"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical wiring / installation.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033764496",
+   "whatsapp": "2348033764496",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S035",
+   "name": "Fidotech & Son's Energy Nig Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "cctv-and-video-surveillance-technician"
+   ],
+   "area": "Lugbe",
+   "areaDetail": "",
+   "areasServed": [
+    "Lugbe"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / electrical / CCTV.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347034825559",
+   "whatsapp": "2347034825559",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S036",
+   "name": "Arise Electrical Service",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "home-appliance-repair-technician"
+   ],
+   "area": "Lugbe",
+   "areaDetail": "",
+   "areasServed": [
+    "Lugbe"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / appliance repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347064610640",
+   "whatsapp": "2347064610640",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S037",
+   "name": "Austine Video Electronics",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "home-appliance-repair-technician",
+    "television-and-audio-equipment-technician"
+   ],
+   "area": "Bwari",
+   "areaDetail": "",
+   "areasServed": [
+    "Bwari"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electronics / appliance repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348057799662",
+   "whatsapp": "2348057799662",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S038",
+   "name": "BC Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "cctv-and-video-surveillance-technician",
+    "intercom-and-communication-systems-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Garki 2",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "CCTV / intercom installation.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347058842206",
+   "whatsapp": "2347058842206",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S039",
+   "name": "Blessed Larry Elect/Elect Stores Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "small-generator-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Garki 2",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / generator services.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348037875307",
+   "whatsapp": "2348037875307",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S040",
+   "name": "Doncent Electronics",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "home-appliance-repair-technician",
+    "television-and-audio-equipment-technician"
+   ],
+   "area": "Lugbe",
+   "areaDetail": "",
+   "areasServed": [
+    "Lugbe"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Household electronics repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348090170250",
+   "whatsapp": "2348090170250",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S041",
+   "name": "Eby-Bon Integrated Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Gudu",
+   "areaDetail": "",
+   "areasServed": [
+    "Gudu"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical services.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2349090424088",
+   "whatsapp": "2349090424088",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S042",
+   "name": "Eizco Electrical and Installation Services Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Lugbe",
+   "areaDetail": "",
+   "areasServed": [
+    "Lugbe"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical installation.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348066593052",
+   "whatsapp": "2348066593052",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S043",
+   "name": "First Point Electrical Services Nig Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "Area 11",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical repairs / maintenance.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348060921025",
+   "whatsapp": "2348060921025",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S044",
+   "name": "Gershom Global Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "inverter-and-ups-technician",
+    "computer-networking-and-connectivity-technician",
+    "cctv-and-video-surveillance-technician"
+   ],
+   "area": "",
+   "areaDetail": "",
+   "areasServed": [],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Solar / UPS / CCTV / networking.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347018402207",
+   "whatsapp": "2347018402207",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S045",
+   "name": "I.A. Integrated Electrical Service Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Karu",
+   "areaDetail": "",
+   "areasServed": [
+    "Karu"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical installation / maintenance.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348099677777",
+   "whatsapp": "2348099677777",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S046",
+   "name": "Neet Nigeria Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "cctv-and-video-surveillance-technician",
+    "security-alarm-technician",
+    "television-and-audio-equipment-technician",
+    "air-conditioning-and-hvac-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "",
+   "areasServed": [
+    "Garki"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electronics / HVAC / ELV systems.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348129458400",
+   "whatsapp": "2348129458400",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S047",
+   "name": "Ola Electrical Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "home-appliance-repair-technician"
+   ],
+   "area": "Kurudu",
+   "areaDetail": "",
+   "areasServed": [
+    "Kurudu"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / appliance repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348134935285",
+   "whatsapp": "2348134935285",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S048",
+   "name": "Olem Electrical",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician",
+    "electrical-wiring-technician"
+   ],
+   "area": "Central Business District",
+   "areaDetail": "",
+   "areasServed": [
+    "Central Business District"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Domestic / industrial wiring.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348038465862",
+   "whatsapp": "2348038465862",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S049",
+   "name": "Unique Electrical Engineering Ltd",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Apo",
+   "areaDetail": "",
+   "areasServed": [
+    "Apo",
+    "Gudu"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical engineering.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033238452",
+   "whatsapp": "2348033238452",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S050",
+   "name": "Joben Digital Services",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Garki",
+   "areaDetail": "",
+   "areasServed": [
+    "Garki",
+    "Gudu"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical contractor listing.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033218794",
+   "whatsapp": "2348033218794",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S051",
+   "name": "Young Money Electricals",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Utako",
+   "areaDetail": "",
+   "areasServed": [
+    "Utako"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical contractor listing.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348036861220",
+   "whatsapp": "2348036861220",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S053",
+   "name": "Windward Global Investment",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Gwarinpa",
+   "areaDetail": "",
+   "areasServed": [
+    "Gwarinpa"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical contractor listing.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348037871417",
+   "whatsapp": "2348037871417",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S055",
+   "name": "Groupo Limited",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical contractor listing.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348036020221",
+   "whatsapp": "2348036020221",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S056",
+   "name": "God-Freeson",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Zone 5",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical contractor listing.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348033913911",
+   "whatsapp": "2348033913911",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S058",
+   "name": "M. Garsha Technology",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "residential-solar-power-systems-technician",
+    "domestic-and-commercial-electrician",
+    "electrical-installation-and-maintenance-technician"
+   ],
+   "area": "",
+   "areaDetail": "",
+   "areasServed": [
+    "Anywhere in Abuja"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Electrical / solar services.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2347035838119",
+   "whatsapp": "2347035838119",
+   "email": "",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S059",
+   "name": "MyGSMVillage",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "mobile-phone-and-tablet-repair-technician"
+   ],
+   "area": "",
+   "areaDetail": "",
+   "areasServed": [
+    "Anywhere in Abuja"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Gadget repair / technician network.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348149131111",
+   "whatsapp": "2348149131111",
+   "email": "tech@mygsmvillage.com",
+   "joined": "2026-10-19"
+  },
+  {
+   "id": "S060",
+   "name": "FixCenter",
+   "business": true,
+   "source": "directory",
+   "verified": false,
+   "skills": [
+    "mobile-phone-and-tablet-repair-technician"
+   ],
+   "area": "Wuse",
+   "areaDetail": "Zone 4",
+   "areasServed": [
+    "Wuse"
+   ],
+   "years": "",
+   "feeFrom": null,
+   "feeTo": null,
+   "feeBasis": "negotiable",
+   "bio": "Mobile device repairs.",
+   "photo": "",
+   "gallery": [],
+   "phone": "2348042447447",
+   "whatsapp": "2348042447447",
+   "email": "info@fixcenter.ng",
+   "joined": "2026-10-19"
+  }
+ ]
+}

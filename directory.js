@@ -10,7 +10,7 @@
   var TERMS = SITE + '/terms.html';
   var WA_NUMBER = '2348079926755';
   var PAGE_SIZE = 12;
-  var AREAS = ['Abaji', 'Apo', 'Asokoro', 'Bwari', 'Dei-Dei', 'Durumi', 'Dutse', 'Galadimawa', 'Garki', 'Guzape', 'Gwagwalada', 'Gwarinpa', 'Idu', 'Jabi', 'Jahi', 'Kado', 'Karmo', 'Karu', 'Katampe', 'Kuje', 'Kubwa', 'Kwali', 'Life Camp', 'Lokogoma', 'Lugbe', 'Mabushi', 'Maitama', 'Mpape', 'Nyanya', 'Utako', 'Wuse', 'Wuye'];
+  var AREAS = ['Abaji', 'Apo', 'Asokoro', 'Bwari', 'Central Business District', 'Dei-Dei', 'Durumi', 'Dutse', 'Galadimawa', 'Games Village', 'Garki', 'Gudu', 'Guzape', 'Gwagwalada', 'Gwarinpa', 'Idu', 'Jabi', 'Jahi', 'Kado', 'Karmo', 'Karu', 'Katampe', 'Kuje', 'Kubwa', 'Kurudu', 'Kwali', 'Life Camp', 'Lokogoma', 'Lugbe', 'Mabushi', 'Maitama', 'Mbora', 'Mpape', 'Nyanya', 'Utako', 'Wuse', 'Wuye'];
   var SYN = {
     ac: ['air conditioning', 'air conditioner'], aircon: ['air conditioning'], gen: ['generator'], genset: ['generator'],
     phone: ['mobile phone'], iphone: ['mobile phone'], android: ['mobile'], laptop: ['computer'], pc: ['computer'],
@@ -86,11 +86,16 @@
   function tokens(q) {
     return String(q || '').toLowerCase().replace(/[^a-z0-9& ]+/g, ' ').split(/\s+/).filter(Boolean);
   }
+  /* word-start matching (so "ecu" finds ECU, not "security"); very short tokens must be whole words */
+  function wordHit(hay, t) {
+    var padded = ' ' + hay.replace(/[^a-z0-9& ]+/g, ' ') + ' ';
+    return t.length <= 3 ? padded.indexOf(' ' + t + ' ') > -1 : padded.indexOf(' ' + t) > -1;
+  }
   function skillMatches(s, toks) {
     return toks.every(function (t) {
-      if (s._hay.indexOf(t) > -1) return true;
+      if (wordHit(s._hay, t)) return true;
       var syn = SYN[t];
-      return !!syn && syn.some(function (x) { return s._hay.indexOf(x) > -1; });
+      return !!syn && syn.some(function (x) { return wordHit(s._hay, x); });
     });
   }
   function skillsMatching(q) {
@@ -186,6 +191,19 @@
       "I agree to FixIt Abuja's Terms & Conditions: " + TERMS;
     return 'https://wa.me/' + a.whatsapp + '?text=' + encodeURIComponent(text);
   }
+  function validEmail(e) { return /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(String(e || '')); }
+  function mailLink(a, skillName) {
+    var first = String(a.name).split(' ')[0];
+    var where = state.area || 'Abuja';
+    var body = 'Hi ' + first + ',\n\nI got your contact from FixIt Abuja (' + SITE + ').\n' +
+      'I need ' + skillName + ' in ' + where + '.\n\n' +
+      "I agree to FixIt Abuja's Terms & Conditions: " + TERMS;
+    return 'mailto:' + a.email + '?subject=' + encodeURIComponent('Enquiry via FixIt Abuja: ' + skillName) + '&body=' + encodeURIComponent(body);
+  }
+  function claimLink(a) {
+    var text = 'Hi FixIt Abuja, I am the owner of ' + a.name + ' (listing ' + a.id + ') in your technician directory. I would like to update my details / remove the listing (delete one).';
+    return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+  }
   function track(action, a, skillName) {
     try {
       if (typeof FIXIT_SHEETS_ENDPOINT === 'undefined' || String(FIXIT_SHEETS_ENDPOINT).indexOf('PASTE_YOUR') === 0) return;
@@ -204,18 +222,20 @@
     if (a.areasServed && a.areasServed.length) meta.push('Serves ' + esc(a.areasServed.slice(0, 3).join(', ')) + (a.areasServed.length > 3 ? '\u2026' : ''));
     var actions = revealed[a.id]
       ? '<a class="btn btn-call" data-act="call" data-id="' + esc(a.id) + '" href="tel:+' + esc(a.phone) + '">Call</a>' +
-        '<a class="btn btn-wa" data-act="wa" data-id="' + esc(a.id) + '" target="_blank" rel="noopener" href="' + esc(waLink(a, sk.name)) + '">WhatsApp</a>'
+        '<a class="btn btn-wa" data-act="wa" data-id="' + esc(a.id) + '" target="_blank" rel="noopener" href="' + esc(waLink(a, sk.name)) + '">WhatsApp</a>' +
+        (a.email ? '<a class="btn btn-mail" data-act="email" data-id="' + esc(a.id) + '" href="' + esc(mailLink(a, sk.name)) + '">Email</a>' : '')
       : '<button type="button" class="btn btn-line" data-act="reveal" data-id="' + esc(a.id) + '">Show contact</button>';
     return '<article class="acard" data-card="' + esc(a.id) + '">' +
       '<div class="ahead"><div class="avatar" aria-hidden="true">' + avatar + '<span>' + esc(initials(a.name)) + '</span></div>' +
       '<div><h3>' + esc(a.name) + (a.verified ? '<span class="vbadge" title="Identity and skills checked by FixIt Abuja">\u2713 Verified</span>' : '') + '</h3>' +
-      '<div class="where">' + esc(a.area || 'Abuja') + '</div></div></div>' +
+      '<div class="where">' + esc((a.area || 'Abuja') + (a.areaDetail ? ', ' + a.areaDetail : '')) + (a.business ? ' \u2022 Business' : '') + '</div></div></div>' +
       '<div class="askill">' + esc(sk.name) + more + '</div>' +
       feeHtml(a) +
       (a.bio ? '<p class="abio">' + esc(a.bio) + '</p>' : '') +
       (meta.length ? '<div class="ameta"><span>' + meta.join('</span><span>') + '</span></div>' : '') +
       '<div class="ctas">' + actions + '</div>' +
       (revealed[a.id] ? '<p class="mention">Tell them you found them on FixIt Abuja. By contacting, you agree to our <a href="/terms.html" target="_blank" rel="noopener" style="text-decoration:underline">Terms</a>.</p>' : '') +
+      (a.source === 'directory' ? '<p class="mention listed">Listed from public business directories; details being confirmed. <a href="' + esc(claimLink(a)) + '" target="_blank" rel="noopener" style="text-decoration:underline">Your business? Update or remove</a></p>' : '') +
       '</article>';
   }
 
@@ -224,15 +244,15 @@
     tierById.premium.groups.forEach(function (g) {
       var rows = g.skills.filter(function (s) { return !onlyIds || onlyIds[s.id]; });
       if (!rows.length) return;
-      html += '<div class="pgroup"><h3>' + esc(g.name) + '</h3>' + rows.map(function (s) {
+      html += '<div class="pgroup"><h3><span class="vcheck" aria-hidden="true">\u2713</span> ' + esc(g.name) + '</h3>' + rows.map(function (s) {
         return '<div class="prow"><span>' + esc(s.name) + '</span><button type="button" class="btn btn-amber" data-act="book" data-skill="' + esc(s.id) + '">Book</button></div>';
       }).join('') + '</div>';
     });
     return html;
   }
   function premiumNote() {
-    return '<div class="premium-note"><span class="tag tag-premium">Premium</span><h2>Booked directly through FixIt Abuja</h2>' +
-      '<p>Industrial, commercial and specialised jobs are handled by our own verified artisans. Tell us what you need and where, and we assess, quote, dispatch and stand behind the work. Individual artisans are not listed for these services.</p></div>';
+    return '<div class="premium-note"><span class="tag tag-premium">\u2713 Verified</span><h2>Verified artisans, booked directly through FixIt Abuja</h2>' +
+      '<p>Industrial, commercial, specialised, heavy-duty vehicle and vehicle-electronics jobs are handled only by artisans FixIt Abuja has verified. Tell us what you need and where, and we assess, quote, dispatch and stand behind the work. Individual artisans are not listed for these services.</p></div>';
   }
   function emptyHtml(c) {
     var ts = state.tier === 'automotive' ? 'a mechanic' : 'a technician';
@@ -265,7 +285,7 @@
       }
       if (premiumHits.length) {
         var set = {}; premiumHits.forEach(function (i) { set[i] = true; });
-        html += '<h2 class="sect-title">Premium services <span class="tag tag-premium">Book via FixIt</span></h2><div class="pgroups">' + premiumGroupsHtml(set) + '</div>';
+        html += '<h2 class="sect-title">\u2713 Verified premium services <span class="tag tag-premium">Book via FixIt</span></h2><div class="pgroups">' + premiumGroupsHtml(set) + '</div>';
       }
       if (list.length) {
         if (premiumHits.length) html += '<h2 class="sect-title">Listed technicians</h2>';
@@ -306,9 +326,9 @@
   function renderTiers() {
     $('tiers').innerHTML = SK.tiers.map(function (t) {
       var n = tierSkillIds(t.id).length;
-      var meta = t.mode === 'book' ? n + ' services \u2022 booked via FixIt' : n + ' skills \u2022 contact directly';
-      return '<button type="button" class="tier' + (state.tier === t.id ? ' on' : '') + '" data-tier="' + t.id + '">' +
-        '<span class="tag tag-' + t.id + '">' + (t.mode === 'book' ? 'Book via FixIt' : 'Direct contact') + '</span>' +
+      var meta = t.mode === 'book' ? n + ' services \u2022 verified artisans, booked via FixIt' : n + ' skills \u2022 contact directly';
+      return '<button type="button" class="tier' + (t.verified ? ' tier-verified' : '') + (state.tier === t.id ? ' on' : '') + '" data-tier="' + t.id + '">' +
+        '<span class="tag tag-' + t.id + '">' + (t.mode === 'book' ? '\u2713 Verified \u2022 Book via FixIt' : 'Direct contact') + '</span>' +
         '<h3>' + esc(t.name) + '</h3><p>' + esc(t.blurb) + '</p><span class="meta">' + esc(meta) + '</span></button>';
     }).join('');
   }
@@ -317,7 +337,7 @@
     var html = '<button type="button" class="cat' + (state.tier === 'all' && !state.group ? ' on' : '') + '" data-tier="all">All categories</button>';
     SK.tiers.forEach(function (t) {
       var open = state.tier === t.id ? ' open' : '';
-      html += '<details' + open + '><summary>' + esc(t.name) + '</summary>' +
+      html += '<details' + open + '><summary>' + (t.verified ? '\u2713 ' : '') + esc(t.name) + '</summary>' +
         '<button type="button" class="cat' + (state.tier === t.id && !state.group ? ' on' : '') + '" data-tier="' + t.id + '">All ' + esc(t.name.toLowerCase()) + '</button>' +
         t.groups.map(function (g) {
           return '<button type="button" class="cat' + (state.group === g.id ? ' on' : '') + '" data-group="' + g.id + '">' + esc(g.name) + '</button>';
@@ -379,7 +399,7 @@
     suggestIdx = -1;
     box.innerHTML = hits.map(function (s) {
       var t = skillTier[s.id];
-      return '<button type="button" data-suggest="' + s.id + '"><span>' + esc(s.name) + '</span><span class="tag tag-' + t + '">' + esc(tierById[t].mode === 'book' ? 'Premium' : tierById[t].name.split(' ')[0]) + '</span></button>';
+      return '<button type="button" data-suggest="' + s.id + '"><span>' + esc(s.name) + '</span><span class="tag tag-' + t + '">' + esc(tierById[t].mode === 'book' ? '\u2713 Premium' : tierById[t].name.split(' ')[0]) + '</span></button>';
     }).join('');
     box.hidden = false;
   }
@@ -419,8 +439,8 @@
     if (act === 'reveal' && a) {
       revealed[a.id] = true; track('reveal', a, primarySkill(a, c).name); renderResults();
       var card = document.querySelector('[data-card="' + a.id + '"]'); if (card) { var b = card.querySelector('.ctas a'); if (b) b.focus(); }
-    } else if ((act === 'call' || act === 'wa') && a) {
-      track(act === 'call' ? 'call' : 'whatsapp', a, primarySkill(a, c).name);
+    } else if ((act === 'call' || act === 'wa' || act === 'email') && a) {
+      track(act === 'call' ? 'call' : act === 'wa' ? 'whatsapp' : 'email', a, primarySkill(a, c).name);
     } else if (act === 'book') { openBook(t.getAttribute('data-skill')); }
     else if (act === 'book-general') { openBook(state.skill || ''); }
     else if (act === 'more') { state.page += 1; renderResults(); }
@@ -435,6 +455,8 @@
     var skills = (a.skills || []).filter(function (id) { return skillById[id] && skillTier[id] !== 'premium'; });
     if (!skills.length) return null; // premium artisans are never listed
     a.skills = skills; a.whatsapp = a.whatsapp || a.phone;
+    a.email = validEmail(a.email) ? a.email : '';
+    a.areaDetail = a.areaDetail || ''; a.business = !!a.business;
     a.feeFrom = a.feeFrom || null; a.feeTo = a.feeTo || null; a.areasServed = a.areasServed || [];
     return a;
   }

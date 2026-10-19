@@ -178,6 +178,18 @@ footer{background:var(--ink);color:var(--text-soft);padding-top:64px;}
 .dmodal p.s{font-size:13px;color:var(--text-mute);margin:0 0 16px;line-height:1.55}
 .dmodal label{display:block;font-weight:700;font-size:13px;margin:0 0 6px}
 .dmodal textarea,.dmodal input{width:100%;border:1px solid var(--line-dark);border-radius:6px;padding:11px;font:inherit;font-size:15px;margin-bottom:14px}
+.tier-verified{background:var(--ink);color:#fff;border:2px solid var(--amber);position:relative}
+.tier-verified p,.tier-verified .meta{color:rgba(246,242,233,.78)}
+.tier-verified h3{color:#fff}
+.tier-verified .tag-premium{background:var(--amber);color:#171A21}
+.vcheck{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--amber);color:#171A21;font-size:11px;font-weight:800;margin-right:4px;vertical-align:middle}
+.premium-note .tag-premium{background:var(--amber);color:#171A21}
+.pgroup{border-top:3px solid var(--amber)}
+.ctas{flex-wrap:wrap}
+.ctas .btn{flex:1 1 30%;min-width:84px}
+.btn-mail{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.btn-mail:hover{background:var(--ink);color:#fff}
+.mention.listed{border-top:1px dashed var(--line-dark);padding-top:8px}
 @media (max-width:980px){
   .searchbar{grid-template-columns:1fr}
   .suggest{width:calc(100% - 20px);max-width:none}

@@ -9,7 +9,8 @@
  *   - only Status = Approved rows arrive from the sheet
  *   - PREMIUM skills are stripped; a listing with no public skill left is dropped,
  *     so premium artisans can never appear in the directory
- *   - names are shortened to "First L."; no email / certifications / private notes
+ *   - individuals are shortened to "First L."; businesses show their trading name; email is
+ *     shown only because the listing consent covers it; no certifications / private notes
  *   - URLs must be http(s); phone numbers are normalised to international digits
  *
  * Uses the existing env vars: SHEETS_ENDPOINT, SHEETS_ADMIN_TOKEN. No new setup.
@@ -42,6 +43,11 @@ function num(v) {
   return Number.isFinite(n) && n > 0 ? Math.round(n) : null;
 }
 
+function validEmail(e) {
+  const s = String(e || '').trim();
+  return /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(s) && s.length <= 120 ? s : '';
+}
+
 function displayName(full) {
   const parts = String(full || '').trim().split(/\s+/).filter(Boolean);
   if (!parts.length) return 'FixIt artisan';
@@ -62,12 +68,17 @@ function sanitize(rows) {
     let feeTo = num(r['Fee To']);
     if (feeFrom && feeTo && feeFrom > feeTo) { const t = feeFrom; feeFrom = feeTo; feeTo = t; }
 
+    const business = String(r['Business Name'] || '').trim();
     out.push({
       id,
-      name: displayName(r['Full Name']),
+      name: business ? business.slice(0, 80) : displayName(r['Full Name']),
+      business: !!business,
       verified: String(r['Verified'] || '').trim().toLowerCase() === 'yes',
       skills: Array.from(new Set(skills)).slice(0, 12),
       area: String(r['Base Location in Abuja'] || '').trim().slice(0, 60),
+      areaDetail: String(r['Area Detail'] || '').trim().slice(0, 40),
+      email: validEmail(r['Email Address']),
+      source: business ? 'directory' : 'sheet',
       areasServed: String(r['Areas Served'] || '').split(/[|;]/).map((x) => x.trim()).filter(Boolean).slice(0, 12),
       years: String(r['Years of Experience'] || '').trim().slice(0, 30),
       feeFrom,
