@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NG">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Book a Repair Technician in Abuja | FixIt Abuja</title>
-<meta name="description" content="FixIt Abuja dispatches verified technicians with competence to attend to and provide repairs, maintenance and related services on-call at your home or place of business within Abuja, FCT. Book online, get a fair quote before dispatch — call or WhatsApp +234 807 992 6755.">
+<meta name="description" content="Request a verified technician in Abuja for generator, AC, laptop, printer, CCTV or electrical repairs. Fill the form or chat on WhatsApp for a quote.">
 <meta name="keywords" content="book generator repair Abuja, book laptop repair Abuja, book printer repair Abuja, book AC repair Abuja, book CCTV installation Abuja, book fridge repair Abuja, book washing machine repair Abuja, book electrical wiring Abuja, book phone repair Abuja, schedule technician Abuja, repair booking Abuja FCT, same-day technician booking Abuja, online repair booking Nigeria, WhatsApp technician booking Abuja, generator technician near me, request a technician Abuja FCT, repair quote Abuja">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://fixit.justservices.pro/book-a-service.html">
@@ -22,7 +22,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Book a Repair Technician in Abuja | FixIt Abuja">
-<meta property="og:description" content="FixIt Abuja dispatches verified technicians with competence to attend to and provide repairs, maintenance and related services on-call at your home or place of business within Abuja. Get a fair quote before dispatch — book online, call, or WhatsApp.">
+<meta property="og:description" content="Request a verified technician in Abuja for generator, AC, laptop, printer, CCTV or electrical repairs. Fill the form or chat on WhatsApp for a quote.">
 <meta property="og:url" content="https://fixit.justservices.pro/book-a-service.html">
 <meta property="og:image" content="https://fixit.justservices.pro/og-book-a-service.jpg">
 <meta property="og:image:secure_url" content="https://fixit.justservices.pro/og-book-a-service.jpg">
@@ -34,7 +34,7 @@
 <meta property="og:site_name" content="FixIt Abuja">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Book a Repair Technician in Abuja | FixIt Abuja">
-<meta name="twitter:description" content="FixIt Abuja dispatches verified technicians for repairs, maintenance &amp; related services on-call at your home or place of business within Abuja, FCT.">
+<meta name="twitter:description" content="Request a verified technician in Abuja for generator, AC, laptop, printer, CCTV or electrical repairs. Fill the form or chat on WhatsApp for a quote.">
 <meta name="twitter:image" content="https://fixit.justservices.pro/og-book-a-service.jpg">
 <meta name="twitter:image:alt" content="Book a same-day repair technician in Abuja FCT with FixIt Abuja">
 
@@ -914,10 +914,11 @@ footer{background:var(--ink); color:var(--text-soft); padding-top:64px;}
     </div>
     <div class="foot-col">
       <h5>Priority Services</h5>
-      <a href="/#services">Generator Repair</a>
-      <a href="/#services">Printer &amp; Photocopier Repair</a>
-      <a href="/#services">Laptop Repair</a>
-      <a href="/#services">AC Repair</a>
+      <a href="/services/generator-repair-abuja.html">Generator Repair</a>
+      <a href="/services/printer-photocopier-repair-abuja.html">Printer &amp; Photocopier Repair</a>
+      <a href="/services/laptop-repair-abuja.html">Laptop Repair</a>
+      <a href="/services/ac-repair-abuja.html">AC Repair</a>
+      <a href="/services/">All Services</a>
     </div>
     <div class="foot-col">
       <h5>Company</h5>
@@ -1164,5 +1165,18 @@ function wireSheetsSync(formId, sheetName) {
 </script>
 <!-- ============ /TERMS CONSENT POPUP ============ -->
 
+<script>
+/* Pre-select the service when arriving from a service page: /book-a-service.html?service=Generator%20Repair */
+(function () {
+  try {
+    var want = new URLSearchParams(location.search).get('service');
+    var sel = document.getElementById('fservice');
+    if (!want || !sel) return;
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === want || sel.options[i].value === want) { sel.selectedIndex = i; break; }
+    }
+  } catch (e) { /* ignore */ }
+})();
+</script>
 </body>
 </html>

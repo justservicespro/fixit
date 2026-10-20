@@ -396,6 +396,9 @@ public class MainActivity extends Activity {
                 tab = 4;
                 title = sectionTitle(section);
             }
+        } else if (path.startsWith("/services")) {
+            tab = 1; // service landing pages sit under the Services tab
+            title = "Services";
         } else if (path.startsWith("/find-artisan")) {
             tab = 2;
             title = "Find a Technician";
