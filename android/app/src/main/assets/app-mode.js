@@ -21,7 +21,7 @@
 
   // 1) native top bar / bottom navigation replace the website chrome
   addStyle(
-    '.topbar,header.site,header.tbar,footer,.tfoot,.wa-float,.sticky-bar,.mobile-drawer{display:none!important}' +
+    '.topbar,header.site,header.tbar,footer,.tfoot,.wa-float,.sticky-bar,.mobile-drawer,.rent-tab,.rent-fly,.rent-scrim{display:none!important}' +
     'html,body{scroll-padding-top:0!important}body{padding-bottom:0!important}'
   );
 
@@ -30,7 +30,7 @@
   var TARGETS = {
     top: S + 'home', home: S + 'home', services: S + 'services', how: S + 'how',
     areas: S + 'areas', reviews: S + 'reviews', contact: S + 'contact', faq: S + 'faq',
-    buy: S + 'buy', 'we-buy': S + 'we-buy', find: '/find-artisan.html',
+    buy: S + 'buy', 'we-buy': S + 'we-buy', rent: S + 'rent', find: '/find-artisan.html',
     'join-team': S + 'join-team', 'blog-teaser': '/blog/'
   };
   d.addEventListener('click', function (e) {

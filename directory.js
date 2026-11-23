@@ -188,6 +188,7 @@
     var where = state.area || 'Abuja';
     var text = 'Hi ' + first + ', I got your contact from FixIt Abuja (' + SITE + ').\n' +
       'I need ' + skillName + ' in ' + where + '.\n\n' +
+      'Please send me a written quote before any work starts.\n\n' +
       "I agree to FixIt Abuja's Terms & Conditions: " + TERMS;
     return 'https://wa.me/' + a.whatsapp + '?text=' + encodeURIComponent(text);
   }
@@ -197,6 +198,7 @@
     var where = state.area || 'Abuja';
     var body = 'Hi ' + first + ',\n\nI got your contact from FixIt Abuja (' + SITE + ').\n' +
       'I need ' + skillName + ' in ' + where + '.\n\n' +
+      'Please send me a written quote before any work starts.\n\n' +
       "I agree to FixIt Abuja's Terms & Conditions: " + TERMS;
     return 'mailto:' + a.email + '?subject=' + encodeURIComponent('Enquiry via FixIt Abuja: ' + skillName) + '&body=' + encodeURIComponent(body);
   }
@@ -423,6 +425,7 @@
     var isPremium = booking.skill && skillTier[Object.keys(skillById).filter(function (i) { return skillById[i].name === booking.skill; })[0]] === 'premium';
     var msg = 'Hi, I need ' + (booking.skill || 'a technician') + (isPremium ? ' (premium service)' : '') + ' in Abuja' +
       '\n\nDescription of issue: ' + desc + '\nLocation: ' + loc +
+      '\n\nWhen your technician contacts me, I will ask for a written quote before any work starts.' +
       "\n\nI agree to FixIt Abuja's Terms & Conditions: " + TERMS;
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     closeBook();

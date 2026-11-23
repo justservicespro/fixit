@@ -86,6 +86,7 @@ public class MainActivity extends Activity {
             {"Blog & Guides", BASE + "/blog/"},
             {"Buy", BASE + "/?section=buy"},
             {"What We Buy", BASE + "/?section=we-buy"},
+            {"Rent a Projector", BASE + "/?section=rent"},
             {"Contact Us", BASE + "/?section=contact"},
             {"Join Our Team", BASE + "/?section=join-team"},
             {"For Technicians", BASE + "/technicians.html"},
@@ -437,6 +438,8 @@ public class MainActivity extends Activity {
                 return "Buy";
             case "we-buy":
                 return "What We Buy";
+            case "rent":
+                return "Rent a Projector";
             case "find":
                 return "Find a Technician";
             case "contact":

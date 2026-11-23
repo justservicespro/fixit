@@ -13,7 +13,7 @@ try {
   console.error('[FixIt SW] OneSignal worker import failed — push notifications unavailable this session, but caching/install continue normally.', e);
 }
 
-const CACHE_VERSION = 'fixit-abuja-v2';
+const CACHE_VERSION = 'fixit-abuja-v3';
 const APP_SHELL = [
   '/',
   '/index.html',
