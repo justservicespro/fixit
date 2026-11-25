@@ -11,7 +11,7 @@
     "5. Re-upload technicians.html after editing. That's the entire publishing step — no database or server needed.",
     "",
     "TO CONTACT A TECHNICIAN A CLIENT HAS REQUESTED:",
-    "You'll receive an email titled 'Technician contact request — FixIt Abuja' containing the client's name, phone, job details, and which technician they selected (by name + ID below).",
+    "You'll receive an email titled 'Technician contact request — FixIT Abuja' containing the client's name, phone, job details, and which technician they selected (by name + ID below).",
     "Look up that technician's original application email (search your inbox for their name) to retrieve their phone number, then contact them directly to relay the job. Their number is never stored on the website, so this lookup step is required by design."
   ],
   "technicians": [

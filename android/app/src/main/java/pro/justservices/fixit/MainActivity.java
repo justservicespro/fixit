@@ -49,7 +49,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * FixIt Abuja - native shell (top bar + bottom navigation) around https://fixit.justservices.pro.
+ * FixIT Abuja - native shell (top bar + bottom navigation) around https://fixit.justservices.pro.
  * Every section of the site is presented as its own page; see assets/app-mode.js.
  * No third-party dependencies: framework classes only.
  */
@@ -148,12 +148,12 @@ public class MainActivity extends Activity {
         titleView.setTypeface(Typeface.DEFAULT_BOLD);
         titleView.setSingleLine(true);
         titleView.setEllipsize(TextUtils.TruncateAt.END);
-        titleView.setText("FixIt Abuja");
+        titleView.setText("FixIT Abuja");
         titleView.setPadding(dp(16), 0, dp(8), 0);
         topBar.addView(titleView, new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
 
-        ImageButton callBtn = iconButton(R.drawable.ic_call, "Call FixIt Abuja", AMBER, v -> dial());
+        ImageButton callBtn = iconButton(R.drawable.ic_call, "Call FixIT Abuja", AMBER, v -> dial());
         topBar.addView(callBtn, new LinearLayout.LayoutParams(dp(48), dp(48)));
 
         // ---- content: web view + load progress ----
@@ -383,7 +383,7 @@ public class MainActivity extends Activity {
         String section = u.getQueryParameter("section");
 
         int tab = -1;
-        String title = "FixIt Abuja";
+        String title = "FixIT Abuja";
         boolean root = false;
         if (path.equals("/") || path.equals("/index.html")) {
             if (section == null || section.equals("home")) {
@@ -449,7 +449,7 @@ public class MainActivity extends Activity {
             case "faq":
                 return "FAQ";
             default:
-                return "FixIt Abuja";
+                return "FixIT Abuja";
         }
     }
 

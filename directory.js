@@ -1,5 +1,5 @@
-/* FixIt Abuja - technician directory (find-artisan.html)
- * Premium skills  -> booked through FixIt (no individual listings, ever)
+/* FixIT Abuja - technician directory (find-artisan.html)
+ * Premium skills  -> booked through FixIT (no individual listings, ever)
  * General/Auto    -> searchable listings, contact artisan directly by call / WhatsApp
  */
 (function () {
@@ -186,24 +186,24 @@
   function waLink(a, skillName) {
     var first = String(a.name).split(' ')[0];
     var where = state.area || 'Abuja';
-    var text = 'Hi ' + first + ', I got your contact from FixIt Abuja (' + SITE + ').\n' +
+    var text = 'Hi ' + first + ', I got your contact from FixIT Abuja (' + SITE + ').\n' +
       'I need ' + skillName + ' in ' + where + '.\n\n' +
       'Please send me a written quote before any work starts.\n\n' +
-      "I agree to FixIt Abuja's Terms & Conditions: " + TERMS;
+      "I agree to FixIT Abuja's Terms & Conditions: " + TERMS;
     return 'https://wa.me/' + a.whatsapp + '?text=' + encodeURIComponent(text);
   }
   function validEmail(e) { return /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(String(e || '')); }
   function mailLink(a, skillName) {
     var first = String(a.name).split(' ')[0];
     var where = state.area || 'Abuja';
-    var body = 'Hi ' + first + ',\n\nI got your contact from FixIt Abuja (' + SITE + ').\n' +
+    var body = 'Hi ' + first + ',\n\nI got your contact from FixIT Abuja (' + SITE + ').\n' +
       'I need ' + skillName + ' in ' + where + '.\n\n' +
       'Please send me a written quote before any work starts.\n\n' +
-      "I agree to FixIt Abuja's Terms & Conditions: " + TERMS;
-    return 'mailto:' + a.email + '?subject=' + encodeURIComponent('Enquiry via FixIt Abuja: ' + skillName) + '&body=' + encodeURIComponent(body);
+      "I agree to FixIT Abuja's Terms & Conditions: " + TERMS;
+    return 'mailto:' + a.email + '?subject=' + encodeURIComponent('Enquiry via FixIT Abuja: ' + skillName) + '&body=' + encodeURIComponent(body);
   }
   function claimLink(a) {
-    var text = 'Hi FixIt Abuja, I am the owner of ' + a.name + ' (listing ' + a.id + ') in your technician directory. I would like to update my details / remove the listing (delete one).';
+    var text = 'Hi FixIT Abuja, I am the owner of ' + a.name + ' (listing ' + a.id + ') in your technician directory. I would like to update my details / remove the listing (delete one).';
     return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
   }
   function track(action, a, skillName) {
@@ -229,14 +229,14 @@
       : '<button type="button" class="btn btn-line" data-act="reveal" data-id="' + esc(a.id) + '">Show contact</button>';
     return '<article class="acard" data-card="' + esc(a.id) + '">' +
       '<div class="ahead"><div class="avatar" aria-hidden="true">' + avatar + '<span>' + esc(initials(a.name)) + '</span></div>' +
-      '<div><h3>' + esc(a.name) + (a.verified ? '<span class="vbadge" title="Identity and skills checked by FixIt Abuja">\u2713 Verified</span>' : '') + '</h3>' +
+      '<div><h3>' + esc(a.name) + (a.verified ? '<span class="vbadge" title="Identity and skills checked by FixIT Abuja">\u2713 Verified</span>' : '') + '</h3>' +
       '<div class="where">' + esc((a.area || 'Abuja') + (a.areaDetail ? ', ' + a.areaDetail : '')) + (a.business ? ' \u2022 Business' : '') + '</div></div></div>' +
       '<div class="askill">' + esc(sk.name) + more + '</div>' +
       feeHtml(a) +
       (a.bio ? '<p class="abio">' + esc(a.bio) + '</p>' : '') +
       (meta.length ? '<div class="ameta"><span>' + meta.join('</span><span>') + '</span></div>' : '') +
       '<div class="ctas">' + actions + '</div>' +
-      (revealed[a.id] ? '<p class="mention">Tell them you found them on FixIt Abuja. By contacting, you agree to our <a href="/terms.html" target="_blank" rel="noopener" style="text-decoration:underline">Terms</a>.</p>' : '') +
+      (revealed[a.id] ? '<p class="mention">Tell them you found them on FixIT Abuja. By contacting, you agree to our <a href="/terms.html" target="_blank" rel="noopener" style="text-decoration:underline">Terms</a>.</p>' : '') +
       (a.source === 'directory' ? '<p class="mention listed">Listed from public business directories; details being confirmed. <a href="' + esc(claimLink(a)) + '" target="_blank" rel="noopener" style="text-decoration:underline">Your business? Update or remove</a></p>' : '') +
       '</article>';
   }
@@ -253,14 +253,14 @@
     return html;
   }
   function premiumNote() {
-    return '<div class="premium-note"><span class="tag tag-premium">\u2713 Verified</span><h2>Verified artisans, booked directly through FixIt Abuja</h2>' +
-      '<p>Industrial, commercial, specialised, heavy-duty vehicle and vehicle-electronics jobs are handled only by artisans FixIt Abuja has verified. Tell us what you need and where, and we assess, quote, dispatch and stand behind the work. Individual artisans are not listed for these services.</p></div>';
+    return '<div class="premium-note"><span class="tag tag-premium">\u2713 Verified</span><h2>Verified artisans, booked directly through FixIT Abuja</h2>' +
+      '<p>Industrial, commercial, specialised, heavy-duty vehicle and vehicle-electronics jobs are handled only by artisans FixIT Abuja has verified. Tell us what you need and where, and we assess, quote, dispatch and stand behind the work. Individual artisans are not listed for these services.</p></div>';
   }
   function emptyHtml(c) {
     var ts = state.tier === 'automotive' ? 'a mechanic' : 'a technician';
     return '<div class="empty"><h3>No listed technicians match yet</h3>' +
-      '<p>We\u2019re growing the directory every week. Tell FixIt what you need and we\u2019ll send a verified ' + ts + ' to you, or list your own skill and be found first.</p>' +
-      '<div class="row"><button type="button" class="btn btn-amber" data-act="book-general">Book through FixIt</button>' +
+      '<p>We\u2019re growing the directory every week. Tell FixIT what you need and we\u2019ll send a verified ' + ts + ' to you, or list your own skill and be found first.</p>' +
+      '<div class="row"><button type="button" class="btn btn-amber" data-act="book-general">Book through FixIT</button>' +
       '<a class="btn btn-line" href="/technicians.html#apply">List your skill (free)</a></div></div>';
   }
   function skeletons() { var h = ''; for (var i = 0; i < 6; i++) h += '<div class="skel"></div>'; return '<div class="res-grid">' + h + '</div>'; }
@@ -277,7 +277,7 @@
       if (constrained) ids = c;
       var any = Object.keys(constrained ? c : skillById).filter(function (id) { return skillTier[id] === 'premium'; }).length;
       html = premiumNote() + (any ? '<div class="pgroups">' + premiumGroupsHtml(ids) + '</div>'
-        : '<div class="empty"><h3>No premium service matches that search</h3><p>Describe the job and we\u2019ll find the right specialist.</p><div class="row"><button type="button" class="btn btn-amber" data-act="book-general">Book through FixIt</button></div></div>');
+        : '<div class="empty"><h3>No premium service matches that search</h3><p>Describe the job and we\u2019ll find the right specialist.</p><div class="row"><button type="button" class="btn btn-amber" data-act="book-general">Book through FixIT</button></div></div>');
       total = any; label = 'premium service' + (any === 1 ? '' : 's');
     } else {
       var list = filterArtisans(c);
@@ -287,7 +287,7 @@
       }
       if (premiumHits.length) {
         var set = {}; premiumHits.forEach(function (i) { set[i] = true; });
-        html += '<h2 class="sect-title">\u2713 Verified premium services <span class="tag tag-premium">Book via FixIt</span></h2><div class="pgroups">' + premiumGroupsHtml(set) + '</div>';
+        html += '<h2 class="sect-title">\u2713 Verified premium services <span class="tag tag-premium">Book via FixIT</span></h2><div class="pgroups">' + premiumGroupsHtml(set) + '</div>';
       }
       if (list.length) {
         if (premiumHits.length) html += '<h2 class="sect-title">Listed technicians</h2>';
@@ -328,9 +328,9 @@
   function renderTiers() {
     $('tiers').innerHTML = SK.tiers.map(function (t) {
       var n = tierSkillIds(t.id).length;
-      var meta = t.mode === 'book' ? n + ' services \u2022 verified artisans, booked via FixIt' : n + ' skills \u2022 contact directly';
+      var meta = t.mode === 'book' ? n + ' services \u2022 verified artisans, booked via FixIT' : n + ' skills \u2022 contact directly';
       return '<button type="button" class="tier' + (t.verified ? ' tier-verified' : '') + (state.tier === t.id ? ' on' : '') + '" data-tier="' + t.id + '">' +
-        '<span class="tag tag-' + t.id + '">' + (t.mode === 'book' ? '\u2713 Verified \u2022 Book via FixIt' : 'Direct contact') + '</span>' +
+        '<span class="tag tag-' + t.id + '">' + (t.mode === 'book' ? '\u2713 Verified \u2022 Book via FixIT' : 'Direct contact') + '</span>' +
         '<h3>' + esc(t.name) + '</h3><p>' + esc(t.blurb) + '</p><span class="meta">' + esc(meta) + '</span></button>';
     }).join('');
   }
@@ -426,7 +426,7 @@
     var msg = 'Hi, I need ' + (booking.skill || 'a technician') + (isPremium ? ' (premium service)' : '') + ' in Abuja' +
       '\n\nDescription of issue: ' + desc + '\nLocation: ' + loc +
       '\n\nWhen your technician contacts me, I will ask for a written quote before any work starts.' +
-      "\n\nI agree to FixIt Abuja's Terms & Conditions: " + TERMS;
+      "\n\nI agree to FixIT Abuja's Terms & Conditions: " + TERMS;
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     closeBook();
   }

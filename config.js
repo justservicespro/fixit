@@ -1,5 +1,5 @@
 /**
- * FixIt Abuja — site-wide configuration.
+ * FixIT Abuja — site-wide configuration.
  * Loaded by index.html, technicians.html, and book-a-service.html.
  *
  * Neither value here is a secret: the Sheets endpoint only accepts writes

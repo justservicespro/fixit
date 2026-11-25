@@ -1,5 +1,5 @@
 /**
- * FixIt Abuja — send-email API route (Vercel serverless function).
+ * FixIT Abuja — send-email API route (Vercel serverless function).
  *
  * Sends two emails per form submission via Gmail SMTP:
  *   1. A notification to the business inbox with the submitted details.
@@ -22,29 +22,29 @@ const { logEmailSent } = require('../lib/report');
 
 const TERMS_URL = 'https://fixit.justservices.pro/terms.html';
 const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbB4t4eCBtxGCQD2BP1M'; // keep in sync with FIXIT_WHATSAPP_CHANNEL in config.js
-const SITE_NAME = 'FixIt Abuja';
+const SITE_NAME = 'FixIT Abuja';
 
 const SUBJECTS = {
-  booking:    'New repair request — FixIt Abuja website',
-  technician: 'New technician application — FixIt Abuja',
-  request:    'Technician contact request — FixIt Abuja',
+  booking:    'New repair request — FixIT Abuja website',
+  technician: 'New technician application — FixIT Abuja',
+  request:    'Technician contact request — FixIT Abuja',
 };
 
 const AUTORESPONSES = {
   booking:
-    "Thank you for contacting FixIt Abuja. We've received your request and " +
+    "Thank you for contacting FixIT Abuja. We've received your request and " +
     "will confirm your quote by phone or WhatsApp shortly.\n\n" +
-    "FixIt Abuja dispatches verified technicians with competence to attend to and provide " +
+    "FixIT Abuja dispatches verified technicians with competence to attend to and provide " +
     "repairs, maintenance and related services on-call at your home or place of business within Abuja.\n\n" +
     "By contacting us for services, you agree to our Terms and Conditions: " + TERMS_URL,
   technician:
-    "Thank you for applying to join the FixIt Abuja technician network. " +
+    "Thank you for applying to join the FixIT Abuja technician network. " +
     "We'll review your application and reach out by phone or WhatsApp.\n\n" +
     "While you wait, follow our WhatsApp Channel for new job leads as they come in: " + WHATSAPP_CHANNEL_URL + "\n\n" +
-    "By contacting or engaging FixIt Abuja as a technician, you agree to our Terms and " +
+    "By contacting or engaging FixIT Abuja as a technician, you agree to our Terms and " +
     "Conditions, including that technicians work as independent contractors: " + TERMS_URL,
   request:
-    "Thank you for reaching out to FixIt Abuja. We've passed your details to the " +
+    "Thank you for reaching out to FixIT Abuja. We've passed your details to the " +
     "technician you requested and will connect you both shortly.\n\n" +
     "By contacting us for services, you agree to our Terms and Conditions: " + TERMS_URL,
 };

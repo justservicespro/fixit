@@ -1,4 +1,4 @@
-/* FixIt Abuja - skill picker + directory-listing fields for the technician application form.
+/* FixIT Abuja - skill picker + directory-listing fields for the technician application form.
  * Premium skills  -> private pipeline only (sheet + email), never listed publicly.
  * General/Auto    -> optional public listing (moderated), needs the listing consent tick.
  * Builds four hidden fields the Sheets/email layer already understands:
@@ -38,7 +38,7 @@
   document.head.appendChild(css);
 
   var html = '<label style="display:block;margin-bottom:6px;">Skills &amp; Services You Offer</label>' +
-    '<p class="sp-note">Tick every skill you can do. <b>Premium</b> skills are booked through FixIt only and are <b>never listed publicly</b>. <b>General</b> and <b>Automotive</b> skills can also appear in the public directory so customers can call or WhatsApp you directly.</p>' +
+    '<p class="sp-note">Tick every skill you can do. <b>Premium</b> skills are booked through FixIT only and are <b>never listed publicly</b>. <b>General</b> and <b>Automotive</b> skills can also appear in the public directory so customers can call or WhatsApp you directly.</p>' +
     '<input class="sp-search" id="spSearch" type="search" placeholder="Search skills, e.g. plumber, CCTV, forklift" autocomplete="off">';
   SK.tiers.forEach(function (t) {
     var n = t.groups.reduce(function (a, g) { return a + g.skills.length; }, 0);
@@ -52,10 +52,10 @@
     html += '</details>';
   });
   html += '<div class="sp-summary" id="spSummary">No skills selected yet.</div><div class="sp-error" id="spError" hidden>Please select at least one skill.</div>' +
-    '<div class="sp-premium-note" id="spPremium" hidden><b>Premium skills selected.</b> Your details stay private. FixIt will contact you directly when a matching job comes in; you are not listed in the public directory for these skills.</div>' +
+    '<div class="sp-premium-note" id="spPremium" hidden><b>Premium skills selected.</b> Your details stay private. FixIT will contact you directly when a matching job comes in; you are not listed in the public directory for these skills.</div>' +
     '<input type="hidden" name="Areas of Expertise" id="spAll"><input type="hidden" name="Premium Skills" id="spPrem"><input type="hidden" name="Listing Skills" id="spListNames"><input type="hidden" name="Listing Skill IDs" id="spListIds"><input type="hidden" name="Areas Served" id="spAreasServed">' +
     '<fieldset class="sp-listing" id="spListing" hidden disabled style="min-width:0">' +
-    '<h4>Public directory listing (free)</h4><p class="sp-note">Customers will see your first name and last initial, photo, skills, base area, fee range and bio, and can call, WhatsApp or email you. Listings go live after FixIt approval.</p>' +
+    '<h4>Public directory listing (free)</h4><p class="sp-note">Customers will see your first name and last initial, photo, skills, base area, fee range and bio, and can call, WhatsApp or email you. Listings go live after FixIT approval.</p>' +
     '<div class="sp-row"><div class="field"><label for="spFeeFrom">Fee from (&#8358;)</label><input id="spFeeFrom" name="Fee From" type="text" inputmode="numeric" placeholder="e.g. 5000"></div>' +
     '<div class="field"><label for="spFeeTo">Fee to (&#8358;)</label><input id="spFeeTo" name="Fee To" type="text" inputmode="numeric" placeholder="e.g. 20000"></div>' +
     '<div class="field"><label for="spBasis">Fee basis</label><select id="spBasis" name="Fee Basis"><option value="job">Per job</option><option value="hour">Per hour</option><option value="day">Per day</option><option value="callout">Call-out / inspection fee</option><option value="negotiable">Negotiable</option></select></div></div>' +

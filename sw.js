@@ -1,4 +1,4 @@
-// FixIt Abuja — Service Worker
+// FixIT Abuja — Service Worker
 // Handles: install-to-home-screen eligibility and offline app-shell caching.
 // Push notification delivery is handled by OneSignal's imported worker below —
 // this is OneSignal's documented pattern for sites that already have a custom
@@ -10,7 +10,7 @@
 try {
   importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDKWorker.js');
 } catch (e) {
-  console.error('[FixIt SW] OneSignal worker import failed — push notifications unavailable this session, but caching/install continue normally.', e);
+  console.error('[FixIT SW] OneSignal worker import failed — push notifications unavailable this session, but caching/install continue normally.', e);
 }
 
 const CACHE_VERSION = 'fixit-abuja-v3';

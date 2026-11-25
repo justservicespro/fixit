@@ -36,16 +36,16 @@ async function sendBiWeeklyReport(campaignInfo) {
   try {
     const transporter = getTransporter();
     await transporter.sendMail({
-      from: `"FixIt Abuja Reports" <${SMTP_USER}>`,
+      from: `"FixIT Abuja Reports" <${SMTP_USER}>`,
       to: toBusiness,
-      subject: `FixIt Abuja — Bi-Weekly Report (${new Date().toLocaleDateString('en-NG')})`,
+      subject: `FixIT Abuja — Bi-Weekly Report (${new Date().toLocaleDateString('en-NG')})`,
       html,
     });
-    await logEmailSent('biweekly-report', toBusiness, 'FixIt Abuja — Bi-Weekly Report', 'sent');
+    await logEmailSent('biweekly-report', toBusiness, 'FixIT Abuja — Bi-Weekly Report', 'sent');
     return { sent: true };
   } catch (err) {
     console.error('biweekly-report send error:', err);
-    await logEmailSent('biweekly-report', toBusiness, 'FixIt Abuja — Bi-Weekly Report', 'failed');
+    await logEmailSent('biweekly-report', toBusiness, 'FixIT Abuja — Bi-Weekly Report', 'failed');
     return { sent: false, reason: err.message };
   }
 }

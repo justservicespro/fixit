@@ -1,4 +1,4 @@
-# FixIt Abuja - Android app
+# FixIT Abuja - Android app
 
 Native shell (WebView, no third-party dependencies) around https://fixit.justservices.pro.
 Package: `pro.justservices.fixit` - min SDK 24 - target SDK 36 (Google Play requirement from 31 Aug 2026).
@@ -41,7 +41,7 @@ Every section of the website is its own page in the app:
 | --- | --- |
 | Home | `/?section=home` (hero + latest guides) |
 | Services | `/?section=services` (call-outs + more repairs) |
-| Find | `/find-artisan.html` (technician directory: premium = book via FixIt, general/automotive = contact directly) |
+| Find | `/find-artisan.html` (technician directory: premium = book via FixIT, general/automotive = contact directly) |
 | Book | `/book-a-service.html` |
 | More: How It Works, Areas We Cover, Customer Reviews, Blog & Guides, Buy, What We Buy, Contact Us, Join Our Team, FAQ | `/?section=<key>`, `/blog/` |
 | More: For Technicians, Terms & Conditions | `/technicians.html`, `/terms.html` |

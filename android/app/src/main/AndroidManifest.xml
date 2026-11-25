@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:usesCleartextTraffic="false"
-        android:theme="@style/Theme.FixIt">
+        android:theme="@style/Theme.FixIT">
 
         <activity
             android:name=".MainActivity"

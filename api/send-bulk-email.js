@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
       <div style="font-family:Arial,sans-serif; max-width:560px; margin:0 auto; padding:24px; color:#171A21; line-height:1.6;">
         ${body.message.replace(/\n/g, '<br>')}
         <p style="margin-top:28px; font-size:11.5px; color:#999;">
-          FixIt Abuja &middot; JustServicesPro Management and Consulting Ltd &middot; Abuja, FCT<br>
+          FixIT Abuja &middot; JustServicesPro Management and Consulting Ltd &middot; Abuja, FCT<br>
           <a href="{{unsubscribe_url}}" style="color:#999;">Unsubscribe</a>
         </p>
       </div>`;

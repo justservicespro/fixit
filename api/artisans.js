@@ -1,5 +1,5 @@
 /**
- * FixIt Abuja — public artisan directory feed (Vercel serverless function).
+ * FixIT Abuja — public artisan directory feed (Vercel serverless function).
  *
  * Reads APPROVED listings from the private Google Sheet (via the same Apps Script
  * endpoint + token the rest of the site already uses), sanitises them, and returns
@@ -50,7 +50,7 @@ function validEmail(e) {
 
 function displayName(full) {
   const parts = String(full || '').trim().split(/\s+/).filter(Boolean);
-  if (!parts.length) return 'FixIt artisan';
+  if (!parts.length) return 'FixIT artisan';
   if (parts.length === 1) return parts[0];
   return parts[0] + ' ' + parts[parts.length - 1].charAt(0).toUpperCase() + '.';
 }

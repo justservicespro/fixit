@@ -1,5 +1,5 @@
 /**
- * FixIt Abuja — Google Sheets backend for form submissions + subscribers.
+ * FixIT Abuja — Google Sheets backend for form submissions + subscribers.
  *
  * WHAT THIS DOES
  * Every booking, technician application, and contact request submitted on the
@@ -14,14 +14,14 @@
  *
  * SETUP (about 5 minutes, one-time)
  * 1. Go to sheets.google.com and create a new blank spreadsheet.
- *    Name it something like "FixIt Abuja — Submissions".
+ *    Name it something like "FixIT Abuja — Submissions".
  * 2. In the sheet, go to Extensions → Apps Script.
  * 3. Delete any starter code in the editor, and paste in this entire file.
  *    (ADMIN_TOKEN below already has a working default — change it later if
  *    you want, just keep SHEETS_ADMIN_TOKEN on Vercel matching whatever you set.)
  * 4. Click Deploy → New deployment.
  *    - Click the gear icon next to "Select type" → choose "Web app".
- *    - Description: "FixIt Abuja form intake" (or anything).
+ *    - Description: "FixIT Abuja form intake" (or anything).
  *    - Execute as: "Me".
  *    - Who has access: "Anyone".
  *    - Click Deploy, then authorize the script when Google prompts you
@@ -229,7 +229,7 @@ function doGet(e) {
     return HtmlService.createHtmlOutput(
       '<div style="font-family:Arial,sans-serif; max-width:480px; margin:60px auto; text-align:center; color:#171A21;">' +
       '<h2>You have been unsubscribed</h2>' +
-      '<p>' + (email || 'This address') + ' will not receive FixIt Abuja emails again. ' +
+      '<p>' + (email || 'This address') + ' will not receive FixIT Abuja emails again. ' +
       'You can still reach us any time on WhatsApp or by phone.</p></div>'
     );
   }
@@ -340,5 +340,5 @@ function doGet(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 
-  return ContentService.createTextOutput('FixIt Abuja intake endpoint is live. It only accepts POST requests from the website.');
+  return ContentService.createTextOutput('FixIT Abuja intake endpoint is live. It only accepts POST requests from the website.');
 }

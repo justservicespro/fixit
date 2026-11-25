@@ -1,16 +1,16 @@
-# FixIt Abuja Technician Directory: build notes and recommendations
+# FixIT Abuja Technician Directory: build notes and recommendations
 
 ## 1. The model: two doors, one front page
 | | Premium (65 skills, **Verified**) | General (54) and Automotive (27) |
 |---|---|---|
 | Who | Industrial, commercial, specialised work, **trucks and heavy-duty vehicles, vehicle electrical/electronics and computerised diagnostics** | Home, office, small business; cars, bikes, tyres, bodywork, roadside |
-| Client journey | Search, press **Book**, WhatsApp to FixIt (description + location) | Search, filter by skill / area / fee, **Show contact**, call or WhatsApp the artisan |
+| Client journey | Search, press **Book**, WhatsApp to FixIT (description + location) | Search, filter by skill / area / fee, **Show contact**, call or WhatsApp the artisan |
 | Artisan visibility | **Never listed.** Applications go to the private sheet and email only | Listed (free) once approved |
-| FixIt's role | Assesses, quotes, dispatches, invoices, carries the risk | Introducer (a lead source), not the employer |
+| FixIT's role | Assesses, quotes, dispatches, invoices, carries the risk | Introducer (a lead source), not the employer |
 | Revenue | Job margin | Lead fees / featured listings later (see section 5) |
 
 The same sign-up form feeds both. The artisan ticks skills; the routing is automatic.
-Premium is visually emphasised everywhere (dark tile with amber border, "Verified" badges, tick on every group) because it is the tier where FixIt vouches for the artisan.
+Premium is visually emphasised everywhere (dark tile with amber border, "Verified" badges, tick on every group) because it is the tier where FixIT vouches for the artisan.
 
 ## 2. How the data flows
 1. `technicians.html` (skill picker) posts to the existing pipeline: **TechnicianApplications** sheet + email, exactly as before. This record is private and holds *everything*, premium skills included.
@@ -34,24 +34,24 @@ Send each business `docs/listing-outreach-message.md`; when they reply, update t
 - [ ] Existing sheet columns are extended automatically on the first new submission (Fee From/To, WhatsApp, Listing Skill IDs, etc.).
 
 ## 4. Consultant recommendations
-**Cold start (the real risk).** An empty directory looks dead. Before promoting it, convert 15 to 30 of your best existing applicants into Approved listings (with their consent), cover 3 to 4 categories well (plumbing, electrical, AC, auto mechanic) and launch those first. The empty state already pushes visitors to "Book through FixIt", so no lead is lost.
+**Cold start (the real risk).** An empty directory looks dead. Before promoting it, convert 15 to 30 of your best existing applicants into Approved listings (with their consent), cover 3 to 4 categories well (plumbing, electrical, AC, auto mechanic) and launch those first. The empty state already pushes visitors to "Book through FixIT", so no lead is lost.
 
 **Trust and liability.**
 - Keep two visible tiers: *Listed* (self-declared, approved) and *Verified* (you checked ID plus a reference or past job). Charge nothing for Listed; make Verified the thing artisans want.
-- Listed artisans are independent contractors. Add a short directory clause to `terms.html` and have a Nigerian lawyer review it. Suggested starting text: *"FixIt Abuja's directory introduces customers to independent artisans. We do not employ, supervise or guarantee listed artisans or their work. Customers and artisans contract directly. Services booked through FixIt Abuja are separately covered by these Terms."* The WhatsApp message already says "I agree to FixIt Abuja's Terms & Conditions", so the Terms must actually cover this.
+- Listed artisans are independent contractors. Add a short directory clause to `terms.html` and have a Nigerian lawyer review it. Suggested starting text: *"FixIT Abuja's directory introduces customers to independent artisans. We do not employ, supervise or guarantee listed artisans or their work. Customers and artisans contract directly. Services booked through FixIT Abuja are separately covered by these Terms."* The WhatsApp message already says "I agree to FixIT Abuja's Terms & Conditions", so the Terms must actually cover this.
 - Publishing phone numbers and emails of individuals is personal data under the Nigeria Data Protection Act 2023; the seeded entries are businesses with publicly listed contact details, and each carries an update/remove route, but get their confirmation (the outreach message does this) before you mark any of them Verified. The explicit listing-consent checkbox is your lawful basis; keep consent records (they are in the sheet) and honour removal requests quickly.
 
-**Protect the premium business.** Premium artisans are never shown, and the premium search shows service types, not people. Keep the artisan agreement clear that premium jobs are only taken through FixIt (non-circumvention), and never share a premium client's contact with an artisan before the job is confirmed.
+**Protect the premium business.** Premium artisans are never shown, and the premium search shows service types, not people. Keep the artisan agreement clear that premium jobs are only taken through FixIT (non-circumvention), and never share a premium client's contact with an artisan before the job is confirmed.
 
 **Moderation routine (10 minutes a day).** Approve only with a real phone number, a sensible fee range and a plausible bio; check the photo is a person, not a stock image. Use `Suspended` (not deletion) for complaints so you keep the audit trail.
 
-**Measure.** DirectoryContacts gives you Reveal, Call and WhatsApp counts by skill and area. Track weekly: searches with zero results (supply gaps to recruit for), reveals per listing, and the share of searches that end in a FixIt booking.
+**Measure.** DirectoryContacts gives you Reveal, Call and WhatsApp counts by skill and area. Track weekly: searches with zero results (supply gaps to recruit for), reveals per listing, and the share of searches that end in a FixIT booking.
 
 ## 5. Revenue paths (when traffic justifies it)
 1. **Featured listings** (pinned to the top of a skill/area): add a `Featured` column and sort on it.
 2. **Verified badge fee or annual membership** for artisans.
 3. **Lead fee**: you already log contact taps; a per-lead charge needs a contact-reveal API (phase 2).
-4. **Escrow / guaranteed booking** for general skills: the natural upsell from "contact directly" to "book through FixIt".
+4. **Escrow / guaranteed booking** for general skills: the natural upsell from "contact directly" to "book through FixIT".
 
 ## 6. Known limits and phase 2
 - Phone numbers are in the feed, so a determined scraper can collect them. Mitigate with a rate-limited `/api/artisan-contact?id=` reveal endpoint (also enables per-lead billing).

@@ -1,4 +1,4 @@
-# FixIt Abuja — Environment Variables
+# FixIT Abuja — Environment Variables
 
 Copy-paste these into Vercel → Project → Settings → Environment Variables.
 Every value below is a working default — change any of them later, just
