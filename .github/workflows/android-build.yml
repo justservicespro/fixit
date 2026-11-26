@@ -27,7 +27,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
+      # The runner already has the Android SDK; just accept licenses and make sure SDK 36 is present.
+      - name: Accept licenses and install SDK 36
+        run: |
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "platforms;android-36" "build-tools;36.0.0"
 
       - uses: gradle/actions/setup-gradle@v4
         with:
