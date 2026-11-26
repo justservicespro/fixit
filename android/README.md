@@ -7,7 +7,15 @@ Package: `pro.justservices.fixit` - min SDK 24 - target SDK 36 (Google Play requ
 
 1. Add the four secrets below (Repo > Settings > Secrets and variables > Actions).
 2. Actions tab > **Android build (APK + AAB)** > **Run workflow**, enter a version name.
-3. Download `fixit-abuja-android-b<N>` from the run's **Artifacts** (or tick *create_release* for a GitHub Release).
+3. Download `fixit-abuja-android-b<N>` from the run's **Artifacts** (or tick *create_release* for a GitHub Release), unzip it and you get:
+   - `fixit-abuja-debug.apk`: **always built, needs no secrets**. Use this to test on your phone right away.
+   - `fixit-abuja-release.apk` and `fixit-abuja-release.aab`: built only when the signing secrets exist. The AAB is what you upload to Google Play.
+
+### Test on your phone
+
+1. Download the artifact zip on the phone (or on a PC and send the APK over), extract `fixit-abuja-debug.apk`.
+2. Open it. Android asks to allow installs from that source (Chrome/Files): allow it, then Install.
+3. The debug and release APKs are signed with different keys, so uninstall one before installing the other.
 
 `versionCode` is the workflow run number, so every build is higher than the last (Play requires this).
 
