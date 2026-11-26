@@ -21,6 +21,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -102,6 +103,7 @@ public class MainActivity extends Activity {
     private View navDivider;
     private final ImageView[] tabIcons = new ImageView[5];
     private final TextView[] tabLabels = new TextView[5];
+    private final GradientDrawable[] tabPills = new GradientDrawable[5];
 
     private ValueCallback<Uri[]> filePathCallback;
     private Object backHandler; // BackHandler on API 33+, null otherwise
@@ -135,6 +137,7 @@ public class MainActivity extends Activity {
         topBar.setGravity(Gravity.CENTER_VERTICAL);
         topBar.setBackgroundColor(INK);
         topBar.setPadding(dp(4), 0, dp(4), 0);
+        topBar.setElevation(dp(4)); // soft shadow over the page, like a native app bar
         root.addView(topBar, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, dp(52)));
 
@@ -163,6 +166,9 @@ public class MainActivity extends Activity {
 
         webView = new WebView(this);
         webView.setBackgroundColor(INK);
+        webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
         content.addView(webView, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
@@ -182,7 +188,7 @@ public class MainActivity extends Activity {
         bottomNav.setOrientation(LinearLayout.HORIZONTAL);
         bottomNav.setBackgroundColor(INK);
         root.addView(bottomNav, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(60)));
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(64)));
         for (int i = 0; i < TAB_LABELS.length; i++) {
             bottomNav.addView(makeTab(i), new LinearLayout.LayoutParams(
                     0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
@@ -243,21 +249,35 @@ public class MainActivity extends Activity {
         tab.setGravity(Gravity.CENTER);
         tab.setBackgroundResource(selectableBackground(false));
         tab.setContentDescription(TAB_LABELS[index]);
-        tab.setOnClickListener(v -> onTabClicked(index));
+        tab.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            onTabClicked(index);
+        });
+
+        // icon sits on a rounded "pill" that lights up when the tab is selected (Material-style)
+        FrameLayout pillBox = new FrameLayout(this);
+        View pill = new View(this);
+        GradientDrawable pillBg = new GradientDrawable();
+        pillBg.setCornerRadius(dp(16));
+        pillBg.setColor(Color.TRANSPARENT);
+        pill.setBackground(pillBg);
+        pillBox.addView(pill, new FrameLayout.LayoutParams(dp(56), dp(32), Gravity.CENTER));
 
         ImageView icon = new ImageView(this);
         icon.setImageResource(TAB_ICONS[index]);
         icon.setColorFilter(MUTED);
-        tab.addView(icon, new LinearLayout.LayoutParams(dp(24), dp(24)));
+        pillBox.addView(icon, new FrameLayout.LayoutParams(dp(24), dp(24), Gravity.CENTER));
+        tab.addView(pillBox, new LinearLayout.LayoutParams(dp(56), dp(32)));
 
         TextView label = new TextView(this);
         label.setText(TAB_LABELS[index]);
         label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
         label.setTextColor(MUTED);
-        label.setPadding(0, dp(3), 0, 0);
+        label.setPadding(0, dp(2), 0, 0);
         tab.addView(label, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        tabPills[index] = pillBg;
         tabIcons[index] = icon;
         tabLabels[index] = label;
         return tab;
@@ -268,6 +288,8 @@ public class MainActivity extends Activity {
             int color = (i == selected) ? AMBER : MUTED;
             tabIcons[i].setColorFilter(color);
             tabLabels[i].setTextColor(color);
+            tabLabels[i].setTypeface(null, (i == selected) ? Typeface.BOLD : Typeface.NORMAL);
+            tabPills[i].setColor((i == selected) ? Color.argb(48, 255, 122, 26) : Color.TRANSPARENT);
         }
     }
 
@@ -466,8 +488,9 @@ public class MainActivity extends Activity {
         s.setAllowFileAccess(false); // android_asset URLs still work
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         s.setSupportMultipleWindows(false);
-        s.setSupportZoom(true);
-        s.setBuiltInZoomControls(true);
+        s.setSupportZoom(false);          // no pinch-zoom: behaves like an app, not a web page
+        s.setBuiltInZoomControls(false);
+        s.setTextZoom(100);
         s.setDisplayZoomControls(false);
         s.setUserAgentString(s.getUserAgentString() + " FixItAbujaApp/" + versionName());
 
@@ -567,6 +590,7 @@ public class MainActivity extends Activity {
         if (webView == null) {
             return;
         }
+        webView.animate().cancel();
         webView.setAlpha(0f);
         ui.removeCallbacks(revealRunnable);
         ui.postDelayed(revealRunnable, 3500);
@@ -575,7 +599,7 @@ public class MainActivity extends Activity {
     private void revealWebView() {
         ui.removeCallbacks(revealRunnable);
         if (webView != null) {
-            webView.setAlpha(1f);
+            webView.animate().alpha(1f).setDuration(180).start();
         }
     }
 

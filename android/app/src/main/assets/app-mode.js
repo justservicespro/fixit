@@ -25,6 +25,26 @@
     'html,body{scroll-padding-top:0!important}body{padding-bottom:0!important}'
   );
 
+  // 1b) native feel: no pinch-zoom, no tap flash, no text-selection on chrome, press feedback, soft page-in
+  (function () {
+    var vp = d.querySelector('meta[name=viewport]');
+    var vc = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
+    if (vp) { vp.setAttribute('content', vc); }
+    else if (d.head) { var m = d.createElement('meta'); m.name = 'viewport'; m.content = vc; d.head.appendChild(m); }
+  })();
+  addStyle(
+    '*{-webkit-tap-highlight-color:transparent}' +
+    'html{scroll-behavior:auto!important;overscroll-behavior-y:none}' +
+    'body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}' +
+    'input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:text}' +
+    '::-webkit-scrollbar{display:none}' +
+    'a,button,.btn,summary,[role=button]{touch-action:manipulation;transition:transform .12s ease,opacity .12s ease}' +
+    'a:active,button:active,.btn:active,[role=button]:active{transform:scale(.97);opacity:.88}' +
+    '@keyframes fixitIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}' +
+    'main{animation:fixitIn .24s ease-out both}' +
+    '@media (prefers-reduced-motion:reduce){main{animation:none}}'
+  );
+
   // 2) links to a homepage section open that section as its own page
   var S = '/?section=';
   var TARGETS = {

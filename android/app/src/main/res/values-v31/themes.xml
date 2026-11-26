@@ -5,8 +5,8 @@
         <item name="android:statusBarColor">@color/ink</item>
         <item name="android:navigationBarColor">@color/ink</item>
         <item name="android:colorAccent">@color/amber</item>
+        <!-- Android 12+ splash: dark screen with the centred logo on an amber disc -->
         <item name="android:windowSplashScreenBackground">@color/ink</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/amber</item>
     </style>
 </resources>
