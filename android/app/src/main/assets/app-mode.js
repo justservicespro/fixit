@@ -21,7 +21,7 @@
 
   // 1) native top bar / bottom navigation replace the website chrome
   addStyle(
-    '.topbar,header.site,header.tbar,footer,.tfoot,.wa-float,.sticky-bar,.mobile-drawer,.rent-tab,.rent-fly,.rent-scrim{display:none!important}' +
+    '.topbar,header.site,header.tbar,footer,.tfoot,.wa-float,.sticky-bar,.mobile-drawer,.rent-tab{display:none!important}' +
     'html,body{scroll-padding-top:0!important}body{padding-bottom:0!important}'
   );
 
@@ -67,6 +67,55 @@
     location.href = target;
   }, true);
 
+  // 2b) Find (general search) and Book (premium) pages: compact layout + switcher + extra blocks
+  var isFind = path.indexOf('/find-artisan') === 0;
+  var isBook = path.indexOf('/book-a-service') === 0;
+  function loadAsset(tag, attrs) {
+    var el = d.createElement(tag);
+    Object.keys(attrs).forEach(function (k) { el[k] = attrs[k]; });
+    (d.head || d.documentElement).appendChild(el);
+    return el;
+  }
+  function setupToolPages() {
+    if (!isFind && !isBook) { return; }
+    loadAsset('link', { rel: 'stylesheet', href: '/app/app.css' });
+    var main = d.querySelector('main');
+    var s = loadAsset('script', { src: '/app/fx.js' });
+    s.onload = function () {
+      if (!main || !window.FX) { return; }
+      var holder = d.createElement('div');
+      holder.className = 'fx';
+      holder.style.cssText = 'padding:10px 12px 0';
+      holder.innerHTML = FX.seg(isFind ? 'general' : 'premium');
+      main.insertBefore(holder, main.firstChild);
+      if (isFind) {
+        var more = d.createElement('div');
+        more.style.cssText = 'padding:0 12px 24px';
+        main.appendChild(more);
+        FX.blocks(more);
+        var tips = d.querySelector('.safety-tips');
+        if (tips && tips.querySelector('h2')) {
+          var det = d.createElement('details'); var sum = d.createElement('summary');
+          sum.textContent = tips.querySelector('h2').textContent; sum.style.cssText = 'font-weight:800;cursor:pointer;padding:6px 0';
+          tips.querySelector('h2').remove();
+          while (tips.firstChild) { det.appendChild(tips.firstChild); }
+          det.insertBefore(sum, det.firstChild); tips.appendChild(det);
+        }
+      }
+    };
+  }
+  if (isFind) {
+    addStyle('.dir-hero{padding:14px 0 10px!important}.dir-hero h1{font-size:21px!important;margin:4px 0 6px!important}.dir-hero .sub,.dir-hero .eyebrow{display:none!important}' +
+      '.dir-hero .popular{display:flex;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;gap:6px;padding-bottom:4px}.dir-hero .popular::-webkit-scrollbar{display:none}' +
+      '.join-cta{display:none!important}');
+  }
+  if (isBook) {
+    addStyle('main>.hero{padding:16px 0 14px!important}main>.hero nav,main>.hero .hero-ctas,main>.hero .hero-eyebrow{display:none!important}' +
+      'main>.hero h1{font-size:22px!important;line-height:1.2!important}main>.hero .lead{font-size:13px!important;margin-top:8px!important}' +
+      '.contact-card{display:none!important}.contact-grid{display:block!important}main>.section{padding-top:14px!important}' +
+      'main>section:not(.hero):not(:nth-of-type(2)){display:none!important}');
+  }
+
   function ready() {
     try { if (window.FixItApp) { window.FixItApp.ready(); } } catch (err) { /* ignore */ }
   }
@@ -90,6 +139,7 @@
       }
       window.scrollTo(0, 0);
     }
+    setupToolPages();
     requestAnimationFrame(function () { requestAnimationFrame(ready); });
   }
 

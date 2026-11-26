@@ -58,13 +58,14 @@ public class MainActivity extends Activity {
 
     private static final String HOST = "fixit.justservices.pro";
     private static final String BASE = "https://" + HOST;
-    private static final String URL_HOME = BASE + "/?section=home&source=android_app";
-    private static final String URL_SERVICES = BASE + "/?section=services";
+    private static final String URL_HOME = BASE + "/app/home.html?source=android_app";
+    private static final String URL_SERVICES = BASE + "/app/services.html";
     private static final String URL_BOOK = BASE + "/book-a-service.html?source=android_app";
     private static final String URL_FIND = BASE + "/find-artisan.html";
     private static final String URL_BLOG = BASE + "/blog/";
     private static final String OFFLINE_URL = "file:///android_asset/offline.html";
     private static final String PHONE = "+2348079926755";
+    private static final String EMAIL = "info@justservices.pro";
     private static final String WHATSAPP = "whatsapp://send?phone=2348079926755";
     private static final int REQ_FILE_CHOOSER = 1001;
 
@@ -157,7 +158,14 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
 
         ImageButton callBtn = iconButton(R.drawable.ic_call, "Call FixIT Abuja", AMBER, v -> dial());
-        topBar.addView(callBtn, new LinearLayout.LayoutParams(dp(48), dp(48)));
+        topBar.addView(callBtn, new LinearLayout.LayoutParams(dp(42), dp(48)));
+
+        ImageButton mailBtn = iconButton(R.drawable.ic_mail, "Email FixIT Abuja", Color.WHITE, v -> composeEmail());
+        topBar.addView(mailBtn, new LinearLayout.LayoutParams(dp(42), dp(48)));
+
+        ImageButton waBtn = iconButton(R.drawable.ic_whatsapp, "WhatsApp FixIT Abuja", Color.parseColor("#25D366"),
+                v -> openExternal(Uri.parse(WHATSAPP)));
+        topBar.addView(waBtn, new LinearLayout.LayoutParams(dp(42), dp(48)));
 
         // ---- content: web view + load progress ----
         FrameLayout content = new FrameLayout(this);
@@ -381,6 +389,10 @@ public class MainActivity extends Activity {
         return row;
     }
 
+    private void composeEmail() {
+        openExternal(Uri.parse("mailto:" + EMAIL + "?subject=" + Uri.encode("FixIT Abuja enquiry")));
+    }
+
     private void dial() {
         openExternal(Uri.parse("tel:" + PHONE));
     }
@@ -407,7 +419,14 @@ public class MainActivity extends Activity {
         int tab = -1;
         String title = "FixIT Abuja";
         boolean root = false;
-        if (path.equals("/") || path.equals("/index.html")) {
+        if (path.equals("/app/home.html")) {
+            tab = 0;
+            root = true;
+        } else if (path.equals("/app/services.html")) {
+            tab = 1;
+            title = "Services";
+            root = true;
+        } else if (path.equals("/") || path.equals("/index.html")) {
             if (section == null || section.equals("home")) {
                 tab = 0;
                 root = true;
@@ -424,11 +443,11 @@ public class MainActivity extends Activity {
             title = "Services";
         } else if (path.startsWith("/find-artisan")) {
             tab = 2;
-            title = "Find a Technician";
+            title = "General Search";
             root = true;
         } else if (path.startsWith("/book-a-service")) {
             tab = 3;
-            title = "Book a Service";
+            title = "Premium Booking";
             root = true;
         } else if (path.startsWith("/blog")) {
             tab = 4; // lives under More
